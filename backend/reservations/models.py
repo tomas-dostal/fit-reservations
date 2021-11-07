@@ -36,23 +36,25 @@ class Room(models.Model):
     def __str__(self):
         return "%s (building: %s)" % (self.name, self.building)
 
+
 class ReservationStatus(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    APPROVED = 'Approved'
-    DECLINED = 'Declined'
-    PENDING_AUTHORISATION = 'Pending authorisation'
-    EXPIRED = 'Expired'
+    APPROVED = "Approved"
+    DECLINED = "Declined"
+    PENDING_AUTHORISATION = "Pending authorisation"
+    EXPIRED = "Expired"
 
     CHOICES = (
         (APPROVED, APPROVED),
         (DECLINED, DECLINED),
         (PENDING_AUTHORISATION, PENDING_AUTHORISATION),
-        (EXPIRED, EXPIRED)
+        (EXPIRED, EXPIRED),
     )
 
     status = models.CharField(max_length=32, choices=CHOICES, default=PENDING_AUTHORISATION)
     note = models.TextField()
+
 
 class Reservation(models.Model):
     author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
