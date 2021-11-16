@@ -3,10 +3,11 @@ from enum import Enum
 from django.db import models
 
 
-class User(models.Model):
+class Person(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     is_admin = models.BooleanField(default=False)
+    occupy = models.ManyToManyField("Room", related_name="occupies", blank=True)
 
     def __str__(self):
         return "%s, %s" % (self.surname, self.name)
@@ -18,9 +19,10 @@ class Building(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=50)
-    subgroup = models.ManyToManyField("self")
 
-    manager = models.ForeignKey(User, on_delete=models.CASCADE)
+    subgroup = models.ManyToManyField("Group", blank=True)
+
+    manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s" % self.name
@@ -29,16 +31,17 @@ class Group(models.Model):
 class Room(models.Model):
     name = models.CharField(max_length=50)
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True)
 
-    manager = models.ForeignKey(User, on_delete=models.CASCADE)
+    manager = models.ForeignKey(Person, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return "%s (building: %s)" % (self.name, self.building)
 
 
 class ReservationStatus(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Person, on_delete=models.CASCADE)
+    dt_modified = models.DateTimeField(auto_now=True)
 
     APPROVED = "Approved"
     DECLINED = "Declined"
@@ -57,10 +60,11 @@ class ReservationStatus(models.Model):
 
 
 class Reservation(models.Model):
-    author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
-    attendees = models.ManyToManyField(User, related_name="attendee")
+    author = models.ForeignKey(Person, related_name="author", on_delete=models.CASCADE)
+    attendees = models.ManyToManyField(Person, related_name="attendee", blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    reservation_status = models.ForeignKey(ReservationStatus, on_delete=models.CASCADE)
+    # the last modified one is what we want
+    reservation_status = models.ManyToManyField(ReservationStatus, related_name="reservation_status", blank=True)
     dt_from = models.DateTimeField()
     dt_to = models.DateTimeField()
     dt_created = models.DateTimeField(auto_now=True)
