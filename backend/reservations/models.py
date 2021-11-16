@@ -10,11 +10,14 @@ class Person(models.Model):
     occupy = models.ManyToManyField("Room", related_name="occupies", blank=True)
 
     def __str__(self):
-        return "%s, %s" % (self.surname, self.name)
+        return "%s, %s%s" % (self.surname, self.name, " (admin)" if self.is_admin else "")
 
 
 class Building(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "%s" % (self.name)
 
 
 class Group(models.Model):
@@ -25,7 +28,7 @@ class Group(models.Model):
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s" % self.name
+        return "%s (manager: %s)" % (self.name, self.manager)
 
 
 class Room(models.Model):
@@ -58,6 +61,9 @@ class ReservationStatus(models.Model):
     status = models.CharField(max_length=32, choices=CHOICES, default=PENDING_AUTHORISATION)
     note = models.TextField()
 
+    def __str__(self):
+        return "[%s], (by: %s, modified: %s)" % (self.status, self.author.__str__(), self.dt_modified)
+
 
 class Reservation(models.Model):
     author = models.ForeignKey(Person, related_name="author", on_delete=models.CASCADE)
@@ -70,4 +76,11 @@ class Reservation(models.Model):
     dt_created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "author: %s (%s, from: %s to: %s)" % (self.author, self.room, self.dt_from, self.dt_to)
+        return "[%s] %s, (from: %s to: s%s, by %s, attendees: %s" % (
+            self.reservation_status.last().status if hasattr(self.reservation_status.last(), 'status') else "None",
+            self.room,
+            self.dt_from,
+            self.dt_to,
+            self.author,
+            str([str(a) for a in self.attendees.all()]),
+        )
