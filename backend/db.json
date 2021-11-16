@@ -1,0 +1,1104 @@
+[
+   {
+      "model":"admin.logentry",
+      "pk":1,
+      "fields":{
+         "action_time":"2021-11-07T20:46:15.940Z",
+         "user":1,
+         "content_type":7,
+         "object_id":"1",
+         "object_repr":"Building object (1)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":2,
+      "fields":{
+         "action_time":"2021-11-07T20:46:33.938Z",
+         "user":1,
+         "content_type":7,
+         "object_id":"2",
+         "object_repr":"Building object (2)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":3,
+      "fields":{
+         "action_time":"2021-11-07T20:47:00.591Z",
+         "user":1,
+         "content_type":7,
+         "object_id":"3",
+         "object_repr":"Building object (3)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":4,
+      "fields":{
+         "action_time":"2021-11-07T20:54:27.202Z",
+         "user":1,
+         "content_type":9,
+         "object_id":"2",
+         "object_repr":"Kalvoda, Tomas",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":5,
+      "fields":{
+         "action_time":"2021-11-07T20:54:53.864Z",
+         "user":1,
+         "content_type":9,
+         "object_id":"3",
+         "object_repr":"Snow, John",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":6,
+      "fields":{
+         "action_time":"2021-11-07T20:54:57.563Z",
+         "user":1,
+         "content_type":9,
+         "object_id":"3",
+         "object_repr":"Snow, John",
+         "action_flag":2,
+         "change_message":"[]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":7,
+      "fields":{
+         "action_time":"2021-11-07T20:55:15.322Z",
+         "user":1,
+         "content_type":9,
+         "object_id":"4",
+         "object_repr":"Trdlicka, Jan",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":8,
+      "fields":{
+         "action_time":"2021-11-07T20:57:15.271Z",
+         "user":1,
+         "content_type":9,
+         "object_id":"1",
+         "object_repr":"Dostal, Tomas (admin)",
+         "action_flag":2,
+         "change_message":"[{\"changed\": {\"fields\": [\"Is admin\"]}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":9,
+      "fields":{
+         "action_time":"2021-11-07T20:58:26.982Z",
+         "user":1,
+         "content_type":8,
+         "object_id":"1",
+         "object_repr":"Matematici",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":10,
+      "fields":{
+         "action_time":"2021-11-07T20:59:15.746Z",
+         "user":1,
+         "content_type":8,
+         "object_id":"2",
+         "object_repr":"Informatici",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":11,
+      "fields":{
+         "action_time":"2021-11-07T21:01:02.661Z",
+         "user":1,
+         "content_type":8,
+         "object_id":"1",
+         "object_repr":"Matematici",
+         "action_flag":2,
+         "change_message":"[{\"changed\": {\"fields\": [\"Subgroup\"]}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":12,
+      "fields":{
+         "action_time":"2021-11-07T21:02:01.152Z",
+         "user":1,
+         "content_type":10,
+         "object_id":"1",
+         "object_repr":"Uklidova komora (building: NTK)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":13,
+      "fields":{
+         "action_time":"2021-11-07T21:02:45.011Z",
+         "user":1,
+         "content_type":10,
+         "object_id":"2",
+         "object_repr":"Velka prednaskovka (building: CIIRC)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":14,
+      "fields":{
+         "action_time":"2021-11-07T21:03:04.101Z",
+         "user":1,
+         "content_type":10,
+         "object_id":"3",
+         "object_repr":"Pocitacova ucebna (building: NTK)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":15,
+      "fields":{
+         "action_time":"2021-11-07T21:08:02.003Z",
+         "user":1,
+         "content_type":10,
+         "object_id":"4",
+         "object_repr":"109 (building: T9)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":16,
+      "fields":{
+         "action_time":"2021-11-07T21:08:17.208Z",
+         "user":1,
+         "content_type":10,
+         "object_id":"5",
+         "object_repr":"105 (building: T9)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":17,
+      "fields":{
+         "action_time":"2021-11-07T21:09:40.539Z",
+         "user":1,
+         "content_type":11,
+         "object_id":"1",
+         "object_repr":"ReservationStatus object (1)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":18,
+      "fields":{
+         "action_time":"2021-11-07T21:09:58.892Z",
+         "user":1,
+         "content_type":12,
+         "object_id":"1",
+         "object_repr":"author: Dostal, Tomas (admin) (Pocitacova ucebna (building: NTK), from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":19,
+      "fields":{
+         "action_time":"2021-11-07T21:12:14.997Z",
+         "user":1,
+         "content_type":12,
+         "object_id":"1",
+         "object_repr":"Pocitacova ucebna (building: NTK), (from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00, by Dostal, Tomas (admin), attendees: reservations.Person.None",
+         "action_flag":2,
+         "change_message":"[]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":20,
+      "fields":{
+         "action_time":"2021-11-07T21:13:39.071Z",
+         "user":1,
+         "content_type":12,
+         "object_id":"1",
+         "object_repr":"Pocitacova ucebna (building: NTK), (from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00, by Dostal, Tomas (admin), attendees: ['Snow, John (admin)', 'Trdlicka, Jan']",
+         "action_flag":2,
+         "change_message":"[{\"changed\": {\"fields\": [\"Attendees\"]}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":21,
+      "fields":{
+         "action_time":"2021-11-07T21:19:37.443Z",
+         "user":1,
+         "content_type":11,
+         "object_id":"2",
+         "object_repr":"[Approved], (by: Kalvoda, Tomas, modified: 2021-11-07 21:19:37.438803+00:00)",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":22,
+      "fields":{
+         "action_time":"2021-11-07T21:20:05.251Z",
+         "user":1,
+         "content_type":12,
+         "object_id":"2",
+         "object_repr":"Uklidova komora (building: NTK), (from: 2021-11-08 12:00:00+00:00 to: 2021-11-08 18:00:00+00:00, by Trdlicka, Jan, attendees: ['Trdlicka, Jan']",
+         "action_flag":1,
+         "change_message":"[{\"added\": {}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":23,
+      "fields":{
+         "action_time":"2021-11-07T21:33:11.968Z",
+         "user":1,
+         "content_type":12,
+         "object_id":"1",
+         "object_repr":"[UNKNOWN] Pocitacova ucebna (building: NTK), (from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00, by Dostal, Tomas (admin), attendees: ['Snow, John (admin)', 'Trdlicka, Jan']",
+         "action_flag":2,
+         "change_message":"[{\"changed\": {\"fields\": [\"Reservation status\"]}}]"
+      }
+   },
+   {
+      "model":"admin.logentry",
+      "pk":24,
+      "fields":{
+         "action_time":"2021-11-07T21:35:08.809Z",
+         "user":1,
+         "content_type":12,
+         "object_id":"1",
+         "object_repr":"[UNKNOWN] Pocitacova ucebna (building: NTK), (from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00, by Dostal, Tomas (admin), attendees: ['Snow, John (admin)', 'Trdlicka, Jan']",
+         "action_flag":2,
+         "change_message":"[]"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":1,
+      "fields":{
+         "name":"Can add log entry",
+         "content_type":1,
+         "codename":"add_logentry"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":2,
+      "fields":{
+         "name":"Can change log entry",
+         "content_type":1,
+         "codename":"change_logentry"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":3,
+      "fields":{
+         "name":"Can delete log entry",
+         "content_type":1,
+         "codename":"delete_logentry"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":4,
+      "fields":{
+         "name":"Can view log entry",
+         "content_type":1,
+         "codename":"view_logentry"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":5,
+      "fields":{
+         "name":"Can add permission",
+         "content_type":2,
+         "codename":"add_permission"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":6,
+      "fields":{
+         "name":"Can change permission",
+         "content_type":2,
+         "codename":"change_permission"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":7,
+      "fields":{
+         "name":"Can delete permission",
+         "content_type":2,
+         "codename":"delete_permission"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":8,
+      "fields":{
+         "name":"Can view permission",
+         "content_type":2,
+         "codename":"view_permission"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":9,
+      "fields":{
+         "name":"Can add group",
+         "content_type":3,
+         "codename":"add_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":10,
+      "fields":{
+         "name":"Can change group",
+         "content_type":3,
+         "codename":"change_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":11,
+      "fields":{
+         "name":"Can delete group",
+         "content_type":3,
+         "codename":"delete_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":12,
+      "fields":{
+         "name":"Can view group",
+         "content_type":3,
+         "codename":"view_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":13,
+      "fields":{
+         "name":"Can add user",
+         "content_type":4,
+         "codename":"add_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":14,
+      "fields":{
+         "name":"Can change user",
+         "content_type":4,
+         "codename":"change_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":15,
+      "fields":{
+         "name":"Can delete user",
+         "content_type":4,
+         "codename":"delete_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":16,
+      "fields":{
+         "name":"Can view user",
+         "content_type":4,
+         "codename":"view_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":17,
+      "fields":{
+         "name":"Can add content type",
+         "content_type":5,
+         "codename":"add_contenttype"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":18,
+      "fields":{
+         "name":"Can change content type",
+         "content_type":5,
+         "codename":"change_contenttype"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":19,
+      "fields":{
+         "name":"Can delete content type",
+         "content_type":5,
+         "codename":"delete_contenttype"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":20,
+      "fields":{
+         "name":"Can view content type",
+         "content_type":5,
+         "codename":"view_contenttype"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":21,
+      "fields":{
+         "name":"Can add session",
+         "content_type":6,
+         "codename":"add_session"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":22,
+      "fields":{
+         "name":"Can change session",
+         "content_type":6,
+         "codename":"change_session"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":23,
+      "fields":{
+         "name":"Can delete session",
+         "content_type":6,
+         "codename":"delete_session"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":24,
+      "fields":{
+         "name":"Can view session",
+         "content_type":6,
+         "codename":"view_session"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":25,
+      "fields":{
+         "name":"Can add building",
+         "content_type":7,
+         "codename":"add_building"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":26,
+      "fields":{
+         "name":"Can change building",
+         "content_type":7,
+         "codename":"change_building"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":27,
+      "fields":{
+         "name":"Can delete building",
+         "content_type":7,
+         "codename":"delete_building"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":28,
+      "fields":{
+         "name":"Can view building",
+         "content_type":7,
+         "codename":"view_building"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":29,
+      "fields":{
+         "name":"Can add group",
+         "content_type":8,
+         "codename":"add_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":30,
+      "fields":{
+         "name":"Can change group",
+         "content_type":8,
+         "codename":"change_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":31,
+      "fields":{
+         "name":"Can delete group",
+         "content_type":8,
+         "codename":"delete_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":32,
+      "fields":{
+         "name":"Can view group",
+         "content_type":8,
+         "codename":"view_group"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":33,
+      "fields":{
+         "name":"Can add user",
+         "content_type":9,
+         "codename":"add_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":34,
+      "fields":{
+         "name":"Can change user",
+         "content_type":9,
+         "codename":"change_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":35,
+      "fields":{
+         "name":"Can delete user",
+         "content_type":9,
+         "codename":"delete_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":36,
+      "fields":{
+         "name":"Can view user",
+         "content_type":9,
+         "codename":"view_user"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":37,
+      "fields":{
+         "name":"Can add room",
+         "content_type":10,
+         "codename":"add_room"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":38,
+      "fields":{
+         "name":"Can change room",
+         "content_type":10,
+         "codename":"change_room"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":39,
+      "fields":{
+         "name":"Can delete room",
+         "content_type":10,
+         "codename":"delete_room"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":40,
+      "fields":{
+         "name":"Can view room",
+         "content_type":10,
+         "codename":"view_room"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":41,
+      "fields":{
+         "name":"Can add reservation status",
+         "content_type":11,
+         "codename":"add_reservationstatus"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":42,
+      "fields":{
+         "name":"Can change reservation status",
+         "content_type":11,
+         "codename":"change_reservationstatus"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":43,
+      "fields":{
+         "name":"Can delete reservation status",
+         "content_type":11,
+         "codename":"delete_reservationstatus"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":44,
+      "fields":{
+         "name":"Can view reservation status",
+         "content_type":11,
+         "codename":"view_reservationstatus"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":45,
+      "fields":{
+         "name":"Can add reservation",
+         "content_type":12,
+         "codename":"add_reservation"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":46,
+      "fields":{
+         "name":"Can change reservation",
+         "content_type":12,
+         "codename":"change_reservation"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":47,
+      "fields":{
+         "name":"Can delete reservation",
+         "content_type":12,
+         "codename":"delete_reservation"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":48,
+      "fields":{
+         "name":"Can view reservation",
+         "content_type":12,
+         "codename":"view_reservation"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":49,
+      "fields":{
+         "name":"Can add person",
+         "content_type":9,
+         "codename":"add_person"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":50,
+      "fields":{
+         "name":"Can change person",
+         "content_type":9,
+         "codename":"change_person"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":51,
+      "fields":{
+         "name":"Can delete person",
+         "content_type":9,
+         "codename":"delete_person"
+      }
+   },
+   {
+      "model":"auth.permission",
+      "pk":52,
+      "fields":{
+         "name":"Can view person",
+         "content_type":9,
+         "codename":"view_person"
+      }
+   },
+   {
+      "model":"auth.user",
+      "pk":1,
+      "fields":{
+         "password":"pbkdf2_sha256$260000$Uv28c8kxGVCywhjNBKZR0j$8BaIWlCOx1sCxTEVdczytlqhO8GBwXrA1ZS8/00lUUg=",
+         "last_login":"2021-11-07T20:35:25.769Z",
+         "is_superuser":true,
+         "username":"admin",
+         "first_name":"",
+         "last_name":"",
+         "email":"admin@reservations.cvut.cz",
+         "is_staff":true,
+         "is_active":true,
+         "date_joined":"2021-11-07T20:35:18.768Z",
+         "groups":[
+
+         ],
+         "user_permissions":[
+
+         ]
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":1,
+      "fields":{
+         "app_label":"admin",
+         "model":"logentry"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":2,
+      "fields":{
+         "app_label":"auth",
+         "model":"permission"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":3,
+      "fields":{
+         "app_label":"auth",
+         "model":"group"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":4,
+      "fields":{
+         "app_label":"auth",
+         "model":"user"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":5,
+      "fields":{
+         "app_label":"contenttypes",
+         "model":"contenttype"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":6,
+      "fields":{
+         "app_label":"sessions",
+         "model":"session"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":7,
+      "fields":{
+         "app_label":"reservations",
+         "model":"building"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":8,
+      "fields":{
+         "app_label":"reservations",
+         "model":"group"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":9,
+      "fields":{
+         "app_label":"reservations",
+         "model":"person"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":10,
+      "fields":{
+         "app_label":"reservations",
+         "model":"room"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":11,
+      "fields":{
+         "app_label":"reservations",
+         "model":"reservationstatus"
+      }
+   },
+   {
+      "model":"contenttypes.contenttype",
+      "pk":12,
+      "fields":{
+         "app_label":"reservations",
+         "model":"reservation"
+      }
+   },
+   {
+      "model":"sessions.session",
+      "pk":"pzhq2qtlw4jkyaw9gbbw46pmk1w8uqoz",
+      "fields":{
+         "session_data":".eJxVjDsOwjAQBe_iGlmx1lknlPScwdpfcAA5Uj4V4u4QKQW0b2bey2Xa1pK3xeY8qju74E6_G5M8rO5A71Rvk5eprvPIflf8QRd_ndSel8P9Oyi0lG9t3MQWQWOX-tZiI5hCFyIgSE8hMREacqMwGENKiVsUjCQDsIJY594fzkc4Bg:1mjosv:XZGMFP0fSz9sh5MyUN7174V7Dubi6MdmD3ntQBABFik",
+         "expire_date":"2021-11-21T20:35:25.773Z"
+      }
+   },
+   {
+      "model":"reservations.person",
+      "pk":1,
+      "fields":{
+         "name":"Tomas",
+         "surname":"Dostal",
+         "is_admin":true,
+         "occupy":[
+
+         ]
+      }
+   },
+   {
+      "model":"reservations.person",
+      "pk":2,
+      "fields":{
+         "name":"Tomas",
+         "surname":"Kalvoda",
+         "is_admin":false,
+         "occupy":[
+
+         ]
+      }
+   },
+   {
+      "model":"reservations.person",
+      "pk":3,
+      "fields":{
+         "name":"John",
+         "surname":"Snow",
+         "is_admin":true,
+         "occupy":[
+
+         ]
+      }
+   },
+   {
+      "model":"reservations.person",
+      "pk":4,
+      "fields":{
+         "name":"Jan",
+         "surname":"Trdlicka",
+         "is_admin":false,
+         "occupy":[
+
+         ]
+      }
+   },
+   {
+      "model":"reservations.building",
+      "pk":1,
+      "fields":{
+         "name":"NTK"
+      }
+   },
+   {
+      "model":"reservations.building",
+      "pk":2,
+      "fields":{
+         "name":"CIIRC"
+      }
+   },
+   {
+      "model":"reservations.building",
+      "pk":3,
+      "fields":{
+         "name":"T9"
+      }
+   },
+   {
+      "model":"reservations.group",
+      "pk":1,
+      "fields":{
+         "name":"Matematici",
+         "manager":2,
+         "subgroup":[
+            1
+         ]
+      }
+   },
+   {
+      "model":"reservations.group",
+      "pk":2,
+      "fields":{
+         "name":"Informatici",
+         "manager":1,
+         "subgroup":[
+
+         ]
+      }
+   },
+   {
+      "model":"reservations.room",
+      "pk":1,
+      "fields":{
+         "name":"Uklidova komora",
+         "building":1,
+         "group":2,
+         "manager":1
+      }
+   },
+   {
+      "model":"reservations.room",
+      "pk":2,
+      "fields":{
+         "name":"Velka prednaskovka",
+         "building":2,
+         "group":1,
+         "manager":2
+      }
+   },
+   {
+      "model":"reservations.room",
+      "pk":3,
+      "fields":{
+         "name":"Pocitacova ucebna",
+         "building":1,
+         "group":2,
+         "manager":4
+      }
+   },
+   {
+      "model":"reservations.room",
+      "pk":4,
+      "fields":{
+         "name":"109",
+         "building":3,
+         "group":1,
+         "manager":3
+      }
+   },
+   {
+      "model":"reservations.room",
+      "pk":5,
+      "fields":{
+         "name":"105",
+         "building":3,
+         "group":1,
+         "manager":1
+      }
+   },
+   {
+      "model":"reservations.reservationstatus",
+      "pk":1,
+      "fields":{
+         "author":1,
+         "dt_modified":"2021-11-07T21:09:40.536Z",
+         "status":"Pending authorisation",
+         "note":"I made a reservation"
+      }
+   },
+   {
+      "model":"reservations.reservationstatus",
+      "pk":2,
+      "fields":{
+         "author":2,
+         "dt_modified":"2021-11-07T21:19:37.438Z",
+         "status":"Approved",
+         "note":"Okay, let's clean that mess"
+      }
+   },
+   {
+      "model":"reservations.reservation",
+      "pk":1,
+      "fields":{
+         "author":1,
+         "room":3,
+         "dt_from":"2021-11-07T21:09:48Z",
+         "dt_to":"2021-11-07T22:09:53Z",
+         "dt_created":"2021-11-07T21:35:08.801Z",
+         "attendees":[
+            3,
+            4
+         ],
+         "reservation_status":[
+            2
+         ]
+      }
+   },
+   {
+      "model":"reservations.reservation",
+      "pk":2,
+      "fields":{
+         "author":4,
+         "room":1,
+         "dt_from":"2021-11-08T12:00:00Z",
+         "dt_to":"2021-11-08T18:00:00Z",
+         "dt_created":"2021-11-07T21:20:05.245Z",
+         "attendees":[
+            4
+         ],
+         "reservation_status":[
+
+         ]
+      }
+   }
+]
