@@ -15,5 +15,10 @@ router.register(r"^reservations", reservations.views.ReservationViewSet)
 router.register(r"^rooms", reservations.views.RoomViewSet)
 
 urlpatterns = [
-    path(r"", include(router.urls)),
+    path(r"api/", include(router.urls)),
+    path('persons/<int:person_id>/', reservations.views.PersonTemplateView.person_get_view, name='person_view'),
+    path('persons/', reservations.views.PersonTemplateView.persons_get_view, name='person_list'),
+    path('persons/<int:person_id>/delete', reservations.views.PersonTemplateView.person_delete_view, name='person_delete'),
+    path('persons/create', reservations.views.PersonTemplateView.person_create_view, name='person_create'),
+    path('persons/<int:person_id>/edit', reservations.views.PersonTemplateView.person_edit_view, name='person_update'),
 ]

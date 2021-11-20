@@ -2,18 +2,18 @@ from .models import *
 from django.db import models
 
 
-class UserService:
+class PersonService:
 
     @staticmethod
     def find_by_id(user_id):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return Person.objects.get(pk=user_id)
+        except Person.DoesNotExist:
             return None
 
     @staticmethod
     def find_all():
-        return User.objects.all()
+        return Person.objects.all()
 
     @staticmethod
     def save(user):
@@ -21,11 +21,11 @@ class UserService:
         return
 
     @staticmethod
-    def delete(user):
+    def delete(user_id):
         try:
-            User.delete(User.objects.get(pk=user.id))
+            Person.delete(Person.objects.get(pk=user_id))
             return True
-        except User.DoesNotExist:
+        except Person.DoesNotExist:
             return False
         except models.ProtectedError or models.RestrictedError:
             return False
@@ -33,13 +33,13 @@ class UserService:
     @staticmethod
     def update(user_id, updated_user):
         try:
-            User.objects.get(pk=user_id).update(
+            Person.objects.get(pk=user_id).update(
                 name=updated_user.name,
                 surname=updated_user.surname,
                 is_admin=updated_user.is_admin
             )
             return True
-        except User.DoesNotExist:
+        except Person.DoesNotExist:
             return False
 
 
