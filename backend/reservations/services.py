@@ -62,9 +62,9 @@ class BuildingService:
         return
 
     @staticmethod
-    def delete(building):
+    def delete(building_id):
         try:
-            Building.delete(Building.objects.get(pk=building.id))
+            Building.delete(Building.objects.get(pk=building_id))
             return True
         except Building.DoesNotExist:
             return False
@@ -99,9 +99,9 @@ class GroupService:
         return
 
     @staticmethod
-    def delete(group):
+    def delete(group_id):
         try:
-            Group.delete(Group.objects.get(pk=group.id))
+            Group.delete(Group.objects.get(pk=group_id))
             return True
         except Group.DoesNotExist:
             return False
@@ -140,9 +140,9 @@ class RoomService:
         return
 
     @staticmethod
-    def delete(room):
+    def delete(room_id):
         try:
-            Room.delete(Room.objects.get(pk=room.id))
+            Room.delete(Room.objects.get(pk=room_id))
             return True
         except Room.DoesNotExist:
             return False
@@ -182,9 +182,9 @@ class ReservationStatusService:
         return
 
     @staticmethod
-    def delete(reservation_status):
+    def delete(reservation_status_id):
         try:
-            ReservationStatus.delete(ReservationStatus.objects.get(pk=reservation_status.id))
+            ReservationStatus.delete(ReservationStatus.objects.get(pk=reservation_status_id))
             return True
         except ReservationStatus.DoesNotExist:
             return False
@@ -223,9 +223,9 @@ class ReservationService:
         return
 
     @staticmethod
-    def delete(reservation):
+    def delete(reservation_id):
         try:
-            Reservation.delete(Reservation.objects.get(pk=reservation.id))
+            Reservation.delete(Reservation.objects.get(pk=reservation_id))
             return True
         except Reservation.DoesNotExist:
             return False
