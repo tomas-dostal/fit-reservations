@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ section.title }}{% endblock %}</title>
-    <link rel="stylesheet" href="../assets/css/template.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/css/template.css' %}">
 </head>
 <body>
-<header>
-    <nav id="navigation">
-        <ul>
-            <li class="title"><h1>Rezervační systém učeben</h1></li>
-            <li><a href="#!">Domů</a></li>
-            <li><a href="#!">Nová rezervace</a></li>
-            <li><a href="#!">Moje rezervace</a></li>
-            <li class="login"><a href="#!">Přihlášení</a></li>
-        </ul>
-    </nav>
-</header>
+<nav id="navigation">
+    <ul>
+        <li class="title"><h1>Rezervační systém učeben</h1></li>
+        <li class="menu-item"><a href="#!">Domů</a></li>
+        <li class="menu-item"><a href="#!">Nová rezervace</a></li>
+        <li class="menu-item"><a href="#!">Moje rezervace</a></li>
+        <li class="menu-item login"><a href="#!">Přihlášení</a></li>
+    </ul>
+</nav>
 
 <main class="container">
     <!-- Only for administrators. -->
-    <section class="sidebar">
-        <nav class="sidebar-navigation">
+    <section id="sidebar">
+        <h2>Ovládací panel</h2>
+        <nav id="sidebar-navigation">
             <ul>
                 <li><a href="#">Správa uživatelů</a></li>
                 <li><a href="#">Správa skupin</a></li>
@@ -40,7 +40,7 @@
         </section>
 
         <footer>
-            <hr />
+            <hr/>
             <p>&copy; DFK 2021</p>
         </footer>
     </section>
