@@ -289,7 +289,7 @@ class ReservationTemplateView:
             reservation.room = form.cleaned_data.get('room')
             reservation.save()
             reservation.attendees.set(form.cleaned_data.get('attendees'))
-            reservation.reservation_status.set([reservation_status])
+            reservation.reservation_status.add(reservation_status)
             return redirect("/reservations/")
         template = loader.get_template('reservations/test_create.html')
         return HttpResponse(template.render({'form': form}, request))
@@ -301,6 +301,16 @@ class ReservationTemplateView:
             raise Http404("Reservation does not exist")
         form = ReservationForm(request.POST or None, instance=instance)
         if form.is_valid():
+            timestamp = datetime.now()
+            reservation_status = ReservationStatus()
+            reservation_status.author = form.cleaned_data.get('author')
+            reservation_status.modified = timestamp
+            reservation_status.note = form.cleaned_data.get('note')
+            reservation_status.save()
+
+            instance.attendees.set(form.cleaned_data.get('attendees'))
+            instance.reservation_status.add(reservation_status)
+
             form.save()
             return redirect("/reservations/")
         template = loader.get_template('reservations/test_create.html')
