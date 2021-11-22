@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+    <header>
+        <h2>Registrovaní uživatelé</h2>
+    </header>
+
+    <section>
+        <div class="errors">
+            {% if errors %}
+                {% for error in errors %}
+                <p> {{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% if persons %}
+        <table class="list persons">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Jméno</th>
+                <th>Příjmení</th>
+                <th>Administrátor</th>
+                <th>Akce</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for person in persons %}
+            <tr>
+                <td>{{person.id}}</td>
+                <td>{{person.name}}</td>
+                <td>{{person.surname}}</td>
+                <td>{% if person.is_admin %}ANO{% else %}NE{% endif %}</td>
+                <td>TODO</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>Zadne nejsou k dispozici</p>
+        {% endif %}
+    </section>
+{% endblock %}

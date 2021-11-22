@@ -129,11 +129,20 @@ main.container {
 
 .page-container {
     padding: 10px;
+    padding-left: 4rem;
+    flex-grow: 8;
+}
+.page-container header {margin-bottom: 2rem;}
+.page-container header h2{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
 }
 
 /* Sidebar */
 #sidebar {
     max-width: 12rem;
+    flex-grow: 4;
     padding: 10px;
     border-radius: 5px;
     background: rgba(196, 196, 196, 0.35);
@@ -162,6 +171,20 @@ nav#sidebar-navigation > ul > li a {
     color: black;
     text-decoration: none;
     text-align: center;
+}
+
+table.list{width: 100%;}
+table.list > thead > tr{
+    border-bottom: 2px solid #dee2e6;
+    margin-bottom: 1.5rem;
+}
+table.list th{
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+table.list th, table.list td{
+    text-align: center;
+    padding: 0.75rem;
 }
 
 /* Footer */
