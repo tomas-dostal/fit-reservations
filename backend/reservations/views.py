@@ -81,5 +81,5 @@ class PersonTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/persons/")
-        template = loader.get_template('reservations/create.html')
+        template = loader.get_template('persons/create.html')
         return HttpResponse(template.render({'form': form}, request))
