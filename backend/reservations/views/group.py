@@ -17,18 +17,18 @@ class GroupTemplateView:
     @staticmethod
     def group_get_view(request, group_id):
         group = GroupService.find_by_id(group_id)
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": group}, request))
+        template = loader.get_template("groups/detail.html")
+        return HttpResponse(template.render({"group": group}, request))
 
     @staticmethod
     def groups_get_view(request):
         groups = GroupService.find_all()
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": groups}, request))
+        template = loader.get_template("groups/list.html")
+        return HttpResponse(template.render({"groups": groups}, request))
 
     @staticmethod
     def group_delete_view(request, group_id):
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("groups/list.html")
         if not GroupService.delete(group_id):
             return HttpResponse(template.render({"errors": ["Failed to delete group"]}, request))
         return redirect("/groups/")
@@ -39,7 +39,7 @@ class GroupTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/groups/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("groups/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -51,5 +51,5 @@ class GroupTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/groups/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("groups/update.html")
         return HttpResponse(template.render({"form": form}, request))
