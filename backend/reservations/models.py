@@ -12,7 +12,6 @@ class Person(models.Model):
     def __str__(self):
         return "%s, %s%s" % (self.surname, self.name, " (admin)" if self.is_admin else "")
 
-
 class Building(models.Model):
     name = models.CharField(max_length=50)
 
@@ -23,6 +22,7 @@ class Building(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=50)
 
+    # FIXME: Why many to many???
     subgroup = models.ManyToManyField("Group", blank=True)
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
