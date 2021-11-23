@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content  %}
+        <nav id="toolbar">
+            <ul>
+                <li><a class="button green" href="{% url 'person_create' %}">Přidat uživatele</a></li>
+            </ul>
+        </nav>
+
     <header>
         <h2>Registrovaní uživatelé</h2>
     </header>
