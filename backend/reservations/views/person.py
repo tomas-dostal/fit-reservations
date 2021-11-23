@@ -1,46 +1,16 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.template import loader
-from django.views import View
-
 from rest_framework import viewsets
-
 from reservations.serializers import *
 from reservations.models import *
-
 from reservations.services import *
-
 from reservations.forms import *
 
 
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
-
-
-class BuildingViewSet(viewsets.ModelViewSet):
-    queryset = Building.objects.all()
-    serializer_class = BuildingSerializer
-
-
-class GroupViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-
-
-class RoomViewSet(viewsets.ModelViewSet):
-    queryset = Room.objects.all()
-    serializer_class = RoomSerializer
-
-
-class ReservationStatusViewSet(viewsets.ModelViewSet):
-    queryset = ReservationStatus.objects.all()
-    serializer_class = ReservationStatusSerializer
-
-
-class ReservationViewSet(viewsets.ModelViewSet):
-    queryset = Reservation.objects.all()
-    serializer_class = ReservationSerializer
 
 
 class PersonTemplateView:
@@ -59,6 +29,8 @@ class PersonTemplateView:
 
     @staticmethod
     def person_delete_view(request, person_id):
+        template = loader.get_template('persons/list.html')
+
         if not PersonService.delete(person_id):
             return HttpResponse(template.render({"errors": ["Failed to delete person"]}, request))
         return redirect("/persons/")
@@ -69,6 +41,7 @@ class PersonTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/persons/")
+
         template = loader.get_template('persons/create.html')
         return HttpResponse(template.render({'form': form}, request))
 
@@ -81,5 +54,6 @@ class PersonTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/persons/")
-        template = loader.get_template('persons/create.html')
+
+        template = loader.get_template('persons/update.html')
         return HttpResponse(template.render({'form': form}, request))
