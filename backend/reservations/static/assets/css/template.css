@@ -149,6 +149,7 @@ main.container {
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .button.green {
@@ -239,6 +240,19 @@ table.list td a.id {
     font-weight: bold;
     text-decoration: none;
     color: black;
+}
+
+/* Forms */
+.user-form{
+    width: 50%;
+    margin: 0 auto;
+}
+.user-form input, .user-form select{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.user-form input.submit{
+
 }
 
 /* Footer */
