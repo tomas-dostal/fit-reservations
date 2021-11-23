@@ -7,8 +7,13 @@ from reservations.services import *
 class PersonForm(ModelForm):
     class Meta:
         model = Person
-        fields = ["name", "surname", "is_admin", "occupy"]
-
+        fields = ('name', 'surname', 'is_admin', "occupy")
+        labels = {
+            'name': "Jméno",
+            "surname": "Příjmení",
+            "is_admin": "Správce",
+            "occupy": "Je uživatelem místností"
+        }
 
 class BuildingForm(ModelForm):
     class Meta:
