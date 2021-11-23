@@ -17,18 +17,20 @@ class PersonTemplateView:
     @staticmethod
     def person_get_view(request, person_id):
         person = PersonService.find_by_id(person_id)
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": person}, request))
+        template = loader.get_template('persons/detail.html')
+        return HttpResponse(template.render({'person': person}, request))
 
     @staticmethod
     def persons_get_view(request):
         persons = PersonService.find_all()
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": persons}, request))
+
+        template = loader.get_template('persons/list.html')
+        return HttpResponse(template.render({'persons': persons}, request))
 
     @staticmethod
     def person_delete_view(request, person_id):
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template('persons/list.html')
+
         if not PersonService.delete(person_id):
             return HttpResponse(template.render({"errors": ["Failed to delete person"]}, request))
         return redirect("/persons/")
@@ -39,8 +41,9 @@ class PersonTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/persons/")
-        template = loader.get_template("reservations/test_create.html")
-        return HttpResponse(template.render({"form": form}, request))
+
+        template = loader.get_template('persons/create.html')
+        return HttpResponse(template.render({'form': form}, request))
 
     @staticmethod
     def person_edit_view(request, person_id):
@@ -51,5 +54,6 @@ class PersonTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/persons/")
-        template = loader.get_template("reservations/test_create.html")
-        return HttpResponse(template.render({"form": form}, request))
+
+        template = loader.get_template('persons/update.html')
+        return HttpResponse(template.render({'form': form}, request))
