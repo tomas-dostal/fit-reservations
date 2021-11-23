@@ -17,18 +17,18 @@ class BuildingTemplateView:
     @staticmethod
     def building_get_view(request, building_id):
         building = BuildingService.find_by_id(building_id)
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": building}, request))
+        template = loader.get_template("buildings/detail.html")
+        return HttpResponse(template.render({"building": building}, request))
 
     @staticmethod
     def buildings_get_view(request):
         buildings = BuildingService.find_all()
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": buildings}, request))
+        template = loader.get_template("buildings/list.html")
+        return HttpResponse(template.render({"buildings": buildings}, request))
 
     @staticmethod
     def building_delete_view(request, building_id):
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("buildings/list.html")
         if not BuildingService.delete(building_id):
             return HttpResponse(template.render({"errors": ["Failed to delete building"]}, request))
         return redirect("/buildings/")
@@ -39,7 +39,7 @@ class BuildingTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/buildings/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("buildings/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -51,5 +51,5 @@ class BuildingTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/buildings/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("buildings/update.html")
         return HttpResponse(template.render({"form": form}, request))

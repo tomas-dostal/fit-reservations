@@ -40,7 +40,7 @@ class ReservationStatusTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/reservationstatuses/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -52,5 +52,5 @@ class ReservationStatusTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/reservationstatuses/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))
