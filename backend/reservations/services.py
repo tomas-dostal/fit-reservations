@@ -3,7 +3,6 @@ from django.db import models
 
 
 class PersonService:
-
     @staticmethod
     def find_by_id(user_id):
         try:
@@ -34,9 +33,7 @@ class PersonService:
     def update(user_id, updated_user):
         try:
             Person.objects.get(pk=user_id).update(
-                name=updated_user.name,
-                surname=updated_user.surname,
-                is_admin=updated_user.is_admin
+                name=updated_user.name, surname=updated_user.surname, is_admin=updated_user.is_admin
             )
             return True
         except Person.DoesNotExist:
@@ -44,7 +41,6 @@ class PersonService:
 
 
 class BuildingService:
-
     @staticmethod
     def find_by_id(building_id):
         try:
@@ -81,7 +77,6 @@ class BuildingService:
 
 
 class GroupService:
-
     @staticmethod
     def find_by_id(group_id):
         try:
@@ -112,9 +107,7 @@ class GroupService:
     def update(group_id, updated_group):
         try:
             Group.objects.get(pk=group_id).update(
-                name=updated_group.name,
-                manager=updated_group.manager,
-                subgroup=updated_group.subgroup
+                name=updated_group.name, manager=updated_group.manager, subgroup=updated_group.subgroup
             )
             return True
         except Group.DoesNotExist:
@@ -122,7 +115,6 @@ class GroupService:
 
 
 class RoomService:
-
     @staticmethod
     def find_by_id(room_id):
         try:
@@ -156,7 +148,7 @@ class RoomService:
                 name=updated_room.name,
                 manager=updated_room.manager,
                 group=updated_room.group,
-                building=updated_room.building
+                building=updated_room.building,
             )
             return True
         except Room.DoesNotExist:
@@ -164,7 +156,6 @@ class RoomService:
 
 
 class ReservationStatusService:
-
     @staticmethod
     def find_by_id(reservation_status_id):
         try:
@@ -197,7 +188,7 @@ class ReservationStatusService:
             ReservationStatus.objects.get(pk=reservation_status_id).update(
                 author=updated_reservation_status.author,
                 status=updated_reservation_status.status,
-                note=updated_reservation_status.note
+                note=updated_reservation_status.note,
             )
             return True
         except ReservationStatus.DoesNotExist:
@@ -205,7 +196,6 @@ class ReservationStatusService:
 
 
 class ReservationService:
-
     @staticmethod
     def find_by_id(reservation_id):
         try:
@@ -242,7 +232,7 @@ class ReservationService:
                 reservation_status=updated_reservation.reservation_status,
                 dt_from=updated_reservation.dt_from,
                 dt_to=updated_reservation.dt_to,
-                dt_created=updated_reservation.dt_created
+                dt_created=updated_reservation.dt_created,
             )
             return True
         except Reservation.DoesNotExist:

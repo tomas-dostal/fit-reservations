@@ -77,7 +77,7 @@ class Reservation(models.Model):
 
     def __str__(self):
         return "[%s] %s, (from: %s to: s%s, by %s, attendees: %s" % (
-            self.reservation_status.last().status if hasattr(self.reservation_status.last(), 'status') else "None",
+            self.reservation_status.last().status if hasattr(self.reservation_status.last(), "status") else "None",
             self.room,
             self.dt_from,
             self.dt_to,

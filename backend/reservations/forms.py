@@ -7,7 +7,7 @@ from reservations.services import *
 class PersonForm(ModelForm):
     class Meta:
         model = Person
-        fields = ['name', 'surname', 'is_admin', 'occupy']
+        fields = ["name", "surname", "is_admin", "occupy"]
 
 
 class BuildingForm(ModelForm):
@@ -31,7 +31,7 @@ class RoomForm(ModelForm):
 class ReservationStatusForm(ModelForm):
     class Meta:
         model = ReservationStatus
-        fields = ['status', 'note']
+        fields = ["status", "note"]
 
 
 class ReservationForm(ModelForm):
@@ -39,10 +39,10 @@ class ReservationForm(ModelForm):
 
     class Meta:
         model = Reservation
-        fields = ['author', 'attendees', 'room', 'dt_from', 'dt_to']
+        fields = ["author", "attendees", "room", "dt_from", "dt_to"]
         widgets = {
-            'dt_from': DateTimeInput(attrs={'type': 'datetime-local'}),
-            'dt_to': DateTimeInput(attrs={'type': 'datetime-local'})
+            "dt_from": DateTimeInput(attrs={"type": "datetime-local"}),
+            "dt_to": DateTimeInput(attrs={"type": "datetime-local"}),
         }
 
     def clean(self):
@@ -51,6 +51,3 @@ class ReservationForm(ModelForm):
         dt_to = cleaned_data.get("dt_to")
         if dt_to < dt_from:
             raise forms.ValidationError("End date should be greater than start date.")
-
-
-
