@@ -34,9 +34,9 @@ class Group(models.Model):
 class Room(models.Model):
     name = models.CharField(max_length=50)
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
-    manager = models.ForeignKey(Person, on_delete=models.CASCADE, blank=True)
+    manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s (building: %s)" % (self.name, self.building)
