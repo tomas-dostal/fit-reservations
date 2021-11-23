@@ -21,17 +21,22 @@
                 <th>Jméno</th>
                 <th>Příjmení</th>
                 <th>Administrátor</th>
+                <!-- Todo: Show actions only for administrator -->
                 <th>Akce</th>
             </tr>
             </thead>
             <tbody>
             {% for person in persons %}
             <tr>
-                <td>{{person.id}}</td>
+                <td><a class="id" href="{% url 'person_view' person_id=person.id %}">{{person.id}}</a></td>
                 <td>{{person.name}}</td>
                 <td>{{person.surname}}</td>
                 <td>{% if person.is_admin %}ANO{% else %}NE{% endif %}</td>
-                <td>TODO</td>
+                <!-- Todo: Show actions only for administrator -->
+                <td>
+                    <a class="button green" href="{% url 'person_update' person_id=person.id %}">Upravit</a>
+                    <a class="button red" href="{% url 'person_delete' person_id=person.id %}">Smazat</a>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
