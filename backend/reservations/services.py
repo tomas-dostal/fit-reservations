@@ -2,18 +2,18 @@ from .models import *
 from django.db import models
 
 
-class UserService:
+class PersonService:
 
     @staticmethod
     def find_by_id(user_id):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return Person.objects.get(pk=user_id)
+        except Person.DoesNotExist:
             return None
 
     @staticmethod
     def find_all():
-        return User.objects.all()
+        return Person.objects.all()
 
     @staticmethod
     def save(user):
@@ -21,11 +21,11 @@ class UserService:
         return
 
     @staticmethod
-    def delete(user):
+    def delete(user_id):
         try:
-            User.delete(User.objects.get(pk=user.id))
+            Person.delete(Person.objects.get(pk=user_id))
             return True
-        except User.DoesNotExist:
+        except Person.DoesNotExist:
             return False
         except models.ProtectedError or models.RestrictedError:
             return False
@@ -33,13 +33,13 @@ class UserService:
     @staticmethod
     def update(user_id, updated_user):
         try:
-            User.objects.get(pk=user_id).update(
+            Person.objects.get(pk=user_id).update(
                 name=updated_user.name,
                 surname=updated_user.surname,
                 is_admin=updated_user.is_admin
             )
             return True
-        except User.DoesNotExist:
+        except Person.DoesNotExist:
             return False
 
 
@@ -62,9 +62,9 @@ class BuildingService:
         return
 
     @staticmethod
-    def delete(building):
+    def delete(building_id):
         try:
-            Building.delete(Building.objects.get(pk=building.id))
+            Building.delete(Building.objects.get(pk=building_id))
             return True
         except Building.DoesNotExist:
             return False
@@ -99,9 +99,9 @@ class GroupService:
         return
 
     @staticmethod
-    def delete(group):
+    def delete(group_id):
         try:
-            Group.delete(Group.objects.get(pk=group.id))
+            Group.delete(Group.objects.get(pk=group_id))
             return True
         except Group.DoesNotExist:
             return False
@@ -140,9 +140,9 @@ class RoomService:
         return
 
     @staticmethod
-    def delete(room):
+    def delete(room_id):
         try:
-            Room.delete(Room.objects.get(pk=room.id))
+            Room.delete(Room.objects.get(pk=room_id))
             return True
         except Room.DoesNotExist:
             return False
@@ -182,9 +182,9 @@ class ReservationStatusService:
         return
 
     @staticmethod
-    def delete(reservation_status):
+    def delete(reservation_status_id):
         try:
-            ReservationStatus.delete(ReservationStatus.objects.get(pk=reservation_status.id))
+            ReservationStatus.delete(ReservationStatus.objects.get(pk=reservation_status_id))
             return True
         except ReservationStatus.DoesNotExist:
             return False
@@ -223,9 +223,9 @@ class ReservationService:
         return
 
     @staticmethod
-    def delete(reservation):
+    def delete(reservation_id):
         try:
-            Reservation.delete(Reservation.objects.get(pk=reservation.id))
+            Reservation.delete(Reservation.objects.get(pk=reservation_id))
             return True
         except Reservation.DoesNotExist:
             return False

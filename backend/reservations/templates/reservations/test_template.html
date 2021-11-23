@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Testovaci templace</title>
+</head>
+<body>
+<header>
+    {% block banner %}
+        <h1>Testovaci template</h1>
+    {% endblock %}
+
+    <nav class="breadcrumbs">
+        <ol>
+            {% block breadcrumbs %}
+                <li>Test zde</li>
+            {% endblock %}
+        </ol>
+    </nav>
+</header>
+<main{% if main is defined %} class="{{ main }}"{% endif %}>
+    {% block content %}
+    {% endblock %}
+</main>
+
+</body>
+</html>
