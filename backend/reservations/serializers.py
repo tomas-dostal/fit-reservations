@@ -18,7 +18,7 @@ class BuildingSerializer(serializers.ModelSerializer):
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ("name", "subgroup", "manager")
+        fields = ("name", "parent", "manager")
 
 
 class RoomSerializer(serializers.ModelSerializer):

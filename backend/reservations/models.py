@@ -23,7 +23,7 @@ class Building(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=50)
 
-    subgroup = models.ManyToManyField("Group", blank=True)
+    parent = models.ForeignKey("Group", null=True, on_delete=models.CASCADE)
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
