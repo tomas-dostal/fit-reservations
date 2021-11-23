@@ -1,0 +1,26 @@
+@media only screen and (max-width: 768px) {
+    /* Main */
+    main.container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .page-container{
+        padding-left: unset;
+    }
+
+
+    /* Forms */
+    .user-form{
+        width: 100%;
+    }
+
+    /* Sidebar */
+    #sidebar{
+        max-width: unset;
+        margin-bottom: 2rem;
+    }
+
+
+}

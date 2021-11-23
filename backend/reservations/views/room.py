@@ -18,18 +18,18 @@ class RoomTemplateView:
     @staticmethod
     def room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": room}, request))
+        template = loader.get_template("rooms/detail.html")
+        return HttpResponse(template.render({"room": room}, request))
 
     @staticmethod
     def rooms_get_view(request):
         rooms = RoomService.find_all()
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": rooms}, request))
+        template = loader.get_template("rooms/list.html")
+        return HttpResponse(template.render({"rooms": rooms}, request))
 
     @staticmethod
     def room_delete_view(request, room_id):
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("rooms/list.html")
         if not RoomService.delete(room_id):
             return HttpResponse(template.render({"errors": ["Failed to delete room"]}, request))
         return redirect("/rooms/")
@@ -40,7 +40,7 @@ class RoomTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/rooms/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("rooms/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -52,5 +52,5 @@ class RoomTemplateView:
         if form.is_valid():
             form.save()
             return redirect("/rooms/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("rooms/update.html")
         return HttpResponse(template.render({"form": form}, request))
