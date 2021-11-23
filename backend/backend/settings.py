@@ -53,9 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "backend.urls"
-REST_FRAMEWORK = {
-    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata'
-}
+REST_FRAMEWORK = {"DEFAULT_METADATA_CLASS": "rest_framework.metadata.SimpleMetadata"}
 
 TEMPLATES = [
     {
