@@ -132,11 +132,39 @@ main.container {
     padding-left: 4rem;
     flex-grow: 8;
 }
-.page-container header {margin-bottom: 2rem;}
-.page-container header h2{
+
+.page-container header {
+    margin-bottom: 2rem;
+}
+
+.page-container header h2 {
     text-align: center;
     font-weight: bold;
     font-size: 1.4rem;
+}
+
+.button {
+    font-size: 1rem;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button.green {
+    background-color: #4CAF50;
+    border: 1px solid #419844;
+    color: white;
+}
+
+.button.red {
+    background-color: #dc3545;
+    border: 1px solid #bc2937;
+    color: white;
+}
+
+.button:hover {
+    opacity: 0.8;
 }
 
 /* Sidebar */
@@ -173,18 +201,33 @@ nav#sidebar-navigation > ul > li a {
     text-align: center;
 }
 
-table.list{width: 100%;}
-table.list > thead > tr{
+table.list {
+    width: 100%;
+}
+
+table.list > thead > tr {
     border-bottom: 2px solid #dee2e6;
     margin-bottom: 1.5rem;
 }
-table.list th{
+
+table.list > tbody > tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+table.list th {
     font-weight: bold;
     font-size: 1.05rem;
 }
-table.list th, table.list td{
+
+table.list th, table.list td {
     text-align: center;
     padding: 0.75rem;
+}
+
+table.list td a.id{
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
 }
 
 /* Footer */
