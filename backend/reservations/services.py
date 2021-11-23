@@ -107,7 +107,7 @@ class GroupService:
     def update(group_id, updated_group):
         try:
             Group.objects.get(pk=group_id).update(
-                name=updated_group.name, manager=updated_group.manager, subgroup=updated_group.subgroup
+                name=updated_group.name, manager=updated_group.manager, parent=updated_group.parent
             )
             return True
         except Group.DoesNotExist:
