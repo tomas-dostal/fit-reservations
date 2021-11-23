@@ -18,18 +18,18 @@ class ReservationTemplateView:
     @staticmethod
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": reservation}, request))
+        template = loader.get_template("reservations/detail.html")
+        return HttpResponse(template.render({"reservation": reservation}, request))
 
     @staticmethod
     def reservations_get_view(request):
         reservations = ReservationService.find_all()
-        template = loader.get_template("reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": reservations}, request))
+        template = loader.get_template("reservations/list.html")
+        return HttpResponse(template.render({"reservations": reservations}, request))
 
     @staticmethod
     def reservation_delete_view(request, reservation_id):
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("reservations/list.html")
         if not ReservationService.delete(reservation_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation"]}, request))
         return redirect("/reservations/")
@@ -53,10 +53,11 @@ class ReservationTemplateView:
             reservation.dt_created = timestamp
             reservation.room = form.cleaned_data.get("room")
             reservation.save()
+
             reservation.attendees.set(form.cleaned_data.get("attendees"))
             reservation.reservation_status.add(reservation_status)
             return redirect("/reservations/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -78,5 +79,5 @@ class ReservationTemplateView:
 
             form.save()
             return redirect("/reservations/")
-        template = loader.get_template("reservations/test_create.html")
+        template = loader.get_template("reservations/update.html")
         return HttpResponse(template.render({"form": form}, request))

@@ -13,7 +13,7 @@
     <ul>
         <li class="title"><h1>Rezervační systém učeben</h1></li>
         <li class="menu-item"><a href="#!">Domů</a></li>
-        <li class="menu-item"><a href="#!">Nová rezervace</a></li>
+        <li class="menu-item"><a href="{% url 'reservation_create' %}">Nová rezervace</a></li>
         <li class="menu-item"><a href="#!">Moje rezervace</a></li>
         <li class="menu-item login"><a href="#!">Přihlášení</a></li>
     </ul>
@@ -26,10 +26,10 @@
         <nav id="sidebar-navigation">
             <ul>
                 <li><a href="{% url 'person_list'%}">Správa uživatelů</a></li>
-                <li><a href="#">Správa skupin</a></li>
-                <li><a href="#"> Správa budov</a></li>
-                <li><a href="#"> Správa místností</a></li>
-                <li><a href="#">Správa rezervací</a></li>
+                <li><a href="{% url 'group_list' %}">Správa skupin</a></li>
+                <li><a href="{% url 'building_list' %}"> Správa budov</a></li>
+                <li><a href="{% url 'room_list' %}"> Správa místností</a></li>
+                <li><a href="{% url 'reservation_list' %}">Správa rezervací</a></li>
             </ul>
         </nav>
     </section>
