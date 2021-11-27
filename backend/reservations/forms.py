@@ -14,6 +14,7 @@ class PersonForm(ModelForm):
 class BuildingForm(ModelForm):
     class Meta:
         model = Building
+        required = {"name", "manager" }
         fields = "__all__"
 
 
@@ -21,6 +22,12 @@ class GroupForm(ModelForm):
     class Meta:
         model = Group
         fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(GroupForm, self).__init__(*args, **kwargs)
+        # Parent is not required.
+        self.fields['parent'].required = False
 
 
 class RoomForm(ModelForm):
