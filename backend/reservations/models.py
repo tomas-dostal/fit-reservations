@@ -12,6 +12,7 @@ class Person(models.Model):
     def __str__(self):
         return "%s, %s%s" % (self.surname, self.name, " (admin)" if self.is_admin else "")
 
+
 class Building(models.Model):
     name = models.CharField(max_length=50)
 

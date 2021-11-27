@@ -1,12 +1,14 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
+from django.views.generic import ListView
 from rest_framework import viewsets
-
 from ..forms import ReservationForm
 from ..serializers import *
 from ..services import *
 from datetime import datetime
+from backend.settings import DEFAULT_PAGE_SIZE
 
 
 class ReservationViewSet(viewsets.ModelViewSet):
@@ -14,7 +16,7 @@ class ReservationViewSet(viewsets.ModelViewSet):
     serializer_class = ReservationSerializer
 
 
-class ReservationTemplateView:
+class ReservationTemplateView(ListView):
     @staticmethod
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
@@ -23,9 +25,16 @@ class ReservationTemplateView:
 
     @staticmethod
     def reservations_get_view(request):
-        reservations = ReservationService.find_all()
-        template = loader.get_template("reservations/list.html")
-        return HttpResponse(template.render({"reservations": reservations}, request))
+        page = request.GET.get("page", 1)
+        paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
+        try:
+            reservations = paginator.page(page)
+        except PageNotAnInteger:
+            reservations = paginator.page(1)
+        except EmptyPage:
+            reservations = paginator.page(paginator.num_pages)
+
+        return render(request, "reservations/list.html", {"reservations": reservations})
 
     @staticmethod
     def reservation_delete_view(request, reservation_id):

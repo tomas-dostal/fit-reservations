@@ -1,12 +1,15 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
+from django.views.generic import ListView
 from rest_framework import viewsets
 
 from ..models import Room
 from ..serializers import RoomSerializer
 from ..services import RoomService
 from ..forms import RoomForm
+from backend.settings import DEFAULT_PAGE_SIZE
 
 
 class RoomViewSet(viewsets.ModelViewSet):
@@ -14,7 +17,7 @@ class RoomViewSet(viewsets.ModelViewSet):
     serializer_class = RoomSerializer
 
 
-class RoomTemplateView:
+class RoomTemplateView(ListView):
     @staticmethod
     def room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)
@@ -23,9 +26,17 @@ class RoomTemplateView:
 
     @staticmethod
     def rooms_get_view(request):
-        rooms = RoomService.find_all()
-        template = loader.get_template("rooms/list.html")
-        return HttpResponse(template.render({"rooms": rooms}, request))
+
+        page = request.GET.get("page", 1)
+        paginator = Paginator(RoomService.find_all(), DEFAULT_PAGE_SIZE)
+        try:
+            rooms = paginator.page(page)
+        except PageNotAnInteger:
+            rooms = paginator.page(1)
+        except EmptyPage:
+            rooms = paginator.page(paginator.num_pages)
+
+        return render(request, "rooms/list.html", {"rooms": rooms})
 
     @staticmethod
     def room_delete_view(request, room_id):
