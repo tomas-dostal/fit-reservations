@@ -1,11 +1,14 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
+from django.views.generic import ListView
 from rest_framework import viewsets
 from ..serializers import BuildingSerializer
 from ..models import Building
 from ..services import BuildingService
 from ..forms import BuildingForm
+from backend.settings import DEFAULT_PAGE_SIZE
 
 
 class BuildingViewSet(viewsets.ModelViewSet):
@@ -13,7 +16,10 @@ class BuildingViewSet(viewsets.ModelViewSet):
     serializer_class = BuildingSerializer
 
 
-class BuildingTemplateView:
+class BuildingTemplateView(ListView):
+    paginate_by = 10
+    context_object_name = "building-list"
+
     @staticmethod
     def building_get_view(request, building_id):
         building = BuildingService.find_by_id(building_id)
@@ -22,9 +28,17 @@ class BuildingTemplateView:
 
     @staticmethod
     def buildings_get_view(request):
-        buildings = BuildingService.find_all()
-        template = loader.get_template("buildings/list.html")
-        return HttpResponse(template.render({"buildings": buildings}, request))
+
+        page = request.GET.get("page", 1)
+        paginator = Paginator(BuildingService.find_all(), DEFAULT_PAGE_SIZE)
+        try:
+            buildings = paginator.page(page)
+        except PageNotAnInteger:
+            buildings = paginator.page(1)
+        except EmptyPage:
+            buildings = paginator.page(paginator.num_pages)
+
+        return render(request, "buildings/list.html", {"buildings": buildings})
 
     @staticmethod
     def building_delete_view(request, building_id):
