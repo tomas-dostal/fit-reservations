@@ -1,11 +1,14 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
+from django.views.generic import ListView
 from rest_framework import viewsets
 from ..serializers import GroupSerializer
 from ..models import Group
 from ..services import GroupService
 from ..forms import GroupForm
+from backend.settings import DEFAULT_PAGE_SIZE
 
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -13,7 +16,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
-class GroupTemplateView:
+class GroupTemplateView(ListView):
     @staticmethod
     def group_get_view(request, group_id):
         group = GroupService.find_by_id(group_id)
@@ -22,9 +25,17 @@ class GroupTemplateView:
 
     @staticmethod
     def groups_get_view(request):
-        groups = GroupService.find_all()
-        template = loader.get_template("groups/list.html")
-        return HttpResponse(template.render({"groups": groups}, request))
+
+        page = request.GET.get("page", 1)
+        paginator = Paginator(GroupService.find_all(), DEFAULT_PAGE_SIZE)
+        try:
+            groups = paginator.page(page)
+        except PageNotAnInteger:
+            groups = paginator.page(1)
+        except EmptyPage:
+            groups = paginator.page(paginator.num_pages)
+
+        return render(request, "groups/list.html", {"groups": groups})
 
     @staticmethod
     def group_delete_view(request, group_id):
