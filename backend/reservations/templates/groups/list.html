@@ -35,7 +35,13 @@
         <tr>
             <td><a class="id" href="{% url 'group_view' group_id=group.id %}">{{group.id}}</a></td>
             <td>{{group.name}}</td>
-            <td>{{group.subgroup}}</td>
+            <td>
+                {% if group.parent %}
+                    <a href="{% url 'group_view' group_id=group.parent.id %}">{{group.parent.name}}</a>
+                {% else %}
+                <span>-</span>
+                {% endif %}
+            </td>
             <td><a href="{% url 'person_view' person_id=group.manager.id %}">{{group.manager.name}}
                 {{group.manager.surname}}</a></td>
             <!-- Todo: Show actions only for administrator -->
