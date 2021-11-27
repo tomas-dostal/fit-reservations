@@ -135,7 +135,7 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/reservations"),
-    '/var/www/static/',
+    "/var/www/static/",
 ]
 
 STATIC_URL = "/static/"
@@ -146,3 +146,5 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ALLOWED_HOSTS = ["*"]
+
+DEFAULT_PAGE_SIZE = 10
