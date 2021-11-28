@@ -33,7 +33,7 @@ class GroupForm(ModelForm):
 class RoomForm(ModelForm):
     class Meta:
         model = Room
-        labels = {"name": "Název místnosti", "building": "Budova", "group": "Skupina", "manager":"Správce"}
+        labels = {"name": "Název místnosti", "building": "Budova", "group": "Skupina", "manager": "Správce"}
         fields = "__all__"
 
 
@@ -44,11 +44,13 @@ class ReservationStatusForm(ModelForm):
 
 
 class ReservationForm(ModelForm):
-    note = forms.CharField(widget=forms.Textarea())
+    note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
 
     class Meta:
         model = Reservation
         fields = ["author", "attendees", "room", "dt_from", "dt_to"]
+        labels = {"author": "Autor", "attendees": "Uživatelé", "room": "Místnost",
+                  "fd_from": "Platnost od", "fd_to": "Platnost do"}
         widgets = {
             "dt_from": DateTimeInput(attrs={"type": "datetime-local"}),
             "dt_to": DateTimeInput(attrs={"type": "datetime-local"}),
