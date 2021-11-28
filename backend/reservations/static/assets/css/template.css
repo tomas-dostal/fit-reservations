@@ -244,17 +244,17 @@ table.list td a.id {
 }
 
 /* Forms */
-.user-form {
+.model-form {
     width: 50%;
     margin: 0 auto;
 }
 
-.user-form input, .user-form select {
+.model-form input, .user-form select {
     width: 100%;
     margin-bottom: 10px;
 }
 
-.user-form input.submit {
+.model-form input.submit {
 
 }
 
