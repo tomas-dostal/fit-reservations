@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+<header>
+    <h2>Úprava místnosti: {{room.name}}</h2>
+</header>
+
+<section>
+    <form method="POST" class="model-form room-form" enctype="multipart/form-data">
+
+        <!-- Security token -->
+        {% csrf_token %}
+
+        <!-- Using the formset -->
+        {{ form.as_p }}
+
+        <input class="button green submit" type="submit" value="Uložit změny">
+    </form>
+</section>
+{% endblock %}

@@ -249,7 +249,7 @@ table.list td a.id {
     margin: 0 auto;
 }
 
-.model-form input, .user-form select {
+.model-form input, .model-form select {
     width: 100%;
     margin-bottom: 10px;
 }
