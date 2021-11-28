@@ -14,7 +14,7 @@ class PersonForm(ModelForm):
 class BuildingForm(ModelForm):
     class Meta:
         model = Building
-        required = {"name", "manager" }
+        labels = {"name": "Název budovy"}
         fields = "__all__"
 
 
