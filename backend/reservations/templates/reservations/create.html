@@ -2,14 +2,20 @@
 
 {% block content  %}
 
-<form method="POST" enctype="multipart/form-data">
+<header>
+    <h2>Rezervace místnosti</h2>
+</header>
 
-    <!-- Security token -->
-    {% csrf_token %}
+<section>
+    <form method="POST" class="model-form reservation-form" enctype="multipart/form-data">
 
-    <!-- Using the formset -->
-    {{ form.as_p }}
+        <!-- Security token -->
+        {% csrf_token %}
 
-    <input type="submit" value="Submit">
-</form>
+        <!-- Using the formset -->
+        {{ form.as_p }}
+
+        <input class="button green submit" type="submit" value="Odeslat">
+    </form>
+</section>
 {% endblock %}

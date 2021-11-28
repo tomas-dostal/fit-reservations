@@ -249,13 +249,16 @@ table.list td a.id {
     margin: 0 auto;
 }
 
-.model-form input, .model-form select {
+.model-form input, .model-form select, .model-form textarea{
     width: 100%;
     margin-bottom: 10px;
 }
 
 .model-form input.submit {
 
+}
+.button.submit{
+    margin-top: 2rem;
 }
 
 /* Pagination */
