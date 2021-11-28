@@ -123,7 +123,7 @@ nav#navigation > ul > li a {
 main.container {
     display: flex;
     flex-direction: row;
-    width: 88%;
+/*    width: 88%;*/
     margin: 10px auto;
 }
 
@@ -208,7 +208,8 @@ nav#toolbar > ul {
     flex-direction: row;
     margin-bottom: 2rem;
 }
-nav#toolbar > ul > li{
+
+nav#toolbar > ul > li {
     margin: 5px;
 }
 
@@ -243,16 +244,55 @@ table.list td a.id {
 }
 
 /* Forms */
-.user-form{
+.model-form {
     width: 50%;
     margin: 0 auto;
 }
-.user-form input, .user-form select{
+
+.model-form input, .model-form select, .model-form textarea{
     width: 100%;
     margin-bottom: 10px;
 }
-.user-form input.submit{
 
+.model-form input.submit {
+
+}
+.button.submit{
+    margin-top: 2rem;
+}
+
+/* Pagination */
+ul.pagination {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: center;
+}
+
+ul.pagination li{
+    margin: 0 2px;
+}
+
+ul.pagination li.disabled{
+    color: #646464;
+}
+
+ul.pagination li a, ul.pagination li > span {
+     padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+}
+
+ul.pagination li > a {
+    text-decoration: none;
+    color:black;
+}
+
+ul.pagination li.active > span {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.pagination li:not(.active) a:hover {
+    background-color: #ddd;
 }
 
 /* Footer */
