@@ -33,6 +33,7 @@ class GroupForm(ModelForm):
 class RoomForm(ModelForm):
     class Meta:
         model = Room
+        labels = {"name": "Název místnosti", "building": "Budova", "group": "Skupina", "manager":"Správce"}
         fields = "__all__"
 
 

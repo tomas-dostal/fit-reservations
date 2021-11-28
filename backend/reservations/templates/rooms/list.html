@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'room_create' %}">Přidat místnost</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h2>Místnosti</h2>
+</header>
+
+<section>
+    <div class="errors">
+        {% if errors %}
+        {% for error in errors %}
+        <p> {{ error }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% if rooms %}
+    <table class="list persons">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Název</th>
+            <th>Budova</th>
+            <th>Akce</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td><a class="id" href="{% url 'room_view' room_id=room.id %}">{{room.id}}</a></td>
+            <td>{{room.name}}</td>
+            <td><a href="{% url 'building_view' building_id=room.building.id %}">{{ room.building.name }}</a></td>
+            <!-- Todo: Show actions only for administrator -->
+            <td>
+                <a class="button green" href="{% url 'room_update' room_id=room.id %}">Upravit</a>
+                <a class="button red" href="{% url 'room_delete' room_id=room.id %}">Smazat</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "layouts/pagination.html" with items=rooms %}
+
+    {% else %}
+    <p>Zadne nejsou k dispozici</p>
+    {% endif %}
+</section>
+{% endblock %}
