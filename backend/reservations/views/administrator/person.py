@@ -11,12 +11,12 @@ from reservations.forms import *
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class PersonViewSet(viewsets.ModelViewSet):
+class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
 
 
-class PersonTemplateView(ListView):
+class AdminPersonTemplateView(ListView):
     paginate_by = 10
     context_object_name = "person-list"
 

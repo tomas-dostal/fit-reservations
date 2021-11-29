@@ -5,19 +5,19 @@ from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
 
-from ..models import Room
-from ..serializers import RoomSerializer
-from ..services import RoomService
-from ..forms import RoomForm
+from reservations.models import Room
+from reservations.serializers import RoomSerializer
+from reservations.services import RoomService
+from reservations.forms import RoomForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class RoomViewSet(viewsets.ModelViewSet):
+class AdminRoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
 
-class RoomTemplateView(ListView):
+class AdminRoomTemplateView(ListView):
     @staticmethod
     def room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)

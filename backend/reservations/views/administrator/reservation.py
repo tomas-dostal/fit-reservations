@@ -4,19 +4,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from ..forms import ReservationForm
-from ..serializers import *
-from ..services import *
+from reservations.forms import ReservationForm
+from reservations.serializers import *
+from reservations.services import *
 from datetime import datetime
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class ReservationViewSet(viewsets.ModelViewSet):
+class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
 
 
-class ReservationTemplateView(ListView):
+class AdminReservationTemplateView(ListView):
     @staticmethod
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)

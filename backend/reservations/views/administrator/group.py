@@ -4,19 +4,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from ..serializers import GroupSerializer
-from ..models import Group
-from ..services import GroupService
-from ..forms import GroupForm
+from reservations.serializers import GroupSerializer
+from reservations.models import Group
+from reservations.services import GroupService
+from reservations.forms import GroupForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class AdminGroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
-class GroupTemplateView(ListView):
+class AdminGroupTemplateView(ListView):
     @staticmethod
     def group_get_view(request, group_id):
         group = GroupService.find_by_id(group_id)
