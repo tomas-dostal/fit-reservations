@@ -1,0 +1,16 @@
+{% extends 'administrator/base.html' %}
+
+{% block content  %}
+    {% if errors %}
+        {% for error in errors %}
+            <p> {{ error }}</p>
+        {% endfor %}
+    {% endif %}
+    {% if test_list %}
+        <ul>
+            {{ test_list }}
+        </ul>
+    {% else %}
+        <p>Zadne nejsou k dispozici</p>
+    {% endif %}
+{% endblock %}

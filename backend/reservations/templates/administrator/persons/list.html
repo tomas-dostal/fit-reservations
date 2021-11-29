@@ -1,0 +1,57 @@
+{% extends 'administrator/base.html' %}
+
+{% block content  %}
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_person_create' %}">Přidat uživatele</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h2>Registrovaní uživatelé</h2>
+</header>
+
+<section>
+    <div class="errors">
+        {% if errors %}
+        {% for error in errors %}
+        <p> {{ error }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% if persons %}
+    <table class="list persons">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Jméno</th>
+            <th>Příjmení</th>
+            <th>Administrátor</th>
+            <!-- Todo: Show actions only for administrator -->
+            <th>Akce</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for person in persons %}
+        <tr>
+            <td><a class="id" href="{% url 'admin_person_view' person_id=person.id %}">{{person.id}}</a></td>
+            <td>{{person.name}}</td>
+            <td>{{person.surname}}</td>
+            <td>{% if person.is_admin %}ANO{% else %}NE{% endif %}</td>
+            <!-- Todo: Show actions only for administrator -->
+            <td>
+                <a class="button green" href="{% url 'admin_person_update' person_id=person.id %}">Upravit</a>
+                <a class="button red" href="{% url 'admin_person_delete' person_id=person.id %}">Smazat</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "layouts/pagination.html" with items=persons %}
+
+    {% else %}
+    <p>Zadne nejsou k dispozici</p>
+    {% endif %}
+</section>
+{% endblock %}

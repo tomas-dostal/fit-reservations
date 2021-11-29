@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ section.title }}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/css/template.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_mobile.css' %}">
+</head>
+<body>
+<nav id="navigation">
+    <ul>
+        <li class="title"><h1>Administrace</h1></li>
+        <li class="menu-item"><a href="{% url 'index' %}">Frontend</a></li>
+        <li class="menu-item login"><a href="#!">Odhlásit</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <!-- Only for administrators. -->
+    <section id="sidebar">
+        <h2>Ovládací panel</h2>
+        <nav id="sidebar-navigation">
+            <ul>
+                <li><a href="{% url 'admin_person_list'%}">Správa uživatelů</a></li>
+                <li><a href="{% url 'admin_group_list' %}">Správa skupin</a></li>
+                <li><a href="{% url 'admin_building_list' %}"> Správa budov</a></li>
+                <li><a href="{% url 'admin_room_list' %}"> Správa místností</a></li>
+                <li><a href="{% url 'admin_reservation_list' %}">Správa rezervací</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section class="page-container">
+        <section class="content">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </section>
+</main>
+
+<footer>
+    <hr/>
+    <p>&copy; DFK 2021</p>
+</footer>
+</body>
+</html>

@@ -23,7 +23,7 @@ class Building(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=50)
 
-    parent = models.ForeignKey("Group", null=True, on_delete=models.CASCADE)
+    parent = models.ForeignKey("Group", null=True, blank=True, on_delete=models.CASCADE)
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
@@ -34,7 +34,7 @@ class Group(models.Model):
 class Room(models.Model):
     name = models.CharField(max_length=50)
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, null=True, blank=True, on_delete=models.CASCADE)
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 

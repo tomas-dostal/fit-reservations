@@ -23,4 +23,5 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(r"", include("reservations.urls")),
+    path(r"administrator/", include("reservations.administratorurls")),
 ]
