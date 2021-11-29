@@ -21,13 +21,13 @@ class ReservationStatusTemplateView(ListView):
     @staticmethod
     def reservation_status_get_view(request, reservation_status_id):
         reservation_status = ReservationStatusService.find_by_id(reservation_status_id)
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("administrator/reservations/test_list.html")
         return HttpResponse(template.render({"test_list": reservation_status}, request))
 
     @staticmethod
     def reservation_statuses_get_view(request):
         reservation_statuses = ReservationStatusService.find_all()
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("administrator/reservations/test_list.html")
         return HttpResponse(template.render({"test_list": reservation_statuses}, request))
 
     def persons_get_view(request):
@@ -41,11 +41,11 @@ class ReservationStatusTemplateView(ListView):
         except EmptyPage:
             reservation_statuses = paginator.page(paginator.num_pages)
 
-        return render(request, "reservation_statuses/list.html", {"reservation_statuses": reservation_statuses})
+        return render(request, "administrator/reservation_statuses/list.html", {"reservation_statuses": reservation_statuses})
 
     @staticmethod
     def reservation_status_delete_view(request, reservation_status_id):
-        template = loader.get_template("reservations/test_list.html")
+        template = loader.get_template("administrator/reservations/test_list.html")
         if not ReservationStatusService.delete(reservation_status_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation status"]}, request))
         return redirect("/reservationstatuses/")
@@ -56,7 +56,7 @@ class ReservationStatusTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/reservationstatuses/")
-        template = loader.get_template("reservations/create.html")
+        template = loader.get_template("administrator/reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -68,5 +68,5 @@ class ReservationStatusTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/reservationstatuses/")
-        template = loader.get_template("reservations/create.html")
+        template = loader.get_template("administrator/reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))

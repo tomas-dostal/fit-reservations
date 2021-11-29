@@ -20,7 +20,7 @@ class GroupTemplateView(ListView):
     @staticmethod
     def group_get_view(request, group_id):
         group = GroupService.find_by_id(group_id)
-        template = loader.get_template("groups/detail.html")
+        template = loader.get_template("administrator/groups/detail.html")
         return HttpResponse(template.render({"group": group}, request))
 
     @staticmethod
@@ -35,11 +35,11 @@ class GroupTemplateView(ListView):
         except EmptyPage:
             groups = paginator.page(paginator.num_pages)
 
-        return render(request, "groups/list.html", {"groups": groups})
+        return render(request, "administrator/groups/list.html", {"groups": groups})
 
     @staticmethod
     def group_delete_view(request, group_id):
-        template = loader.get_template("groups/list.html")
+        template = loader.get_template("administrator/groups/list.html")
         if not GroupService.delete(group_id):
             return HttpResponse(template.render({"errors": ["Failed to delete group"]}, request))
         return redirect("/groups/")
@@ -50,7 +50,7 @@ class GroupTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/groups/")
-        template = loader.get_template("groups/create.html")
+        template = loader.get_template("administrator/groups/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -62,5 +62,5 @@ class GroupTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/groups/")
-        template = loader.get_template("groups/update.html")
+        template = loader.get_template("administrator/groups/update.html")
         return HttpResponse(template.render({"form": form}, request))

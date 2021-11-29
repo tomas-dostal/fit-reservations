@@ -23,7 +23,7 @@ class PersonTemplateView(ListView):
     @staticmethod
     def person_get_view(request, person_id):
         person = PersonService.find_by_id(person_id)
-        template = loader.get_template("persons/detail.html")
+        template = loader.get_template("administrator/persons/detail.html")
         return HttpResponse(template.render({"person": person}, request))
 
     @staticmethod
@@ -38,11 +38,11 @@ class PersonTemplateView(ListView):
         except EmptyPage:
             persons = paginator.page(paginator.num_pages)
 
-        return render(request, "persons/list.html", {"persons": persons})
+        return render(request, "administrator/persons/list.html", {"persons": persons})
 
     @staticmethod
     def person_delete_view(request, person_id):
-        template = loader.get_template("persons/list.html")
+        template = loader.get_template("administrator/persons/list.html")
 
         if not PersonService.delete(person_id):
             return HttpResponse(template.render({"errors": ["Failed to delete person"]}, request))
@@ -55,7 +55,7 @@ class PersonTemplateView(ListView):
             form.save()
             return redirect("/persons/")
 
-        template = loader.get_template("persons/create.html")
+        template = loader.get_template("administrator/persons/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -68,5 +68,5 @@ class PersonTemplateView(ListView):
             form.save()
             return redirect("/persons/")
 
-        template = loader.get_template("persons/update.html")
+        template = loader.get_template("administrator/persons/update.html")
         return HttpResponse(template.render({"form": form}, request))

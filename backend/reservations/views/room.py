@@ -21,7 +21,7 @@ class RoomTemplateView(ListView):
     @staticmethod
     def room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)
-        template = loader.get_template("rooms/detail.html")
+        template = loader.get_template("administrator/rooms/detail.html")
         return HttpResponse(template.render({"room": room}, request))
 
     @staticmethod
@@ -36,11 +36,11 @@ class RoomTemplateView(ListView):
         except EmptyPage:
             rooms = paginator.page(paginator.num_pages)
 
-        return render(request, "rooms/list.html", {"rooms": rooms})
+        return render(request, "administrator/rooms/list.html", {"rooms": rooms})
 
     @staticmethod
     def room_delete_view(request, room_id):
-        template = loader.get_template("rooms/list.html")
+        template = loader.get_template("administrator/rooms/list.html")
         if not RoomService.delete(room_id):
             return HttpResponse(template.render({"errors": ["Failed to delete room"]}, request))
         return redirect("/rooms/")
@@ -51,7 +51,7 @@ class RoomTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/rooms/")
-        template = loader.get_template("rooms/create.html")
+        template = loader.get_template("administrator/rooms/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -63,5 +63,5 @@ class RoomTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/rooms/")
-        template = loader.get_template("rooms/update.html")
+        template = loader.get_template("administrator/rooms/update.html")
         return HttpResponse(template.render({"form": form}, request))
