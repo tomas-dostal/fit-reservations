@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'administrator/base.html' %}
 
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'group_create' %}">Přidat skupinu</a></li>
+        <li><a class="button green" href="{% url 'admin_group_create' %}">Přidat skupinu</a></li>
     </ul>
 </nav>
 
@@ -33,21 +33,21 @@
         <tbody>
         {% for group in groups %}
         <tr>
-            <td><a class="id" href="{% url 'group_view' group_id=group.id %}">{{group.id}}</a></td>
+            <td><a class="id" href="{% url 'admin_group_view' group_id=group.id %}">{{group.id}}</a></td>
             <td>{{group.name}}</td>
             <td>
                 {% if group.parent %}
-                    <a href="{% url 'group_view' group_id=group.parent.id %}">{{group.parent.name}}</a>
+                    <a href="{% url 'admin_group_view' group_id=group.parent.id %}">{{group.parent.name}}</a>
                 {% else %}
                 <span>-</span>
                 {% endif %}
             </td>
-            <td><a href="{% url 'person_view' person_id=group.manager.id %}">{{group.manager.name}}
+            <td><a href="{% url 'admin_person_view' person_id=group.manager.id %}">{{group.manager.name}}
                 {{group.manager.surname}}</a></td>
             <!-- Todo: Show actions only for administrator -->
             <td>
-                <a class="button green" href="{% url 'group_update' group_id=group.id %}">Upravit</a>
-                <a class="button red" href="{% url 'group_delete' group_id=group.id %}">Smazat</a>
+                <a class="button green" href="{% url 'admin_group_update' group_id=group.id %}">Upravit</a>
+                <a class="button red" href="{% url 'admin_group_delete' group_id=group.id %}">Smazat</a>
             </td>
         </tr>
         {% endfor %}
