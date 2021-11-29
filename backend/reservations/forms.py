@@ -23,12 +23,6 @@ class GroupForm(ModelForm):
         model = Group
         fields = "__all__"
 
-    def __init__(self, *args, **kwargs):
-        # first call parent's constructor
-        super(GroupForm, self).__init__(*args, **kwargs)
-        # Parent is not required.
-        self.fields['parent'].required = False
-
 
 class RoomForm(ModelForm):
     class Meta:
