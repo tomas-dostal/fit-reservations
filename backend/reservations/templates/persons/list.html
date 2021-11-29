@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'administrator/base.html' %}
 
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'person_create' %}">Přidat uživatele</a></li>
+        <li><a class="button green" href="{% url 'admin_person_create' %}">Přidat uživatele</a></li>
     </ul>
 </nav>
 
@@ -34,14 +34,14 @@
         <tbody>
         {% for person in persons %}
         <tr>
-            <td><a class="id" href="{% url 'person_view' person_id=person.id %}">{{person.id}}</a></td>
+            <td><a class="id" href="{% url 'admin_person_view' person_id=person.id %}">{{person.id}}</a></td>
             <td>{{person.name}}</td>
             <td>{{person.surname}}</td>
             <td>{% if person.is_admin %}ANO{% else %}NE{% endif %}</td>
             <!-- Todo: Show actions only for administrator -->
             <td>
-                <a class="button green" href="{% url 'person_update' person_id=person.id %}">Upravit</a>
-                <a class="button red" href="{% url 'person_delete' person_id=person.id %}">Smazat</a>
+                <a class="button green" href="{% url 'admin_person_update' person_id=person.id %}">Upravit</a>
+                <a class="button red" href="{% url 'admin_person_delete' person_id=person.id %}">Smazat</a>
             </td>
         </tr>
         {% endfor %}

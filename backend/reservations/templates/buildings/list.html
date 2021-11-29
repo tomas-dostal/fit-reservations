@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'administrator/base.html' %}
 
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'building_create' %}">Přidat budovu</a></li>
+        <li><a class="button green" href="{% url 'admin_building_create' %}">Přidat budovu</a></li>
     </ul>
 </nav>
 
@@ -32,13 +32,13 @@
         <tbody>
         {% for building in buildings %}
         <tr>
-            <td><a class="id" href="{% url 'building_view' building_id=building.id %}">{{building.id}}</a></td>
+            <td><a class="id" href="{% url 'admin_building_view' building_id=building.id %}">{{building.id}}</a></td>
             <td>{{building.name}}</td>
-            <td><a href="{% url 'room_list' %}">Zobrazit místnosti</a></td>
+            <td><a href="{% url 'admin_room_list' %}">Zobrazit místnosti</a></td>
             <!-- Todo: Show actions only for administrator -->
             <td>
-                <a class="button green" href="{% url 'building_update' building_id=building.id %}">Upravit</a>
-                <a class="button red" href="{% url 'building_delete' building_id=building.id %}">Smazat</a>
+                <a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit</a>
+                <a class="button red" href="{% url 'admin_building_delete' building_id=building.id %}">Smazat</a>
             </td>
         </tr>
         {% endfor %}

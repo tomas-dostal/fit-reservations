@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'administrator/base.html' %}
 
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'room_create' %}">Přidat místnost</a></li>
+        <li><a class="button green" href="{% url 'admin_room_create' %}">Přidat místnost</a></li>
     </ul>
 </nav>
 
@@ -32,13 +32,13 @@
         <tbody>
         {% for room in rooms %}
         <tr>
-            <td><a class="id" href="{% url 'room_view' room_id=room.id %}">{{room.id}}</a></td>
+            <td><a class="id" href="{% url 'admin_room_view' room_id=room.id %}">{{room.id}}</a></td>
             <td>{{room.name}}</td>
-            <td><a href="{% url 'building_view' building_id=room.building.id %}">{{ room.building.name }}</a></td>
+            <td><a href="{% url 'admin_building_view' building_id=room.building.id %}">{{ room.building.name }}</a></td>
             <!-- Todo: Show actions only for administrator -->
             <td>
-                <a class="button green" href="{% url 'room_update' room_id=room.id %}">Upravit</a>
-                <a class="button red" href="{% url 'room_delete' room_id=room.id %}">Smazat</a>
+                <a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit</a>
+                <a class="button red" href="{% url 'admin_room_delete' room_id=room.id %}">Smazat</a>
             </td>
         </tr>
         {% endfor %}
