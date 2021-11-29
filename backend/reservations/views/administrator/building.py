@@ -4,19 +4,19 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from ..serializers import BuildingSerializer
-from ..models import Building
-from ..services import BuildingService
-from ..forms import BuildingForm
+from reservations.serializers import BuildingSerializer
+from reservations.models import Building
+from reservations.services import BuildingService
+from reservations.forms import BuildingForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class BuildingViewSet(viewsets.ModelViewSet):
+class AdminBuildingViewSet(viewsets.ModelViewSet):
     queryset = Building.objects.all()
     serializer_class = BuildingSerializer
 
 
-class BuildingTemplateView(ListView):
+class AdminBuildingTemplateView(ListView):
     paginate_by = 10
     context_object_name = "building-list"
 

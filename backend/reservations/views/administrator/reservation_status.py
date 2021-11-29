@@ -5,19 +5,19 @@ from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
 
-from ..models import ReservationStatus
-from ..serializers import ReservationStatusSerializer
-from ..services import ReservationStatusService
-from ..forms import ReservationStatusForm
+from reservations.models import ReservationStatus
+from reservations.serializers import ReservationStatusSerializer
+from reservations.services import ReservationStatusService
+from reservations.forms import ReservationStatusForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class ReservationStatusViewSet(viewsets.ModelViewSet):
+class AdminReservationStatusViewSet(viewsets.ModelViewSet):
     queryset = ReservationStatus.objects.all()
     serializer_class = ReservationStatusSerializer
 
 
-class ReservationStatusTemplateView(ListView):
+class AdminReservationStatusTemplateView(ListView):
     @staticmethod
     def reservation_status_get_view(request, reservation_status_id):
         reservation_status = ReservationStatusService.find_by_id(reservation_status_id)
