@@ -20,7 +20,7 @@ class ReservationTemplateView(ListView):
     @staticmethod
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
-        template = loader.get_template("reservations/detail.html")
+        template = loader.get_template("administrator/reservations/detail.html")
         return HttpResponse(template.render({"reservation": reservation}, request))
 
     @staticmethod
@@ -34,11 +34,11 @@ class ReservationTemplateView(ListView):
         except EmptyPage:
             reservations = paginator.page(paginator.num_pages)
 
-        return render(request, "reservations/list.html", {"reservations": reservations})
+        return render(request, "administrator/reservations/list.html", {"reservations": reservations})
 
     @staticmethod
     def reservation_delete_view(request, reservation_id):
-        template = loader.get_template("reservations/list.html")
+        template = loader.get_template("administrator/reservations/list.html")
         if not ReservationService.delete(reservation_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation"]}, request))
         return redirect("/reservations/")
@@ -66,7 +66,7 @@ class ReservationTemplateView(ListView):
             reservation.attendees.set(form.cleaned_data.get("attendees"))
             reservation.reservation_status.add(reservation_status)
             return redirect("/reservations/")
-        template = loader.get_template("reservations/create.html")
+        template = loader.get_template("administrator/reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -88,5 +88,5 @@ class ReservationTemplateView(ListView):
 
             form.save()
             return redirect("/reservations/")
-        template = loader.get_template("reservations/update.html")
+        template = loader.get_template("administrator/reservations/update.html")
         return HttpResponse(template.render({"form": form}, request))

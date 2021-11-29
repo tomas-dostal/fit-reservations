@@ -23,7 +23,7 @@ class BuildingTemplateView(ListView):
     @staticmethod
     def building_get_view(request, building_id):
         building = BuildingService.find_by_id(building_id)
-        template = loader.get_template("buildings/detail.html")
+        template = loader.get_template("administrator/buildings/detail.html")
         return HttpResponse(template.render({"building": building}, request))
 
     @staticmethod
@@ -38,11 +38,11 @@ class BuildingTemplateView(ListView):
         except EmptyPage:
             buildings = paginator.page(paginator.num_pages)
 
-        return render(request, "buildings/list.html", {"buildings": buildings})
+        return render(request, "administrator/buildings/list.html", {"buildings": buildings})
 
     @staticmethod
     def building_delete_view(request, building_id):
-        template = loader.get_template("buildings/list.html")
+        template = loader.get_template("administrator/buildings/list.html")
         if not BuildingService.delete(building_id):
             return HttpResponse(template.render({"errors": ["Failed to delete building"]}, request))
         return redirect("/buildings/")
@@ -53,7 +53,7 @@ class BuildingTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/buildings/")
-        template = loader.get_template("buildings/create.html")
+        template = loader.get_template("administrator/buildings/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -65,5 +65,5 @@ class BuildingTemplateView(ListView):
         if form.is_valid():
             form.save()
             return redirect("/buildings/")
-        template = loader.get_template("buildings/update.html")
+        template = loader.get_template("administrator/buildings/update.html")
         return HttpResponse(template.render({"form": form}, request))
