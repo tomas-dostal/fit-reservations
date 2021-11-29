@@ -4,23 +4,23 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from reservations.forms import ReservationForm
+from reservations.forms import AdminReservationForm
 from reservations.serializers import *
 from reservations.services import *
 from datetime import datetime
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
-class ReservationViewSet(viewsets.ModelViewSet):
+class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
 
 
-class ReservationTemplateView(ListView):
+class AdminReservationTemplateView(ListView):
     @staticmethod
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
-        template = loader.get_template("reservations/detail.html")
+        template = loader.get_template("administrator/reservations/detail.html")
         return HttpResponse(template.render({"reservation": reservation}, request))
 
     @staticmethod
@@ -34,18 +34,18 @@ class ReservationTemplateView(ListView):
         except EmptyPage:
             reservations = paginator.page(paginator.num_pages)
 
-        return render(request, "reservations/publiclist.html", {"reservations": reservations})
+        return render(request, "administrator/reservations/list.html", {"reservations": reservations})
 
     @staticmethod
     def reservation_delete_view(request, reservation_id):
-        template = loader.get_template("reservations/publiclist.html")
+        template = loader.get_template("administrator/reservations/list.html")
         if not ReservationService.delete(reservation_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation"]}, request))
-        return redirect("/reservations/")
+        return redirect("/administrator/reservations/")
 
     @staticmethod
     def reservation_create_view(request):
-        form = ReservationForm(request.POST or None)
+        form = AdminReservationForm(request.POST or None)
         if form.is_valid():
             timestamp = datetime.now()
             reservation_status = ReservationStatus()
@@ -65,6 +65,28 @@ class ReservationTemplateView(ListView):
 
             reservation.attendees.set(form.cleaned_data.get("attendees"))
             reservation.reservation_status.add(reservation_status)
-            return redirect("/reservations/")
-        template = loader.get_template("reservations/create.html")
+            return redirect("/administrator/reservations/")
+        template = loader.get_template("administrator/reservations/create.html")
+        return HttpResponse(template.render({"form": form}, request))
+
+    @staticmethod
+    def reservation_edit_view(request, reservation_id):
+        instance = ReservationService.find_by_id(reservation_id)
+        if instance is None:
+            raise Http404("Reservation does not exist")
+        form = AdminReservationForm(request.POST or None, instance=instance)
+        if form.is_valid():
+            timestamp = datetime.now()
+            reservation_status = ReservationStatus()
+            reservation_status.author = form.cleaned_data.get("author")
+            reservation_status.modified = timestamp
+            reservation_status.note = form.cleaned_data.get("note")
+            reservation_status.save()
+
+            instance.attendees.set(form.cleaned_data.get("attendees"))
+            instance.reservation_status.add(reservation_status)
+
+            form.save()
+            return redirect("/administrator/reservations/")
+        template = loader.get_template("administrator/reservations/update.html")
         return HttpResponse(template.render({"form": form}, request))

@@ -4,11 +4,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
+from django.core.exceptions import PermissionDenied
 
-from ..models import Room
-from ..serializers import RoomSerializer
-from ..services import RoomService
-from ..forms import RoomForm
+from reservations.models import Room
+from reservations.serializers import RoomSerializer
+from reservations.services import RoomService
+from reservations.forms import RoomForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
@@ -19,15 +20,20 @@ class RoomViewSet(viewsets.ModelViewSet):
 
 class RoomTemplateView(ListView):
     @staticmethod
-    def room_get_view(request, room_id):
+    def public_room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)
+
+        # Check if the room is public
+        if room and room.group is not None:
+            raise PermissionDenied("Not a public room.")
         template = loader.get_template("rooms/detail.html")
         return HttpResponse(template.render({"room": room}, request))
 
     @staticmethod
-    def rooms_get_view(request):
-
+    def public_rooms_get_view(request):
         page = request.GET.get("page", 1)
+
+        # TODO: call something like RoomService.find_public()
         paginator = Paginator(RoomService.find_all(), DEFAULT_PAGE_SIZE)
         try:
             rooms = paginator.page(page)
@@ -36,32 +42,4 @@ class RoomTemplateView(ListView):
         except EmptyPage:
             rooms = paginator.page(paginator.num_pages)
 
-        return render(request, "rooms/list.html", {"rooms": rooms})
-
-    @staticmethod
-    def room_delete_view(request, room_id):
-        template = loader.get_template("rooms/list.html")
-        if not RoomService.delete(room_id):
-            return HttpResponse(template.render({"errors": ["Failed to delete room"]}, request))
-        return redirect("/rooms/")
-
-    @staticmethod
-    def room_create_view(request):
-        form = RoomForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return redirect("/rooms/")
-        template = loader.get_template("rooms/create.html")
-        return HttpResponse(template.render({"form": form}, request))
-
-    @staticmethod
-    def room_edit_view(request, room_id):
-        instance = RoomService.find_by_id(room_id)
-        if instance is None:
-            raise Http404("Room does not exist")
-        form = RoomForm(request.POST or None, instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect("/rooms/")
-        template = loader.get_template("rooms/update.html")
-        return HttpResponse(template.render({"form": form}, request))
+        return render(request, "rooms/publiclist.html", {"rooms": rooms})
