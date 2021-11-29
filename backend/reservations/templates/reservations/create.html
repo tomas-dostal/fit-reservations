@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+<header>
+    <h2>Rezervace místnosti</h2>
+</header>
+
+<section>
+    <form method="POST" class="model-form reservation-form" enctype="multipart/form-data">
+
+        <!-- Security token -->
+        {% csrf_token %}
+
+        <!-- Using the formset -->
+        {{ form.as_p }}
+
+        <input class="button green submit" type="submit" value="Odeslat">
+    </form>
+</section>
+{% endblock %}

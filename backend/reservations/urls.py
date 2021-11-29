@@ -13,5 +13,10 @@ router.register(r"^reservations", views.AdminReservationViewSet)
 router.register(r"^rooms", views.AdminRoomViewSet)
 
 urlpatterns = [
-    path(r"api/", include(router.urls))
+    path(r"api/", include(router.urls)),
+    path("", views.RoomTemplateView.public_rooms_get_view, name="index"),
+    path("public-rooms/", views.RoomTemplateView.public_rooms_get_view, name="public_room_list"),
+    path("public-rooms/<int:room_id>/", views.RoomTemplateView.public_room_get_view, name="public_room_view"),
+
+    path("reservations/create", views.ReservationTemplateView.reservation_create_view, name="reservation_create"),
 ]
