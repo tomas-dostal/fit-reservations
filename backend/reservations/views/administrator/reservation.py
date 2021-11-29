@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from reservations.forms import ReservationForm
+from reservations.forms import AdminReservationForm
 from reservations.serializers import *
 from reservations.services import *
 from datetime import datetime
@@ -45,7 +45,7 @@ class AdminReservationTemplateView(ListView):
 
     @staticmethod
     def reservation_create_view(request):
-        form = ReservationForm(request.POST or None)
+        form = AdminReservationForm(request.POST or None)
         if form.is_valid():
             timestamp = datetime.now()
             reservation_status = ReservationStatus()
@@ -74,7 +74,7 @@ class AdminReservationTemplateView(ListView):
         instance = ReservationService.find_by_id(reservation_id)
         if instance is None:
             raise Http404("Reservation does not exist")
-        form = ReservationForm(request.POST or None, instance=instance)
+        form = AdminReservationForm(request.POST or None, instance=instance)
         if form.is_valid():
             timestamp = datetime.now()
             reservation_status = ReservationStatus()
