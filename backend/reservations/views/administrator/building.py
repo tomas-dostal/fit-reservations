@@ -45,14 +45,14 @@ class AdminBuildingTemplateView(ListView):
         template = loader.get_template("administrator/buildings/list.html")
         if not BuildingService.delete(building_id):
             return HttpResponse(template.render({"errors": ["Failed to delete building"]}, request))
-        return redirect("/buildings/")
+        return redirect("/administrator/buildings/")
 
     @staticmethod
     def building_create_view(request):
         form = BuildingForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return redirect("/buildings/")
+            return redirect("/administrator/buildings/")
         template = loader.get_template("administrator/buildings/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
@@ -64,6 +64,6 @@ class AdminBuildingTemplateView(ListView):
         form = BuildingForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect("/buildings/")
+            return redirect("/administrator/buildings/")
         template = loader.get_template("administrator/buildings/update.html")
         return HttpResponse(template.render({"form": form}, request))

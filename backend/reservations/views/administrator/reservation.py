@@ -41,7 +41,7 @@ class AdminReservationTemplateView(ListView):
         template = loader.get_template("administrator/reservations/list.html")
         if not ReservationService.delete(reservation_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation"]}, request))
-        return redirect("/reservations/")
+        return redirect("/administrator/reservations/")
 
     @staticmethod
     def reservation_create_view(request):
@@ -65,7 +65,7 @@ class AdminReservationTemplateView(ListView):
 
             reservation.attendees.set(form.cleaned_data.get("attendees"))
             reservation.reservation_status.add(reservation_status)
-            return redirect("/reservations/")
+            return redirect("/administrator/reservations/")
         template = loader.get_template("administrator/reservations/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
@@ -87,6 +87,6 @@ class AdminReservationTemplateView(ListView):
             instance.reservation_status.add(reservation_status)
 
             form.save()
-            return redirect("/reservations/")
+            return redirect("/administrator/reservations/")
         template = loader.get_template("administrator/reservations/update.html")
         return HttpResponse(template.render({"form": form}, request))

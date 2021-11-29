@@ -43,14 +43,14 @@ class AdminRoomTemplateView(ListView):
         template = loader.get_template("administrator/rooms/list.html")
         if not RoomService.delete(room_id):
             return HttpResponse(template.render({"errors": ["Failed to delete room"]}, request))
-        return redirect("/rooms/")
+        return redirect("/administrator/rooms/")
 
     @staticmethod
     def room_create_view(request):
         form = RoomForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return redirect("/rooms/")
+            return redirect("/administrator/rooms/")
         template = loader.get_template("administrator/rooms/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
@@ -62,6 +62,6 @@ class AdminRoomTemplateView(ListView):
         form = RoomForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect("/rooms/")
+            return redirect("/administrator/rooms/")
         template = loader.get_template("administrator/rooms/update.html")
         return HttpResponse(template.render({"form": form}, request))

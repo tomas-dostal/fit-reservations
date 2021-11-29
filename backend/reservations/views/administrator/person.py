@@ -46,14 +46,14 @@ class AdminPersonTemplateView(ListView):
 
         if not PersonService.delete(person_id):
             return HttpResponse(template.render({"errors": ["Failed to delete person"]}, request))
-        return redirect("/persons/")
+        return redirect("/administrator/persons/")
 
     @staticmethod
     def person_create_view(request):
         form = PersonForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return redirect("/persons/")
+            return redirect("/administrator/persons/")
 
         template = loader.get_template("administrator/persons/create.html")
         return HttpResponse(template.render({"form": form}, request))
@@ -66,7 +66,7 @@ class AdminPersonTemplateView(ListView):
         form = PersonForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect("/persons/")
+            return redirect("/administrator/persons/")
 
         template = loader.get_template("administrator/persons/update.html")
         return HttpResponse(template.render({"form": form}, request))

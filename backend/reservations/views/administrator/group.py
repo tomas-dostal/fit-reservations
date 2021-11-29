@@ -42,14 +42,14 @@ class AdminGroupTemplateView(ListView):
         template = loader.get_template("administrator/groups/list.html")
         if not GroupService.delete(group_id):
             return HttpResponse(template.render({"errors": ["Failed to delete group"]}, request))
-        return redirect("/groups/")
+        return redirect("/administrator/groups/")
 
     @staticmethod
     def group_create_view(request):
         form = GroupForm(request.POST or None)
         if form.is_valid():
             form.save()
-            return redirect("/groups/")
+            return redirect("/administrator/groups/")
         template = loader.get_template("administrator/groups/create.html")
         return HttpResponse(template.render({"form": form}, request))
 
@@ -61,6 +61,6 @@ class AdminGroupTemplateView(ListView):
         form = GroupForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect("/groups/")
+            return redirect("/administrator/groups/")
         template = loader.get_template("administrator/groups/update.html")
         return HttpResponse(template.render({"form": form}, request))
