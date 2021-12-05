@@ -5,12 +5,12 @@ from reservations import views
 urlpatterns = [
     path("persons/<int:person_id>/", views.AdminPersonTemplateView.person_get_view, name="admin_person_view"),
     path("persons/", views.AdminPersonTemplateView.persons_get_view, name="admin_person_list"),
-    path("persons/<int:person_id>/delete", views.AdminPersonTemplateView.person_delete_view,
-         name="admin_person_delete"),
+    path(
+        "persons/<int:person_id>/delete", views.AdminPersonTemplateView.person_delete_view, name="admin_person_delete"
+    ),
     path("persons/create", views.AdminPersonTemplateView.person_create_view, name="admin_person_create"),
     path("persons/<int:person_id>/edit", views.AdminPersonTemplateView.person_edit_view, name="admin_person_update"),
-    path("buildings/<int:building_id>/", views.AdminBuildingTemplateView.building_get_view,
-         name="admin_building_view"),
+    path("buildings/<int:building_id>/", views.AdminBuildingTemplateView.building_get_view, name="admin_building_view"),
     path("buildings/", views.AdminBuildingTemplateView.buildings_get_view, name="admin_building_list"),
     path(
         "buildings/<int:building_id>/delete",
@@ -69,11 +69,14 @@ urlpatterns = [
         views.AdminReservationTemplateView.reservation_delete_view,
         name="admin_reservation_delete",
     ),
-    path("reservations/create", views.AdminReservationTemplateView.reservation_create_view,
-         name="admin_reservation_create"),
+    path(
+        "reservations/create",
+        views.AdminReservationTemplateView.reservation_create_view,
+        name="admin_reservation_create",
+    ),
     path(
         "reservations/<int:reservation_id>/edit",
         views.AdminReservationTemplateView.reservation_edit_view,
         name="admin_reservation_update",
-    )
+    ),
 ]
