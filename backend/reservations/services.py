@@ -1,5 +1,7 @@
 from .models import *
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.utils import IntegrityError
 
 
 class PersonService:
@@ -15,9 +17,23 @@ class PersonService:
         return Person.objects.all()
 
     @staticmethod
-    def save(user):
-        user.save()
-        return
+    def create(data):
+        try:
+            user = User.objects.create_user(username=data.get('email', "test2@email.com"),
+                                            first_name=data.get('name'),
+                                            last_name=data.get('surname'),
+                                            email=data.get('email', "test2@email.com"),
+                                            password="test123test")
+            user.save()
+
+            person = Person.objects.create(user=user,
+                                           phone_number=data.get('phone_number'),
+                                           occupy=data.get('occupy', None).set())
+            person.save()
+        except IntegrityError:
+            return None
+
+        return person
 
     @staticmethod
     def delete(user_id):
@@ -33,7 +49,11 @@ class PersonService:
     def update(user_id, updated_user):
         try:
             Person.objects.get(pk=user_id).update(
-                name=updated_user.name, surname=updated_user.surname, is_admin=updated_user.is_admin
+                name=updated_user.name,
+                surname=updated_user.surname,
+                is_admin=updated_user.is_admin,
+                email=updated_user.email,
+                phone_number=updated_user.phone_number
             )
             return True
         except Person.DoesNotExist:
