@@ -51,11 +51,12 @@ class AdminPersonTemplateView(ListView):
     @staticmethod
     def person_create_view(request):
         form = PersonForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return redirect("/administrator/persons/")
-
         template = loader.get_template("administrator/persons/create.html")
+
+        if form.is_valid():
+            if not PersonService.create(form.data):
+                return HttpResponse(template.render({"errors": ["Email already exists"], "form": form}, request))
+            return redirect("/administrator/persons/")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
@@ -65,7 +66,7 @@ class AdminPersonTemplateView(ListView):
             raise Http404("Person does not exist")
         form = PersonForm(request.POST or None, instance=instance)
         if form.is_valid():
-            form.save()
+            form.update()
             return redirect("/administrator/persons/")
 
         template = loader.get_template("administrator/persons/update.html")
