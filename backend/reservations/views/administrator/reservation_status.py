@@ -41,7 +41,9 @@ class AdminReservationStatusTemplateView(ListView):
         except EmptyPage:
             reservation_statuses = paginator.page(paginator.num_pages)
 
-        return render(request, "administrator/reservation_statuses/list.html", {"reservation_statuses": reservation_statuses})
+        return render(
+            request, "administrator/reservation_statuses/list.html", {"reservation_statuses": reservation_statuses}
+        )
 
     @staticmethod
     def reservation_status_delete_view(request, reservation_status_id):

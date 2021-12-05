@@ -1,17 +1,58 @@
 from enum import Enum
-
 from django.db import models
+
+from django.contrib.auth.models import User
 
 
 class Person(models.Model):
-    name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    is_admin = models.BooleanField(default=False)
-    occupy = models.ManyToManyField("Room", related_name="occupies", blank=True)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    phone_number = models.CharField(max_length=20, blank=True)
+    occupy = models.ManyToManyField(
+        "Room",
+        related_name="occupies",
+        blank=True,
+    )
 
     def __str__(self):
-        return "%s, %s%s" % (self.surname, self.name, " (admin)" if self.is_admin else "")
+        return "%s, %s%s" % (self.name, self.surname, " (admin)" if self.is_admin else "")
 
+    @property
+    def name(self):
+        return self.user.first_name
+
+    @name.setter
+    def name(self, val):
+        self.user.first_name = val
+        self.user.save()
+
+    @property
+    def surname(self):
+        return self.user.last_name
+
+    @surname.setter
+    def surname(self, val):
+        self.user.last_name = val
+        self.user.save()
+
+    @property
+    def is_admin(self):
+        return self.user.is_superuser
+
+    @is_admin.setter
+    def is_admin(self, val):
+        self.user.is_superuser = val
+        self.user.save()
+
+    @property
+    def email(self):
+        return self.user.email
+
+    @email.setter
+    def email(self, val):
+        self.user.email = val
+        self.user.save()
 
 class Building(models.Model):
     name = models.CharField(max_length=50)
@@ -24,6 +65,12 @@ class Group(models.Model):
     name = models.CharField(max_length=50)
 
     parent = models.ForeignKey("Group", null=True, blank=True, on_delete=models.CASCADE)
+
+    member = models.ManyToManyField(
+        "Person",
+        related_name="member",
+        blank=True,
+    )
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
@@ -67,10 +114,13 @@ class ReservationStatus(models.Model):
 
 class Reservation(models.Model):
     author = models.ForeignKey(Person, related_name="author", on_delete=models.CASCADE)
+    owner = models.ForeignKey(Person, related_name="owner", null=True, blank=True, on_delete=models.CASCADE)
     attendees = models.ManyToManyField(Person, related_name="attendee", blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     # the last modified one is what we want
-    reservation_status = models.ManyToManyField(ReservationStatus, related_name="reservation_status", blank=True)
+    reservation_status = models.ManyToManyField(
+        ReservationStatus, related_name="reservation_status", blank=True
+    )
     dt_from = models.DateTimeField()
     dt_to = models.DateTimeField()
     dt_created = models.DateTimeField(auto_now=True)
