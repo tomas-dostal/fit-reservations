@@ -10,6 +10,7 @@ from reservations.services import *
 from reservations.forms import *
 from backend.settings import DEFAULT_PAGE_SIZE
 
+
 class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer

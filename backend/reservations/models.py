@@ -54,6 +54,7 @@ class Person(models.Model):
         self.user.email = val
         self.user.save()
 
+
 class Building(models.Model):
     name = models.CharField(max_length=50)
 
@@ -118,9 +119,7 @@ class Reservation(models.Model):
     attendees = models.ManyToManyField(Person, related_name="attendee", blank=True)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     # the last modified one is what we want
-    reservation_status = models.ManyToManyField(
-        ReservationStatus, related_name="reservation_status", blank=True
-    )
+    reservation_status = models.ManyToManyField(ReservationStatus, related_name="reservation_status", blank=True)
     dt_from = models.DateTimeField()
     dt_to = models.DateTimeField()
     dt_created = models.DateTimeField(auto_now=True)
