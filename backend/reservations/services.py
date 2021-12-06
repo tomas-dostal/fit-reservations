@@ -24,7 +24,7 @@ class PersonService:
                 first_name=data.get("name"),
                 last_name=data.get("surname"),
                 email=data.get("email", "test2@email.com"),
-                password="test123test",
+                password=data.get("password", "test123test"),
                 is_superuser=True if data.get("is_admin") else False,
             )
             user.save()

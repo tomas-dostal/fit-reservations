@@ -14,10 +14,11 @@ class PersonForm(ModelForm):
             self.fields["is_admin"].initial = instance.is_admin
             self.fields["email"].initial = instance.email
 
-    name = forms.CharField()
-    surname = forms.CharField()
+    name = forms.CharField(label="Jméno")
+    surname = forms.CharField(label="Příjmení")
     email = forms.CharField()
     is_admin = forms.BooleanField(required=False)
+    password = forms.CharField(widget=forms.PasswordInput(), label="Heslo")
 
     class Meta:
         model = Person
