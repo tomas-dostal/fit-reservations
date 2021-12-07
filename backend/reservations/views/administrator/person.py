@@ -10,6 +10,7 @@ from reservations.services import *
 from reservations.forms import *
 from backend.settings import DEFAULT_PAGE_SIZE
 
+
 class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
@@ -69,4 +70,4 @@ class AdminPersonTemplateView(ListView):
             return redirect("/administrator/persons/")
 
         template = loader.get_template("administrator/persons/update.html")
-        return HttpResponse(template.render({"form": form}, request))
+        return HttpResponse(template.render({"person": instance, "form": form}, request))
