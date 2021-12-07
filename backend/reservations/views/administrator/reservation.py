@@ -7,7 +7,6 @@ from rest_framework import viewsets
 from reservations.forms import AdminReservationForm
 from reservations.serializers import *
 from reservations.services import *
-from datetime import datetime
 from backend.settings import DEFAULT_PAGE_SIZE
 
 
@@ -46,47 +45,25 @@ class AdminReservationTemplateView(ListView):
     @staticmethod
     def reservation_create_view(request):
         form = AdminReservationForm(request.POST or None)
-        if form.is_valid():
-            timestamp = datetime.now()
-            reservation_status = ReservationStatus()
-            reservation_status.author = form.cleaned_data.get("author")
-            reservation_status.modified = timestamp
-            reservation_status.note = form.cleaned_data.get("note")
-            reservation_status.save()
-
-            reservation = Reservation()
-            reservation.author = form.cleaned_data.get("author")
-            reservation.dt_from = form.cleaned_data.get("dt_from")
-            reservation.dt_to = form.cleaned_data.get("dt_to")
-            reservation.dt_to = form.cleaned_data.get("dt_to")
-            reservation.dt_created = timestamp
-            reservation.room = form.cleaned_data.get("room")
-            reservation.save()
-
-            reservation.attendees.set(form.cleaned_data.get("attendees"))
-            reservation.reservation_status.add(reservation_status)
-            return redirect("/administrator/reservations/")
         template = loader.get_template("administrator/reservations/create.html")
+
+        if form.is_valid():
+            if not ReservationService.save(form.cleaned_data):
+                return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
+            return redirect("/administrator/reservations/")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
     def reservation_edit_view(request, reservation_id):
         instance = ReservationService.find_by_id(reservation_id)
+        template = loader.get_template("administrator/reservations/update.html")
+
         if instance is None:
             raise Http404("Reservation does not exist")
         form = AdminReservationForm(request.POST or None, instance=instance)
+
         if form.is_valid():
-            timestamp = datetime.now()
-            reservation_status = ReservationStatus()
-            reservation_status.author = form.cleaned_data.get("author")
-            reservation_status.modified = timestamp
-            reservation_status.note = form.cleaned_data.get("note")
-            reservation_status.save()
-
-            instance.attendees.set(form.cleaned_data.get("attendees"))
-            instance.reservation_status.add(reservation_status)
-
-            form.save()
+            if not ReservationService.update(form.cleaned_data):
+                return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
             return redirect("/administrator/reservations/")
-        template = loader.get_template("administrator/reservations/update.html")
         return HttpResponse(template.render({"form": form}, request))
