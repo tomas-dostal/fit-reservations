@@ -7,6 +7,7 @@
 
 <section>
     <form method="POST" class="model-form building-form" enctype="multipart/form-data">
+        {% include "layouts/form-errors.html" with errors=errors %}
 
         <!-- Security token -->
         {% csrf_token %}
