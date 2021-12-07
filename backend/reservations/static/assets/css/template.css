@@ -253,6 +253,9 @@ table.list td a.id {
     width: 100%;
     margin-bottom: 10px;
 }
+.model-form input[type='checkbox'] {
+    width: auto;
+}
 
 .model-form input.submit {
 
@@ -293,6 +296,11 @@ ul.pagination li.active > span {
 
 ul.pagination li:not(.active) a:hover {
     background-color: #ddd;
+}
+
+.errors{
+    color: #bc2937;
+    margin-bottom: 1rem;
 }
 
 /* Footer */
