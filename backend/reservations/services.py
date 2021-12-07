@@ -19,17 +19,23 @@ class PersonService:
     @staticmethod
     def create(data):
         try:
-            user = User.objects.create_user(username=data.get('email', "test2@email.com"),
-                                            first_name=data.get('name'),
-                                            last_name=data.get('surname'),
-                                            email=data.get('email', "test2@email.com"),
-                                            password="test123test")
+            user = User.objects.create(
+                username=data.get("email", "test2@email.com"),
+                first_name=data.get("name"),
+                last_name=data.get("surname"),
+                email=data.get("email", "test2@email.com"),
+                is_superuser=True if data.get("is_admin") == "on" else False,
+            )
+            # because this is setting the RAW password, in the constructor is used hash of the password
+            user.set_password("test123test")
             user.save()
-
-            person = Person.objects.create(user=user,
-                                           phone_number=data.get('phone_number'),
-                                           occupy=data.get('occupy', None).set())
+            person = Person.objects.create(
+                user=user,
+                phone_number=data.get("phone_number"),
+            )
+            person.occupy.set = (data.get("occupy").set() if data.get("occupy") else set(),)
             person.save()
+
         except IntegrityError:
             return None
 
@@ -53,7 +59,7 @@ class PersonService:
                 surname=updated_user.surname,
                 is_admin=updated_user.is_admin,
                 email=updated_user.email,
-                phone_number=updated_user.phone_number
+                phone_number=updated_user.phone_number,
             )
             return True
         except Person.DoesNotExist:
