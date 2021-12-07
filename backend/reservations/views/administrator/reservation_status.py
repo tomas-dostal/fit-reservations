@@ -7,7 +7,7 @@ from rest_framework import viewsets
 
 from reservations.models import ReservationStatus
 from reservations.serializers import ReservationStatusSerializer
-from reservations.services import ReservationStatusService
+from reservations.services import *
 from reservations.forms import ReservationStatusForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
@@ -71,4 +71,21 @@ class AdminReservationStatusTemplateView(ListView):
             form.save()
             return redirect("/administrator/reservationstatuses/")
         template = loader.get_template("administrator/reservations/create.html")
+        return HttpResponse(template.render({"form": form}, request))
+
+    # The new methods, TODO Delete the previous ones after this has been approved
+    @staticmethod
+    def status_create_view(request, reservation_id):
+        reservation = ReservationService.find_by_id(reservation_id)
+        if not reservation:
+            raise Http404("Reservation does not exist")
+
+        template = loader.get_template("administrator/reservation_status/create.html")
+        form = ReservationStatusForm(request.POST or None)
+
+        if form.is_valid():
+            reservation_status = ReservationStatusService.save(form.cleaned_data)
+
+            ReservationService.add_status(reservation, reservation_status)
+            return redirect("/administrator/reservations")
         return HttpResponse(template.render({"form": form}, request))

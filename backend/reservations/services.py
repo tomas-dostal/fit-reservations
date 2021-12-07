@@ -1,7 +1,10 @@
+from datetime import datetime
+
 from .models import *
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
+# TODO Vytvorit metody pro ziskani mistnosti, kde dany uzivatel muze rezervovat
 
 
 class PersonService:
@@ -194,9 +197,16 @@ class ReservationStatusService:
         return ReservationStatus.objects.all()
 
     @staticmethod
-    def save(reservation_status):
+    def save(data):
+        timestamp = datetime.now()
+        reservation_status = ReservationStatus.objects.create(
+            author=data.get("author"),
+            status=data.get("status"),
+            dt_modified=timestamp,
+            note=data.get("note")
+        )
         reservation_status.save()
-        return
+        return reservation_status
 
     @staticmethod
     def delete(reservation_status_id):
@@ -234,9 +244,32 @@ class ReservationService:
         return Reservation.objects.all()
 
     @staticmethod
-    def save(reservation):
-        reservation.save()
-        return
+    def save(data):
+        try:
+            timestamp = datetime.now()
+            reservation_status = ReservationStatus.objects.create(
+                author=data.get("author"),
+                dt_modified=timestamp,
+                note=data.get("note")
+            )
+            reservation_status.save()
+
+            reservation = Reservation.objects.create(
+                # TODO Az bude fungovat prihlaseni, mozna predavat metode save rovnou uzivatele, ktery bude author?
+                author=data.get("author"),
+                owner=data.get("author"),
+                dt_from=data.get("dt_from"),
+                dt_to=data.get("dt_to"),
+                dt_created=timestamp,
+                room=data.get("room")
+            )
+            reservation.save()
+
+            reservation.attendees.set(data.get("attendees"))
+            reservation.reservation_status.add(reservation_status)
+        except IntegrityError:
+            return None
+        return reservation
 
     @staticmethod
     def delete(reservation_id):
@@ -249,17 +282,29 @@ class ReservationService:
             return False
 
     @staticmethod
-    def update(reservation_id, updated_reservation):
-        try:
-            Reservation.objects.get(pk=reservation_id).update(
-                author=updated_reservation.author,
-                attendees=updated_reservation.attendees,
-                room=updated_reservation.room,
-                reservation_status=updated_reservation.reservation_status,
-                dt_from=updated_reservation.dt_from,
-                dt_to=updated_reservation.dt_to,
-                dt_created=updated_reservation.dt_created,
-            )
-            return True
-        except Reservation.DoesNotExist:
-            return False
+    def update(reservation, data):
+        timestamp = datetime.now()
+        reservation_status = ReservationStatus.objects.create(
+            author=data.get("author"),
+            dt_modified=timestamp,
+            note=data.get("note")
+        )
+        reservation_status.save()
+
+        reservation.author = data.get("author"),
+        reservation.owner = data.get("author"),
+        reservation.dt_from = data.get("dt_from"),
+        reservation.dt_to = data.get("dt_to"),
+        reservation.dt_created = timestamp,
+        reservation.room = data.get("room")
+        reservation.save()
+
+        reservation.attendees.set(data.get("attendees"))
+        reservation.reservation_status.add(reservation_status)
+
+        return reservation
+
+    @staticmethod
+    def add_status(reservation, reservation_status):
+        reservation.reservation_status.add(reservation_status)
+        return reservation
