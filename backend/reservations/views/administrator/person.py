@@ -70,4 +70,4 @@ class AdminPersonTemplateView(ListView):
             return redirect("/administrator/persons/")
 
         template = loader.get_template("administrator/persons/update.html")
-        return HttpResponse(template.render({"form": form}, request))
+        return HttpResponse(template.render({"person": instance, "form": form}, request))
