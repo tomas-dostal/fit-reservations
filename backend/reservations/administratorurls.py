@@ -79,4 +79,9 @@ urlpatterns = [
         views.AdminReservationTemplateView.reservation_edit_view,
         name="admin_reservation_update",
     ),
+    path(
+        "reservations/<int:reservation_id>/statuses/create",
+        views.AdminReservationStatusTemplateView.status_create_view,
+        name="admin_status_create",
+    ),
 ]
