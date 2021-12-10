@@ -3,6 +3,8 @@ from django.forms import ModelForm, DateTimeInput
 from reservations.models import *
 from reservations.services import *
 
+from reservations.models import Person
+
 
 class PersonForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -63,6 +65,9 @@ class RoomForm(ModelForm):
 
 
 class ReservationStatusForm(ModelForm):
+    # TODO This needs to be the logged in user later when logging in works.
+    author = forms.ModelChoiceField(queryset=Person.objects.all())
+
     class Meta:
         model = ReservationStatus
         fields = ["status", "note"]

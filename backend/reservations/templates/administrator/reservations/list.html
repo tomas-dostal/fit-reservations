@@ -6,11 +6,19 @@
             <p> {{ error }}</p>
         {% endfor %}
     {% endif %}
-    {% if test_list %}
+    {% if reservations %}
         <ul>
-            {{ test_list }}
+            {% for reservation in reservations %}
+                <ul>
+                    {% for reservation_status in reservation.reservation_status.all %}
+                        <a>reservation_status.status</a>
+                    {% endfor %}
+                </ul>
+                <li></li>
+            {% endfor %}
         </ul>
     {% else %}
         <p>Zadne nejsou k dispozici</p>
     {% endif %}
+    {% include "layouts/pagination.html" with items=persons %}
 {% endblock %}
