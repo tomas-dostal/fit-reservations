@@ -4,6 +4,7 @@ from .models import *
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
+
 # TODO Vytvorit metody pro ziskani mistnosti, kde dany uzivatel muze rezervovat
 
 
@@ -200,10 +201,7 @@ class ReservationStatusService:
     def save(data):
         timestamp = datetime.now()
         reservation_status = ReservationStatus.objects.create(
-            author=data.get("author"),
-            status=data.get("status"),
-            dt_modified=timestamp,
-            note=data.get("note")
+            author=data.get("author"), status=data.get("status"), dt_modified=timestamp, note=data.get("note")
         )
         reservation_status.save()
         return reservation_status
@@ -248,9 +246,7 @@ class ReservationService:
         try:
             timestamp = datetime.now()
             reservation_status = ReservationStatus.objects.create(
-                author=data.get("author"),
-                dt_modified=timestamp,
-                note=data.get("note")
+                author=data.get("author"), dt_modified=timestamp, note=data.get("note")
             )
             reservation_status.save()
 
@@ -261,7 +257,7 @@ class ReservationService:
                 dt_from=data.get("dt_from"),
                 dt_to=data.get("dt_to"),
                 dt_created=timestamp,
-                room=data.get("room")
+                room=data.get("room"),
             )
             reservation.save()
 
@@ -285,17 +281,15 @@ class ReservationService:
     def update(reservation, data):
         timestamp = datetime.now()
         reservation_status = ReservationStatus.objects.create(
-            author=data.get("author"),
-            dt_modified=timestamp,
-            note=data.get("note")
+            author=data.get("author"), dt_modified=timestamp, note=data.get("note")
         )
         reservation_status.save()
 
-        reservation.author = data.get("author"),
-        reservation.owner = data.get("author"),
-        reservation.dt_from = data.get("dt_from"),
-        reservation.dt_to = data.get("dt_to"),
-        reservation.dt_created = timestamp,
+        reservation.author = (data.get("author"),)
+        reservation.owner = (data.get("author"),)
+        reservation.dt_from = (data.get("dt_from"),)
+        reservation.dt_to = (data.get("dt_to"),)
+        reservation.dt_created = (timestamp,)
         reservation.room = data.get("room")
         reservation.save()
 
