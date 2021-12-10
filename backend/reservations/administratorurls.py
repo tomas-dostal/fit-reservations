@@ -82,6 +82,6 @@ urlpatterns = [
     path(
         "reservations/<int:reservation_id>/statuses/create",
         views.AdminReservationStatusTemplateView.status_create_view,
-        name="admin_status_create"
-    )
+        name="admin_status_create",
+    ),
 ]
