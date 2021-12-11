@@ -1,11 +1,44 @@
 {% extends 'administrator/base.html' %}
 
 {% block content  %}
-    <header>
-        <h2>Skupina {{ group.name }}</h2>
-    </header>
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_group_update' group_id=group.id %}">Upravit skupinu</a>
+        <li><a class='button red' href="{% url 'admin_group_delete' group_id=group.id %}">Smazat skupinu</a></li>
+    </ul>
+</nav>
 
-    <section>
+<header>
+    <h2>Skupina: {{ group.name }}</h2>
+</header>
 
+<section>
+    <section id="group-detail" class="container detail">
+        <div class="card">
+            <ul>
+                <li>
+                    <div class="description">Název</div>
+                    <span class="value">{{ group.name}} </span>
+                </li>
+
+                <li>
+                    <div class="description">Nadřízená skupina</div>
+                    {% if group.parent %}
+                    <a class="value"
+                       href="{% url 'admin_group_view' group_id=group.parent.id %}">{{group.parent.name}}</a>
+                    {% else %}
+                    <span>-</span>
+                    {% endif %}
+                </li>
+
+                <li>
+                    <div class="description">Správce</div>
+                    <a class="value" href="{% url 'admin_person_view' person_id=group.manager.id %}">{{group.manager.name}}
+                        {{group.manager.surname}}</a>
+                </li>
+
+            </ul>
+        </div>
     </section>
+</section>
 {% endblock %}
