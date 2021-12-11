@@ -15,6 +15,8 @@
         <li class="menu-item"><a href="{% url 'index' %}">Domů</a></li>
         <li class="menu-item"><a href="{% url 'reservation_create' %}">Nová rezervace</a></li>
         <li class="menu-item"><a href="#!">Moje rezervace</a></li>
+        <!-- TODO: ADMIN ONLY -->
+        <li class="menu-item"><a href="{% url 'admin_person_list' %}">Administrace</a></li>
         <li class="menu-item login"><a href="#!">Přihlášení</a></li>
     </ul>
 </nav>
