@@ -32,6 +32,6 @@ class AdminPersonAjaxTemplateView(AjaxDatatableView):
         row["edit"] = "<a href='" + edit + "' class='button green'>Upravit</a>"
 
         delete = reverse("admin_person_delete", kwargs={"person_id": obj.id})
-        row["delete"] = "<a href='" + delete + "' class='button red'>Delete</a>"
+        row["delete"] = "<a href='" + delete + "' class='button red'>Smazat</a>"
 
         return row

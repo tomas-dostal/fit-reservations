@@ -1,11 +1,48 @@
 {% extends 'administrator/base.html' %}
 
 {% block content  %}
-    <header>
-        <h2>{{ room.building.name }}:{{ room.name }}</h2>
-    </header>
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit místnost</a>
+        <li><a class='button red' href="{% url 'admin_room_delete' room_id=room.id %}">Smazat místnost</a></li>
+    </ul>
+</nav>
 
-    <section>
+<header>
+    <h2>Místnost: {{ room.name }}</h2>
+</header>
 
+<section>
+    <section id="user-detail" class="container detail">
+        <div class="card">
+            <ul>
+                <li>
+                    <div class="description">Název</div>
+                    <span class="value">{{ room.name}}</span>
+                </li>
+
+                <li>
+                    <div class="description">Budova</div>
+                    <a class="value" href="{% url 'admin_building_view' building_id=room.building.id %}">{{room.building.name}}</a>
+                </li>
+
+                <li>
+                    <div class="description">Skupina</div>
+                    {% if room.group %}
+                    <a class="value"
+                       href="{% url 'admin_group_view' group_id=room.group.id %}">{{room.group.name}}</a>
+                    {% else %}
+                    <span>-</span>
+                    {% endif %}
+                </li>
+
+                <li>
+                    <div class="description">Správce</div>
+                    <a class="value" href="{% url 'admin_person_view' person_id=room.manager.id %}">{{room.manager.name}}
+                        {{room.manager.surname}}</a>
+                </li>
+            </ul>
+        </div>
     </section>
+</section>
 {% endblock %}
