@@ -20,38 +20,58 @@
         {% endif %}
     </div>
     {% if persons %}
-    <table class="list persons">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Jméno</th>
-            <th>Příjmení</th>
-            <th>Administrátor</th>
-            <!-- Todo: Show actions only for administrator -->
-            <th>Akce</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for person in persons %}
-        <tr>
-            <td><a class="id" href="{% url 'admin_person_view' person_id=person.id %}">{{person.id}}</a></td>
-            <td>{{person.name}}</td>
-            <td>{{person.surname}}</td>
-            <td>{% if person.is_admin %}ANO{% else %}NE{% endif %}</td>
-            <!-- Todo: Show actions only for administrator -->
-            <td>
-                <a class="button green" href="{% url 'admin_person_update' person_id=person.id %}">Upravit</a>
-                <a class="button red" href="{% url 'admin_person_delete' person_id=person.id %}">Smazat</a>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    {% include "layouts/pagination.html" with items=persons %}
+    <table class="list persons" id="persons-datatable">
+
+    </table>
 
     {% else %}
     <p>Zadne nejsou k dispozici</p>
     {% endif %}
 </section>
+
+<script>
+    jQuery(document).ready(function () {
+        AjaxDatatableViewUtils.initialize_table(
+            $('#persons-datatable'),
+            "{% url 'admin_person_list_ajax' %}",
+            {
+                // extra_options (example)
+                processing: false,
+                autoWidth: false,
+                full_row_select: false,
+                scrollX: false,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "Nebyla nalezena žádná data.",
+                    "info": "Zobrazeno _START_ až _END_ záznamů z _TOTAL_",
+                    "infoEmpty": "",
+                    "infoFiltered": "(filtered from _MAX_ total entries)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Zobrazit _MENU_ na stránku",
+                    "loadingRecords": "Načítání záznamů...",
+                    "processing": "Zpracování záznamů",
+                    "search": "Vyhledat ",
+                    "zeroRecords": "Nebyla nalezena žádná data",
+                    "paginate": {
+                        "first": "Prima",
+                        "last": "Ultima",
+                        "next": ">>",
+                        "previous": "<<"
+                    },
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    }
+                }
+
+            }, {
+                // extra_data
+                // ...
+            },
+        );
+    });
+
+</script>
 {% endblock %}
