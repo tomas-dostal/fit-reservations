@@ -1,11 +1,56 @@
 {% extends 'administrator/base.html' %}
 
 {% block content  %}
-    <header>
-        <h2>{{ person.name }} {{person.surname}}</h2>
-    </header>
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_person_update' person_id=person.id %}">Upravit uživatele</a>
+        </li>
+    </ul>
+</nav>
 
-    <section>
+<header>
+    <h1>Zaměstnanec: {{ person.name }} {{person.surname}}</h1>
+</header>
 
+<section>
+    <section id="user-detail" class="container detail">
+        <div class="card">
+            <ul>
+                <li>
+                    <div class="description">Jméno</div>
+                    <span class="value">{{ person.name}} {{ person.surname }} </span>
+                </li>
+
+                <li>
+                    <div class="description">Skupiny</div>
+                    <!-- TODO: Print employee groups -->
+                    <ul class="value">
+
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="description">Uživatel místností</div>
+                    <ul class="value">
+                        {% for room in person.occupy.all %}
+                        <li>{{ room.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li>
+                    <div class="description">Email</div>
+                    <address class="value"><a href="mailto:{{ person.email }}">{{ person.email }}</a></address>
+                </li>
+
+                <li>
+                    <div class="description">Telefon</div>
+                    <address class="value"><a href="tel:{{ person.phone_number }}">{{ person.phone_number }}</a>
+                    </address>
+                </li>
+
+            </ul>
+        </div>
     </section>
+</section>
 {% endblock %}

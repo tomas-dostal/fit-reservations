@@ -6,18 +6,22 @@
         width: 100%;
     }
 
-    .page-container{
+    .page-container {
         padding-left: unset;
+    }
+
+    .detail .card {
+        width: 80%;
     }
 
 
     /* Forms */
-    .user-form{
+    .user-form {
         width: 100%;
     }
 
     /* Sidebar */
-    #sidebar{
+    #sidebar {
         max-width: unset;
         margin-bottom: 2rem;
     }
