@@ -11,12 +11,9 @@
 <body>
 <nav id="navigation">
     <ul>
-        <li class="title"><h1>Rezervační systém učeben</h1></li>
-        <li class="menu-item"><a href="{% url 'index' %}">Domů</a></li>
+        <li class="title"><h1><a href="{% url 'index' %}">Rezervační systém učeben</a></h1></li>
         <li class="menu-item"><a href="{% url 'reservation_create' %}">Nová rezervace</a></li>
         <li class="menu-item"><a href="#!">Moje rezervace</a></li>
-        <!-- TODO: ADMIN ONLY -->
-        <li class="menu-item"><a href="{% url 'admin_person_list' %}">Administrace</a></li>
         <li class="menu-item login"><a href="#!">Přihlášení</a></li>
     </ul>
 </nav>
@@ -33,6 +30,8 @@
 <footer>
     <hr/>
     <p>&copy; DFK 2021</p>
+    <!-- TODO: ADMIN ONLY -->
+    <a href="{% url 'admin_person_list' %}">Administrace</a>
 </footer>
 </body>
 </html>

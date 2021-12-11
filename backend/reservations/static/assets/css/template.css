@@ -410,3 +410,8 @@ footer {
 footer p {
     text-align: center;
 }
+
+footer a {
+    display: block;
+    text-align: center;
+}
