@@ -137,6 +137,12 @@ main.container {
     margin-bottom: 2rem;
 }
 
+.page-container header h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
 .page-container header h2 {
     text-align: center;
     font-weight: bold;
@@ -243,6 +249,56 @@ table.list td a.id {
     color: black;
 }
 
+/* Employee detail */
+.detail {
+    display: flex;
+    justify-content: center;
+}
+
+.detail ul {
+    list-style-type: none;
+}
+
+.detail ul > li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+}
+
+.detail ul > li > .description {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#role-detail ul > li > .description {
+    width: auto;
+}
+
+.detail img {
+    width: 9rem;
+    height: 9rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.detail .card {
+    width: 50%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+
 /* Forms */
 .model-form {
     width: 50%;
@@ -333,23 +389,6 @@ ul.pagination li:not(.active) a:hover {
     margin-top: 2rem;
 }
 
-/* Soring */
-.dataTable th {
-    cursor: pointer;
-}
-
-.dataTable th:before,
-.dataTable th:after {
-    border: 4px solid transparent;
-    content: "";
-    display: block;
-    height: 0;
-    right: 5px;
-    top: 50%;
-    position: absolute;
-    width: 0;
-}
-
 .id {
     font-weight: bold;
     font-size: 0.8rem;
@@ -369,5 +408,10 @@ footer {
 }
 
 footer p {
+    text-align: center;
+}
+
+footer a {
+    display: block;
     text-align: center;
 }

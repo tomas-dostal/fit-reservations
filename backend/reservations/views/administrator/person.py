@@ -24,6 +24,8 @@ class AdminPersonTemplateView(ListView):
     def person_get_view(request, person_id):
         person = PersonService.find_by_id(person_id)
         template = loader.get_template("administrator/persons/detail.html")
+        print(person)
+
         return HttpResponse(template.render({"person": person}, request))
 
     @staticmethod

@@ -1,11 +1,27 @@
 {% extends 'administrator/base.html' %}
 
 {% block content  %}
-    <header>
-        <h2>Budova {{ building.name }}</h2>
-    </header>
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit budovu</a>
+        <li><a class='button red' href="{% url 'admin_building_delete' building_id=building.id %}">Smazat budovu</a></li>
+    </ul>
+</nav>
 
-    <section>
+<header>
+    <h2>Budova: {{ building.name }}</h2>
+</header>
 
+<section>
+    <section id="user-detail" class="container detail">
+        <div class="card">
+            <ul>
+                <li>
+                    <div class="description">Název</div>
+                    <span class="value">{{ building.name}}</span>
+                </li>
+            </ul>
+        </div>
     </section>
+</section>
 {% endblock %}
