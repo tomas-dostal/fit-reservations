@@ -56,11 +56,11 @@ class PersonService:
             return False
 
     @staticmethod
-    def update(user_id, data):
+    def update(person, data):
         try:
-            person = Person.objects.get(pk=user_id)
+            user = person.user
             if data.get("password"):
-                Person.user.set_password(data.get("password"))
+                user.set_password(data.get("password"))
             person.user.username = data.get("email", "test2@email.com")
             person.user.first_name = data.get("name")
             person.user.last_name = data.get("surname")
