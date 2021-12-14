@@ -49,7 +49,7 @@ class AdminRoomTemplateView(ListView):
     def room_create_view(request):
         form = RoomForm(request.POST or None)
         if form.is_valid():
-            form.save()
+            RoomService.save(form)
             return redirect("/administrator/rooms/")
         template = loader.get_template("administrator/rooms/create.html")
         return HttpResponse(template.render({"form": form}, request))
@@ -61,7 +61,7 @@ class AdminRoomTemplateView(ListView):
             raise Http404("Room does not exist")
         form = RoomForm(request.POST or None, instance=instance)
         if form.is_valid():
-            form.save()
+            RoomService.save(form)
             return redirect("/administrator/rooms/")
         template = loader.get_template("administrator/rooms/update.html")
         return HttpResponse(template.render({"form": form}, request))
