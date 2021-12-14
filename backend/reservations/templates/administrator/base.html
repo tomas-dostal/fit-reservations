@@ -20,7 +20,11 @@
 <nav id="navigation">
     <ul>
         <li class="title"><h1>Administrace</h1></li>
-        <li class="menu-item login"><a href="#!">Odhlásit</a></li>
+        {% if user.is_authenticated %}
+            <li class="menu-item login">Vitejte zpet {{ user }}, <a href="{% url 'logout' %}">Odhlasit</a></li>
+        {% else %}
+            <li class="menu-item login"><a href="{% url 'login' %}">Prihlasit</a></li>
+        {% endif %}
     </ul>
 </nav>
 
