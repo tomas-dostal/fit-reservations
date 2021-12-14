@@ -2,7 +2,7 @@ from datetime import datetime
 
 from .models import *
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.db.utils import IntegrityError
 
 # TODO Vytvorit metody pro ziskani mistnosti, kde dany uzivatel muze rezervovat
@@ -127,14 +127,25 @@ class GroupService:
         return Group.objects.all()
 
     @staticmethod
-    def save(group):
-        group.save()
+    def save(form):
+        form.save()
+        manager = form.cleaned_data.get("manager")
+        if manager:
+            manager.user.user_permissions.add(Permission.objects.get(codename='is_group_manager'))
+            manager.user.save()
         return
 
     @staticmethod
     def delete(group_id):
         try:
-            Group.delete(Group.objects.get(pk=group_id))
+            group = Group.objects.get(pk=group_id)
+            manager = group.manager
+            if manager:
+                managed_groups = Group.objects.filter(manager=manager)
+                if len(managed_groups) < 2:
+                    manager.user.user_permissions.remove(Permission.objects.get(codename='is_group_manager'))
+                manager.user.save()
+            Room.delete(group)
             return True
         except Group.DoesNotExist:
             return False
@@ -142,11 +153,13 @@ class GroupService:
             return False
 
     @staticmethod
-    def update(group_id, updated_group):
+    def update(form):
         try:
-            Group.objects.get(pk=group_id).update(
-                name=updated_group.name, manager=updated_group.manager, parent=updated_group.parent
-            )
+            form.save()
+            manager = form.cleaned_data.get("manager")
+            if manager:
+                manager.user.user_permissions.add(Permission.objects.get(codename='is_room_manager'))
+                manager.user.save()
             return True
         except Group.DoesNotExist:
             return False
@@ -165,14 +178,25 @@ class RoomService:
         return Room.objects.all()
 
     @staticmethod
-    def save(room):
-        room.save()
+    def save(form):
+        form.save()
+        manager = form.cleaned_data.get("manager")
+        if manager:
+            manager.user.user_permissions.add(Permission.objects.get(codename='is_room_manager'))
+            manager.user.save()
         return
 
     @staticmethod
     def delete(room_id):
         try:
-            Room.delete(Room.objects.get(pk=room_id))
+            room = Room.objects.get(pk=room_id)
+            manager = room.manager
+            if manager:
+                managed_rooms = Room.objects.filter(manager=manager)
+                if len(managed_rooms) < 2:
+                    manager.user.user_permissions.remove(Permission.objects.get(codename='is_room_manager'))
+                manager.user.save()
+            Room.delete(room)
             return True
         except Room.DoesNotExist:
             return False
@@ -180,14 +204,13 @@ class RoomService:
             return False
 
     @staticmethod
-    def update(room_id, updated_room):
+    def update(form):
         try:
-            Room.objects.get(pk=room_id).update(
-                name=updated_room.name,
-                manager=updated_room.manager,
-                group=updated_room.group,
-                building=updated_room.building,
-            )
+            form.save()
+            manager = form.cleaned_data.get("manager")
+            if manager:
+                manager.user.user_permissions.add(Permission.objects.get(codename='is_room_manager'))
+                manager.user.save()
             return True
         except Room.DoesNotExist:
             return False

@@ -48,7 +48,7 @@ class AdminGroupTemplateView(ListView):
     def group_create_view(request):
         form = GroupForm(request.POST or None)
         if form.is_valid():
-            form.save()
+            GroupService.save(form)
             return redirect("/administrator/groups/")
         template = loader.get_template("administrator/groups/create.html")
         return HttpResponse(template.render({"form": form}, request))
@@ -60,7 +60,7 @@ class AdminGroupTemplateView(ListView):
             raise Http404("Building does not exist")
         form = GroupForm(request.POST or None, instance=instance)
         if form.is_valid():
-            form.save()
+            GroupService.update(form)
             return redirect("/administrator/groups/")
         template = loader.get_template("administrator/groups/update.html")
         return HttpResponse(template.render({"form": form}, request))
