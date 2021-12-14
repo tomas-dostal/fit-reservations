@@ -15,6 +15,7 @@ class PersonForm(ModelForm):
             self.fields["surname"].initial = instance.surname
             self.fields["is_admin"].initial = instance.is_admin
             self.fields["email"].initial = instance.email
+            self.fields["password"].required = False
 
     name = forms.CharField(label="Jméno")
     surname = forms.CharField(label="Příjmení")

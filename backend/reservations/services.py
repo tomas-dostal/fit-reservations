@@ -28,16 +28,16 @@ class PersonService:
                 first_name=data.get("name"),
                 last_name=data.get("surname"),
                 email=data.get("email", "test2@email.com"),
-                is_superuser=True if data.get("is_admin") == "on" else False,
+                is_superuser=True if data.get("is_admin") else False,
             )
             # because this is setting the RAW password, in the constructor is used hash of the password
-            user.set_password("test123test")
+            user.set_password(data.get("password"))
             user.save()
             person = Person.objects.create(
                 user=user,
                 phone_number=data.get("phone_number"),
             )
-            person.occupy.set = (data.get("occupy").set() if data.get("occupy") else set(),)
+            person.occupy.set(data.get("occupy"))
             person.save()
 
         except IntegrityError:
@@ -56,15 +56,23 @@ class PersonService:
             return False
 
     @staticmethod
-    def update(user_id, updated_user):
+    def update(user_id, data):
         try:
-            Person.objects.get(pk=user_id).update(
-                name=updated_user.name,
-                surname=updated_user.surname,
-                is_admin=updated_user.is_admin,
-                email=updated_user.email,
-                phone_number=updated_user.phone_number,
-            )
+            person = Person.objects.get(pk=user_id)
+            if data.get("password"):
+                Person.user.set_password(data.get("password"))
+            person.user.username = data.get("email", "test2@email.com")
+            person.user.first_name = data.get("name")
+            person.user.last_name = data.get("surname")
+            person.user.email = data.get("email", "test2@email.com")
+            person.user.is_superuser = True if data.get("is_admin") else False
+            person.user.save()
+
+            person.phone_number = data.get("phone_number")
+            person.occupy.set(data.get("occupy"))
+
+            person.save()
+
             return True
         except Person.DoesNotExist:
             return False
