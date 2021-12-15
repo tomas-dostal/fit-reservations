@@ -45,8 +45,9 @@ class ReservationTemplateView(ListView):
 
     @staticmethod
     def reservation_create_view(request):
-        form = ReservationForm(request.POST or None)
+        form = ReservationForm(request, request.POST or None)
         template = loader.get_template("reservations/create.html")
+
         if form.is_valid():
             if not ReservationService.save(form.cleaned_data, request.user):
                 return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
