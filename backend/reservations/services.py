@@ -278,10 +278,11 @@ class ReservationStatusService:
         return ReservationStatus.objects.all()
 
     @staticmethod
-    def save(data):
+    def save(data, user):
+        author = Person.objects.get(user=user)
         timestamp = datetime.now()
         reservation_status = ReservationStatus.objects.create(
-            author=data.get("author"), status=data.get("status"), dt_modified=timestamp, note=data.get("note")
+            author=author, status=data.get("status"), dt_modified=timestamp, note=data.get("note")
         )
         reservation_status.save()
         return reservation_status
