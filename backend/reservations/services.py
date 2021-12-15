@@ -385,7 +385,7 @@ class ReservationService:
         return reservation
 
     @staticmethod
-    def get_reservations_for_room(room):
+    def find_reservations_for_room(room):
         return Reservation.objects.filter(
             room=room,
             reservation_status__status__exact=ReservationStatus.APPROVED,
@@ -393,5 +393,6 @@ class ReservationService:
         )
 
     @staticmethod
-    def get_reservations_for_person(person):
+    def find_reservations_for_person(user):
+        person = Person.objects.get(user=user)
         return Reservation.objects.filter(owner=person)

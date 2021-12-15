@@ -19,15 +19,19 @@ class ReservationViewSet(viewsets.ModelViewSet):
 
 class ReservationTemplateView(ListView):
     @staticmethod
+    @login_required()
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
+        if reservation not in ReservationService.find_reservations_for_person(request.user):
+            redirect("/login")
         template = loader.get_template("reservations/detail.html")
         return HttpResponse(template.render({"reservation": reservation}, request))
 
     @staticmethod
+    @login_required()
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
-        paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
+        paginator = Paginator(ReservationService.find_reservations_for_person(request.user), DEFAULT_PAGE_SIZE)
         try:
             reservations = paginator.page(page)
         except PageNotAnInteger:
@@ -38,7 +42,12 @@ class ReservationTemplateView(ListView):
         return render(request, "reservations/publiclist.html", {"reservations": reservations})
 
     @staticmethod
+    @login_required()
     def reservation_delete_view(request, reservation_id):
+        reservation = ReservationService.find_by_id(reservation_id)
+        if reservation not in ReservationService.find_reservations_for_person(request.user):
+            redirect("/login")
+
         template = loader.get_template("reservations/publiclist.html")
         if not ReservationService.delete(reservation_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation"]}, request))
