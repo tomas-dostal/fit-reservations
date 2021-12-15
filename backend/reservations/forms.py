@@ -75,9 +75,6 @@ class RoomGroupManagerForm(ModelForm):
 
 
 class ReservationStatusForm(ModelForm):
-    # TODO This needs to be the logged in user later when logging in works.
-    author = forms.ModelChoiceField(queryset=Person.objects.all())
-
     class Meta:
         model = ReservationStatus
         fields = ["status", "note"]

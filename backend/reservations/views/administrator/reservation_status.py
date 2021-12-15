@@ -33,7 +33,7 @@ class AdminReservationStatusTemplateView(ListView):
         form = ReservationStatusForm(request.POST or None)
 
         if form.is_valid():
-            reservation_status = ReservationStatusService.save(form.cleaned_data)
+            reservation_status = ReservationStatusService.save(form.cleaned_data, request.user)
 
             ReservationService.add_status(reservation, reservation_status)
             return redirect("/administrator/reservations")
