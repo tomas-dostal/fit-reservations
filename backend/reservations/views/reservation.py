@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -44,6 +45,7 @@ class ReservationTemplateView(ListView):
         return redirect("/reservations/")
 
     @staticmethod
+    @login_required
     def reservation_create_view(request):
         form = ReservationForm(request, request.POST or None)
         template = loader.get_template("reservations/create.html")

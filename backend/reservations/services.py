@@ -176,7 +176,6 @@ class GroupService:
             if list(queryset) == list(return_queryset):
                 return return_queryset | Group.objects.filter(id=group.id)
 
-
 class RoomService:
     @staticmethod
     def find_by_id(room_id):
@@ -230,6 +229,16 @@ class RoomService:
             return True
         except Room.DoesNotExist:
             return False
+
+    @staticmethod
+    def find_all_reservable_rooms(user):
+        occupied = RoomService.find_occupied_rooms(user)
+        group_set = Person.objects.get(user=user).group_set
+        in_group = Room.objects.none()
+        for group in group_set.all():
+            in_group = in_group | RoomService.find_rooms_for_group(group)
+        return occupied | in_group
+
 
     @staticmethod
     def find_occupied_rooms(user):
