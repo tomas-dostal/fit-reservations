@@ -33,8 +33,7 @@ class RoomTemplateView(ListView):
     def public_rooms_get_view(request):
         page = request.GET.get("page", 1)
 
-        # TODO: call something like RoomService.find_public()
-        paginator = Paginator(RoomService.find_all(), DEFAULT_PAGE_SIZE)
+        paginator = Paginator(RoomService.find_all_public(), DEFAULT_PAGE_SIZE)
         try:
             rooms = paginator.page(page)
         except PageNotAnInteger:

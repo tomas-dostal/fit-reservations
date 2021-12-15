@@ -178,6 +178,10 @@ class RoomService:
         return Room.objects.all()
 
     @staticmethod
+    def find_all_public():
+        return Room.objects.filter(group=None)
+
+    @staticmethod
     def save(form):
         form.save()
         manager = form.cleaned_data.get("manager")
