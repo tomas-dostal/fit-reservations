@@ -12,6 +12,8 @@ from reservations.services import RoomService
 from reservations.forms import RoomForm
 from backend.settings import DEFAULT_PAGE_SIZE
 
+from reservations.services import ReservationService
+
 
 class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
@@ -22,12 +24,12 @@ class RoomTemplateView(ListView):
     @staticmethod
     def public_room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)
-
+        reservations = ReservationService.get_reservations(room)
         # Check if the room is public
         if room and room.group is not None:
             raise PermissionDenied("Not a public room.")
         template = loader.get_template("rooms/detail.html")
-        return HttpResponse(template.render({"room": room}, request))
+        return HttpResponse(template.render({"room": room, "reservations": reservations}, request))
 
     @staticmethod
     def public_rooms_get_view(request):

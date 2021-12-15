@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from .models import *
 from django.db import models
@@ -337,3 +337,11 @@ class ReservationService:
     def add_status(reservation, reservation_status):
         reservation.reservation_status.add(reservation_status)
         return reservation
+
+    @staticmethod
+    def get_reservations(room):
+        return Reservation.objects.filter(
+            room=room,
+            reservation_status__status__exact=ReservationStatus.APPROVED,
+            reservation_status__reservation_status__dt_from__lte=datetime.now() + timedelta(days=14)
+        )
