@@ -26,7 +26,7 @@ class AdminRoomTemplateView(ListView):
         return HttpResponse(template.render({"room": room}, request))
 
     @staticmethod
-    @user_passes_test(lambda u: u.is_superuser or u.has_perm('reservations.is_group_manager'))
+    @user_passes_test(lambda u: u.is_superuser or u.has_perm("reservations.is_group_manager"))
     def rooms_get_view(request):
         page = request.GET.get("page", 1)
         if request.user.is_superuser:
@@ -62,7 +62,7 @@ class AdminRoomTemplateView(ListView):
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
-    @user_passes_test(lambda u: u.is_superuser or u.has_perm('reservations.is_group_manager'))
+    @user_passes_test(lambda u: u.is_superuser or u.has_perm("reservations.is_group_manager"))
     def room_edit_view(request, room_id):
         if request.user.is_superuser:
             instance = RoomService.find_by_id(room_id)
