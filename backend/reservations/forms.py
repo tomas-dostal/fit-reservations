@@ -75,16 +75,23 @@ class ReservationStatusForm(ModelForm):
 
 
 class AdminReservationForm(ModelForm):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['room'].queryset = RoomService.find_managed_rooms(request.user)
+        instance = kwargs.get("instance", None)
+        if instance:
+            self.fields['room'].initial = instance.room
+            self.fields['note'].initial = instance.reservation_status.last().note
+
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
+    room = forms.ModelChoiceField(Room.objects.none(), label="Místnost")
 
     class Meta:
         model = Reservation
-        # TODO: Add owner field, author=currentUser
-        fields = ["owner", "attendees", "room", "dt_from", "dt_to"]
+        fields = ["owner", "attendees", "dt_from", "dt_to"]
         labels = {
             "owner": "Vlastník",
             "attendees": "Uživatelé",
-            "room": "Místnost",
             "fd_from": "Platnost od",
             "fd_to": "Platnost do",
         }
@@ -102,15 +109,22 @@ class AdminReservationForm(ModelForm):
 
 
 class ReservationForm(ModelForm):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['room'].queryset = RoomService.find_occupied_rooms(request.user)
+        instance = kwargs.get("instance", None)
+        if instance:
+            self.fields['room'].initial = instance.room
+            self.fields['note'].initial = instance.reservation_status.last().note
+
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
+    room = forms.ModelChoiceField(Room.objects.none(), label="Místnost")
 
     class Meta:
         model = Reservation
-        # TODO: author=currentUser, owner = currectUser, room - display only rooms available for currentUser
-        fields = ["attendees", "room", "dt_from", "dt_to"]
+        fields = ["attendees", "dt_from", "dt_to"]
         labels = {
             "attendees": "Uživatelé",
-            "room": "Místnost",
             "fd_from": "Platnost od",
             "fd_to": "Platnost do",
         }

@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-
+from django.contrib.auth.decorators import user_passes_test
 from reservations.models import Room
 from reservations.serializers import RoomSerializer
 from reservations.services import RoomService
@@ -28,7 +28,12 @@ class AdminRoomTemplateView(ListView):
     def rooms_get_view(request):
 
         page = request.GET.get("page", 1)
-        paginator = Paginator(RoomService.find_all(), DEFAULT_PAGE_SIZE)
+        if request.user.has_perm('reservations.is_room_manager') \
+                or request.user.has_perm('reservations.is_group_manager'):
+            paginator = Paginator(RoomService.find_managed_rooms(request.user), DEFAULT_PAGE_SIZE)
+        else:
+            paginator = Paginator(RoomService.find_all(), DEFAULT_PAGE_SIZE)
+
         try:
             rooms = paginator.page(page)
         except PageNotAnInteger:

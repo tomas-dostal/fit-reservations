@@ -44,7 +44,7 @@ class AdminReservationTemplateView(ListView):
 
     @staticmethod
     def reservation_create_view(request):
-        form = AdminReservationForm(request.POST or None)
+        form = AdminReservationForm(request, request.POST or None)
         template = loader.get_template("administrator/reservations/create.html")
 
         if form.is_valid():
@@ -60,7 +60,7 @@ class AdminReservationTemplateView(ListView):
 
         if instance is None:
             raise Http404("Reservation does not exist")
-        form = AdminReservationForm(request.POST or None, instance=instance)
+        form = AdminReservationForm(request, request.POST or None, instance=instance)
 
         if form.is_valid():
             if not ReservationService.update(form.cleaned_data):

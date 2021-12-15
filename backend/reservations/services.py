@@ -164,6 +164,18 @@ class GroupService:
         except Group.DoesNotExist:
             return False
 
+    @staticmethod
+    def find_all_subgroups(group):
+        queryset = Group.objects.filter(parent=group)
+        return_queryset = Group.objects.none()
+        while True:
+            for group_ in queryset:
+                return_queryset = queryset | Group.objects.filter(parent=group_) | return_queryset
+            for group_ in return_queryset:
+                queryset = queryset | Group.objects.filter(parent=group_)
+            if list(queryset) == list(return_queryset):
+                return return_queryset | Group.objects.filter(id=group.id)
+
 
 class RoomService:
     @staticmethod
@@ -218,6 +230,30 @@ class RoomService:
             return True
         except Room.DoesNotExist:
             return False
+
+    @staticmethod
+    def find_occupied_rooms(user):
+        person = Person.objects.get(user=user)
+        return Room.objects.filter(occupies=person)
+
+    @staticmethod
+    def find_rooms_for_group(group):
+        return Room.objects.filter(group=group)
+
+    @staticmethod
+    def find_managed_rooms(user):
+        person = Person.objects.get(user=user)
+        directly_managed = Room.objects.filter(manager=person)
+
+        managed_groups = Group.objects.filter(manager=person)
+        subgroups = Group.objects.none()
+        for group in managed_groups:
+            subgroups = subgroups | GroupService.find_all_subgroups(group)
+
+        for subgroup in subgroups:
+            directly_managed = directly_managed | RoomService.find_rooms_for_group(subgroup)
+
+        return directly_managed
 
 
 class ReservationStatusService:
@@ -313,18 +349,19 @@ class ReservationService:
             return False
 
     @staticmethod
-    def update(reservation, data):
+    def update(reservation, data, user):
+        author = Person.objects.get(user=user)
         timestamp = datetime.now()
         reservation_status = ReservationStatus.objects.create(
-            author=data.get("author"), dt_modified=timestamp, note=data.get("note")
+            author=author, dt_modified=timestamp, note=data.get("note")
         )
         reservation_status.save()
 
-        reservation.author = (data.get("author"),)
-        reservation.owner = (data.get("author"),)
-        reservation.dt_from = (data.get("dt_from"),)
-        reservation.dt_to = (data.get("dt_to"),)
-        reservation.dt_created = (timestamp,)
+        reservation.author = author
+        reservation.owner = data.get("owner")
+        reservation.dt_from = data.get("dt_from")
+        reservation.dt_to = data.get("dt_to")
+        reservation.dt_created = timestamp
         reservation.room = data.get("room")
         reservation.save()
 
