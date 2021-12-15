@@ -80,9 +80,9 @@ class AdminReservationForm(ModelForm):
     class Meta:
         model = Reservation
         # TODO: Add owner field, author=currentUser
-        fields = ["author", "attendees", "room", "dt_from", "dt_to"]
+        fields = ["owner", "attendees", "room", "dt_from", "dt_to"]
         labels = {
-            "author": "Autor",
+            "owner": "Vlastník",
             "attendees": "Uživatelé",
             "room": "Místnost",
             "fd_from": "Platnost od",
@@ -107,9 +107,8 @@ class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
         # TODO: author=currentUser, owner = currectUser, room - display only rooms available for currentUser
-        fields = ["author", "attendees", "room", "dt_from", "dt_to"]
+        fields = ["attendees", "room", "dt_from", "dt_to"]
         labels = {
-            "author": "Autor",
             "attendees": "Uživatelé",
             "room": "Místnost",
             "fd_from": "Platnost od",

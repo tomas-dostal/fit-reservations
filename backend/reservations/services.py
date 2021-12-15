@@ -277,18 +277,18 @@ class ReservationService:
         return Reservation.objects.all()
 
     @staticmethod
-    def save(data):
+    def save(data, user):
         try:
+            author = Person.objects.get(user=user)
             timestamp = datetime.now()
             reservation_status = ReservationStatus.objects.create(
-                author=data.get("author"), dt_modified=timestamp, note=data.get("note")
+                author=author, dt_modified=timestamp, note=data.get("note")
             )
             reservation_status.save()
 
             reservation = Reservation.objects.create(
-                # TODO Az bude fungovat prihlaseni, mozna predavat metode save rovnou uzivatele, ktery bude author?
-                author=data.get("author"),
-                owner=data.get("author"),
+                author=author,
+                owner=data.get("owner") if data.get("owner") else author,
                 dt_from=data.get("dt_from"),
                 dt_to=data.get("dt_to"),
                 dt_created=timestamp,
@@ -339,9 +339,13 @@ class ReservationService:
         return reservation
 
     @staticmethod
-    def get_reservations(room):
+    def get_reservations_for_room(room):
         return Reservation.objects.filter(
             room=room,
             reservation_status__status__exact=ReservationStatus.APPROVED,
             reservation_status__reservation_status__dt_from__lte=datetime.now() + timedelta(days=14)
         )
+
+    @staticmethod
+    def get_reservations_for_person(person):
+        return Reservation.objects.filter(owner=person)
