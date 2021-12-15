@@ -131,7 +131,7 @@ class GroupService:
         form.save()
         manager = form.cleaned_data.get("manager")
         if manager:
-            manager.user.user_permissions.add(Permission.objects.get(codename='is_group_manager'))
+            manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
             manager.user.save()
         return
 
@@ -143,7 +143,7 @@ class GroupService:
             if manager:
                 managed_groups = Group.objects.filter(manager=manager)
                 if len(managed_groups) < 2:
-                    manager.user.user_permissions.remove(Permission.objects.get(codename='is_group_manager'))
+                    manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
             Room.delete(group)
             return True
@@ -158,7 +158,7 @@ class GroupService:
             form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
-                manager.user.user_permissions.add(Permission.objects.get(codename='is_room_manager'))
+                manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
                 manager.user.save()
             return True
         except Group.DoesNotExist:
@@ -175,6 +175,7 @@ class GroupService:
                 queryset = queryset | Group.objects.filter(parent=group_)
             if list(queryset) == list(return_queryset):
                 return return_queryset | Group.objects.filter(id=group.id)
+
 
 class RoomService:
     @staticmethod
@@ -197,7 +198,7 @@ class RoomService:
         form.save()
         manager = form.cleaned_data.get("manager")
         if manager:
-            manager.user.user_permissions.add(Permission.objects.get(codename='is_room_manager'))
+            manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
             manager.user.save()
         return
 
@@ -209,7 +210,7 @@ class RoomService:
             if manager:
                 managed_rooms = Room.objects.filter(manager=manager)
                 if len(managed_rooms) < 2:
-                    manager.user.user_permissions.remove(Permission.objects.get(codename='is_room_manager'))
+                    manager.user.user_permissions.remove(Permission.objects.get(codename="is_room_manager"))
                 manager.user.save()
             Room.delete(room)
             return True
@@ -224,7 +225,7 @@ class RoomService:
             form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
-                manager.user.user_permissions.add(Permission.objects.get(codename='is_room_manager'))
+                manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
                 manager.user.save()
             return True
         except Room.DoesNotExist:
@@ -238,7 +239,6 @@ class RoomService:
         for group in group_set.all():
             in_group = in_group | RoomService.find_rooms_for_group(group)
         return occupied | in_group
-
 
     @staticmethod
     def find_occupied_rooms(user):
@@ -389,7 +389,7 @@ class ReservationService:
         return Reservation.objects.filter(
             room=room,
             reservation_status__status__exact=ReservationStatus.APPROVED,
-            reservation_status__reservation_status__dt_from__lte=datetime.now() + timedelta(days=14)
+            reservation_status__reservation_status__dt_from__lte=datetime.now() + timedelta(days=14),
         )
 
     @staticmethod

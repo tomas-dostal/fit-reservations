@@ -17,8 +17,8 @@ class Person(models.Model):
 
     class Meta:
         permissions = (
-            ('is_group_manager', 'Can manage group'),
-            ('is_room_manager', 'Can manage room'),
+            ("is_group_manager", "Can manage group"),
+            ("is_room_manager", "Can manage room"),
         )
 
     def __str__(self):

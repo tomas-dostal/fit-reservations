@@ -87,13 +87,13 @@ class AdminReservationForm(ModelForm):
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if request.user.is_superuser:
-            self.fields['room'].queryset = RoomService.find_all()
+            self.fields["room"].queryset = RoomService.find_all()
         else:
-            self.fields['room'].queryset = RoomService.find_managed_rooms(request.user)
+            self.fields["room"].queryset = RoomService.find_managed_rooms(request.user)
         instance = kwargs.get("instance", None)
         if instance:
-            self.fields['room'].initial = instance.room
-            self.fields['note'].initial = instance.reservation_status.last().note
+            self.fields["room"].initial = instance.room
+            self.fields["note"].initial = instance.reservation_status.last().note
 
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
     room = forms.ModelChoiceField(Room.objects.none(), label="Místnost")
@@ -123,11 +123,11 @@ class AdminReservationForm(ModelForm):
 class ReservationForm(ModelForm):
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['room'].queryset = RoomService.find_all_reservable_rooms(request.user)
+        self.fields["room"].queryset = RoomService.find_all_reservable_rooms(request.user)
         instance = kwargs.get("instance", None)
         if instance:
-            self.fields['room'].initial = instance.room
-            self.fields['note'].initial = instance.reservation_status.last().note
+            self.fields["room"].initial = instance.room
+            self.fields["note"].initial = instance.reservation_status.last().note
 
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
     room = forms.ModelChoiceField(Room.objects.none(), label="Místnost")

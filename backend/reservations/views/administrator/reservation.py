@@ -18,20 +18,22 @@ class AdminReservationViewSet(viewsets.ModelViewSet):
 
 class AdminReservationTemplateView(ListView):
     @staticmethod
-    @user_passes_test(lambda u: u.is_superuser or
-                                u.has_perm('reservations.is_room_manager') or
-                                u.has_perm('reservations.is_group_manager')
-                      )
+    @user_passes_test(
+        lambda u: u.is_superuser
+        or u.has_perm("reservations.is_room_manager")
+        or u.has_perm("reservations.is_group_manager")
+    )
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
         template = loader.get_template("administrator/reservations/detail.html")
         return HttpResponse(template.render({"reservation": reservation}, request))
 
     @staticmethod
-    @user_passes_test(lambda u: u.is_superuser or
-                                u.has_perm('reservations.is_room_manager') or
-                                u.has_perm('reservations.is_group_manager')
-                      )
+    @user_passes_test(
+        lambda u: u.is_superuser
+        or u.has_perm("reservations.is_room_manager")
+        or u.has_perm("reservations.is_group_manager")
+    )
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
         paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
@@ -53,10 +55,11 @@ class AdminReservationTemplateView(ListView):
         return redirect("/administrator/reservations/")
 
     @staticmethod
-    @user_passes_test(lambda u: u.is_superuser or
-                                u.has_perm('reservations.is_room_manager') or
-                                u.has_perm('reservations.is_group_manager')
-                      )
+    @user_passes_test(
+        lambda u: u.is_superuser
+        or u.has_perm("reservations.is_room_manager")
+        or u.has_perm("reservations.is_group_manager")
+    )
     def reservation_create_view(request):
         form = AdminReservationForm(request, request.POST or None)
         template = loader.get_template("administrator/reservations/create.html")

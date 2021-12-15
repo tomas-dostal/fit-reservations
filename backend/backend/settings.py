@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "reservations.apps.ReservationsConfig",
-    'ajax_datatable',
+    "ajax_datatable",
 ]
 
 MIDDLEWARE = [
