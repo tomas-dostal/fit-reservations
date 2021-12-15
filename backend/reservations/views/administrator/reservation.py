@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required, user_passes_test
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -17,12 +18,20 @@ class AdminReservationViewSet(viewsets.ModelViewSet):
 
 class AdminReservationTemplateView(ListView):
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser or
+                                u.has_perm('reservations.is_room_manager') or
+                                u.has_perm('reservations.is_group_manager')
+                      )
     def reservation_get_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
         template = loader.get_template("administrator/reservations/detail.html")
         return HttpResponse(template.render({"reservation": reservation}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser or
+                                u.has_perm('reservations.is_room_manager') or
+                                u.has_perm('reservations.is_group_manager')
+                      )
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
         paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
@@ -36,6 +45,7 @@ class AdminReservationTemplateView(ListView):
         return render(request, "administrator/reservations/list.html", {"reservations": reservations})
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def reservation_delete_view(request, reservation_id):
         template = loader.get_template("administrator/reservations/list.html")
         if not ReservationService.delete(reservation_id):
@@ -43,6 +53,10 @@ class AdminReservationTemplateView(ListView):
         return redirect("/administrator/reservations/")
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser or
+                                u.has_perm('reservations.is_room_manager') or
+                                u.has_perm('reservations.is_group_manager')
+                      )
     def reservation_create_view(request):
         form = AdminReservationForm(request, request.POST or None)
         template = loader.get_template("administrator/reservations/create.html")
@@ -54,6 +68,7 @@ class AdminReservationTemplateView(ListView):
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def reservation_edit_view(request, reservation_id):
         instance = ReservationService.find_by_id(reservation_id)
         template = loader.get_template("administrator/reservations/update.html")

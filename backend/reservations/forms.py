@@ -65,6 +65,15 @@ class RoomForm(ModelForm):
         fields = "__all__"
 
 
+class RoomGroupManagerForm(ModelForm):
+    class Meta:
+        model = Room
+        fields = ["manager"]
+        labels = {
+            "manager": "Správce",
+        }
+
+
 class ReservationStatusForm(ModelForm):
     # TODO This needs to be the logged in user later when logging in works.
     author = forms.ModelChoiceField(queryset=Person.objects.all())

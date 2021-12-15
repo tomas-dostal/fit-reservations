@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import permission_required, user_passes_test
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -18,12 +19,14 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
 
 class AdminGroupTemplateView(ListView):
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def group_get_view(request, group_id):
         group = GroupService.find_by_id(group_id)
         template = loader.get_template("administrator/groups/detail.html")
         return HttpResponse(template.render({"group": group}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def groups_get_view(request):
 
         page = request.GET.get("page", 1)
@@ -38,6 +41,7 @@ class AdminGroupTemplateView(ListView):
         return render(request, "administrator/groups/list.html", {"groups": groups})
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def group_delete_view(request, group_id):
         template = loader.get_template("administrator/groups/list.html")
         if not GroupService.delete(group_id):
@@ -45,6 +49,7 @@ class AdminGroupTemplateView(ListView):
         return redirect("/administrator/groups/")
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def group_create_view(request):
         form = GroupForm(request.POST or None)
         if form.is_valid():
@@ -54,6 +59,7 @@ class AdminGroupTemplateView(ListView):
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def group_edit_view(request, group_id):
         instance = GroupService.find_by_id(group_id)
         if instance is None:
