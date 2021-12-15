@@ -24,7 +24,7 @@ class RoomTemplateView(ListView):
     @staticmethod
     def public_room_get_view(request, room_id):
         room = RoomService.find_by_id(room_id)
-        reservations = ReservationService.get_reservations_for_room(room)
+        reservations = ReservationService.find_reservations_for_room(room)
         # Check if the room is public
         if room and room.group is not None:
             raise PermissionDenied("Not a public room.")
