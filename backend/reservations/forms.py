@@ -111,7 +111,7 @@ class AdminReservationForm(ModelForm):
 class ReservationForm(ModelForm):
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['room'].queryset = RoomService.find_occupied_rooms(request.user)
+        self.fields['room'].queryset = RoomService.find_all_reservable_rooms(request.user)
         instance = kwargs.get("instance", None)
         if instance:
             self.fields['room'].initial = instance.room
