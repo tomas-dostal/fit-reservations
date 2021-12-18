@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -9,7 +10,6 @@ from reservations.models import ReservationStatus
 from reservations.serializers import ReservationStatusSerializer
 from reservations.services import *
 from reservations.forms import ReservationStatusForm
-from backend.settings import DEFAULT_PAGE_SIZE
 
 
 class AdminReservationStatusViewSet(viewsets.ModelViewSet):
@@ -19,62 +19,11 @@ class AdminReservationStatusViewSet(viewsets.ModelViewSet):
 
 class AdminReservationStatusTemplateView(ListView):
     @staticmethod
-    def reservation_status_get_view(request, reservation_status_id):
-        reservation_status = ReservationStatusService.find_by_id(reservation_status_id)
-        template = loader.get_template("administrator/reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": reservation_status}, request))
-
-    @staticmethod
-    def reservation_statuses_get_view(request):
-        reservation_statuses = ReservationStatusService.find_all()
-        template = loader.get_template("administrator/reservations/test_list.html")
-        return HttpResponse(template.render({"test_list": reservation_statuses}, request))
-
-    def persons_get_view(request):
-
-        page = request.GET.get("page", 1)
-        paginator = Paginator(ReservationStatusService.find_all(), DEFAULT_PAGE_SIZE)
-        try:
-            reservation_statuses = paginator.page(page)
-        except PageNotAnInteger:
-            reservation_statuses = paginator.page(1)
-        except EmptyPage:
-            reservation_statuses = paginator.page(paginator.num_pages)
-
-        return render(
-            request, "administrator/reservation_statuses/list.html", {"reservation_statuses": reservation_statuses}
-        )
-
-    @staticmethod
-    def reservation_status_delete_view(request, reservation_status_id):
-        template = loader.get_template("administrator/reservations/test_list.html")
-        if not ReservationStatusService.delete(reservation_status_id):
-            return HttpResponse(template.render({"errors": ["Failed to delete reservation status"]}, request))
-        return redirect("/administrator/reservationstatuses/")
-
-    @staticmethod
-    def reservation_status_create_view(request):
-        form = ReservationStatusForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            return redirect("/administrator/reservationstatuses/")
-        template = loader.get_template("administrator/reservations/create.html")
-        return HttpResponse(template.render({"form": form}, request))
-
-    @staticmethod
-    def reservation_status_edit_view(request, reservation_status_id):
-        instance = ReservationStatusService.find_by_id(reservation_status_id)
-        if instance is None:
-            raise Http404("Reservation status does not exist")
-        form = ReservationStatusForm(request.POST or None, instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect("/administrator/reservationstatuses/")
-        template = loader.get_template("administrator/reservations/create.html")
-        return HttpResponse(template.render({"form": form}, request))
-
-    # The new methods, TODO Delete the previous ones after this has been approved
-    @staticmethod
+    @user_passes_test(
+        lambda u: u.is_superuser
+        or u.has_perm("reservations.is_room_manager")
+        or u.has_perm("reservations.is_group_manager")
+    )
     def status_create_view(request, reservation_id):
         reservation = ReservationService.find_by_id(reservation_id)
         if not reservation:
@@ -84,7 +33,7 @@ class AdminReservationStatusTemplateView(ListView):
         form = ReservationStatusForm(request.POST or None)
 
         if form.is_valid():
-            reservation_status = ReservationStatusService.save(form.cleaned_data)
+            reservation_status = ReservationStatusService.save(form.cleaned_data, request.user)
 
             ReservationService.add_status(reservation, reservation_status)
             return redirect("/administrator/reservations")

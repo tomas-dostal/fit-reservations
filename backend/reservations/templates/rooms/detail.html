@@ -6,6 +6,10 @@
     </header>
 
     <section>
-
+        <ul>
+            {% for reservation in reservations %}
+                <li>{{ reservation }}</li>
+            {% endfor %}
+        </ul>
     </section>
 {% endblock %}

@@ -15,6 +15,7 @@ class PersonForm(ModelForm):
             self.fields["surname"].initial = instance.surname
             self.fields["is_admin"].initial = instance.is_admin
             self.fields["email"].initial = instance.email
+            self.fields["password"].required = False
 
     name = forms.CharField(label="Jméno")
     surname = forms.CharField(label="Příjmení")
@@ -61,29 +62,45 @@ class RoomForm(ModelForm):
     class Meta:
         model = Room
         labels = {"name": "Název místnosti", "building": "Budova", "group": "Skupina", "manager": "Správce"}
-        fields = "__all__"
+        fields = ["name", "building", "group", "manager"]
+
+
+class RoomGroupManagerForm(ModelForm):
+    class Meta:
+        model = Room
+        fields = ["manager"]
+        labels = {
+            "manager": "Správce",
+        }
 
 
 class ReservationStatusForm(ModelForm):
-    # TODO This needs to be the logged in user later when logging in works.
-    author = forms.ModelChoiceField(queryset=Person.objects.all())
-
     class Meta:
         model = ReservationStatus
         fields = ["status", "note"]
 
 
 class AdminReservationForm(ModelForm):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if request.user.is_superuser:
+            self.fields["room"].queryset = RoomService.find_all()
+        else:
+            self.fields["room"].queryset = RoomService.find_managed_rooms(request.user)
+        instance = kwargs.get("instance", None)
+        if instance:
+            self.fields["note"].initial = instance.reservation_status.last().note
+
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
+    room = forms.ModelChoiceField(Room.objects.none(), label="Místnost")
 
     class Meta:
         model = Reservation
-        # TODO: Add owner field, author=currentUser
-        fields = ["author", "attendees", "room", "dt_from", "dt_to"]
+        fields = ["owner", "room", "attendees", "dt_from", "dt_to"]
         labels = {
-            "author": "Autor",
-            "attendees": "Uživatelé",
             "room": "Místnost",
+            "owner": "Vlastník",
+            "attendees": "Uživatelé",
             "fd_from": "Platnost od",
             "fd_to": "Platnost do",
         }
@@ -101,16 +118,22 @@ class AdminReservationForm(ModelForm):
 
 
 class ReservationForm(ModelForm):
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["room"].queryset = RoomService.find_all_reservable_rooms(request.user)
+        instance = kwargs.get("instance", None)
+        if instance:
+            self.fields["room"].initial = instance.room
+            self.fields["note"].initial = instance.reservation_status.last().note
+
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
+    room = forms.ModelChoiceField(Room.objects.none(), label="Místnost")
 
     class Meta:
         model = Reservation
-        # TODO: author=currentUser, owner = currectUser, room - display only rooms available for currentUser
-        fields = ["author", "attendees", "room", "dt_from", "dt_to"]
+        fields = ["attendees", "dt_from", "dt_to"]
         labels = {
-            "author": "Autor",
             "attendees": "Uživatelé",
-            "room": "Místnost",
             "fd_from": "Platnost od",
             "fd_to": "Platnost do",
         }

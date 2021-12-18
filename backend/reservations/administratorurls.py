@@ -5,7 +5,7 @@ from reservations import views
 urlpatterns = [
     path("persons/<int:person_id>/", views.AdminPersonTemplateView.person_get_view, name="admin_person_view"),
     path("persons/", views.AdminPersonTemplateView.persons_get_view, name="admin_person_list"),
-    path('persons-ajax/', views.AdminPersonAjaxTemplateView.as_view(), name="admin_person_list_ajax"),
+    path("persons-ajax/", views.AdminPersonAjaxTemplateView.as_view(), name="admin_person_list_ajax"),
     path(
         "persons/<int:person_id>/delete", views.AdminPersonTemplateView.person_delete_view, name="admin_person_delete"
     ),
@@ -34,31 +34,6 @@ urlpatterns = [
     path("groups/<int:group_id>/delete", views.AdminGroupTemplateView.group_delete_view, name="admin_group_delete"),
     path("groups/create", views.AdminGroupTemplateView.group_create_view, name="admin_group_create"),
     path("groups/<int:group_id>/edit", views.AdminGroupTemplateView.group_edit_view, name="admin_group_update"),
-    path(
-        "reservationstatuses/<int:reservation_status_id>/",
-        views.AdminReservationStatusTemplateView.reservation_status_get_view,
-        name="admin_reservation_status_view",
-    ),
-    path(
-        "reservationstatuses/",
-        views.AdminReservationStatusTemplateView.reservation_statuses_get_view,
-        name="admin_reservation_status_list",
-    ),
-    path(
-        "reservationstatuses/<int:reservation_status_id>/delete",
-        views.AdminReservationStatusTemplateView.reservation_status_delete_view,
-        name="admin_reservation_status_delete",
-    ),
-    path(
-        "reservationstatuses/create",
-        views.AdminReservationStatusTemplateView.reservation_status_create_view,
-        name="admin_reservation_status_create",
-    ),
-    path(
-        "reservationstatuses/<int:reservation_status_id>/edit",
-        views.AdminReservationStatusTemplateView.reservation_status_edit_view,
-        name="admin_reservation_status_update",
-    ),
     path(
         "reservations/<int:reservation_id>/",
         views.AdminReservationTemplateView.reservation_get_view,
