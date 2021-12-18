@@ -5,8 +5,6 @@ from django.db import models
 from django.contrib.auth.models import User, Permission
 from django.db.utils import IntegrityError
 
-# TODO Vytvorit metody pro ziskani mistnosti, kde dany uzivatel muze rezervovat
-
 
 class PersonService:
     @staticmethod
@@ -195,11 +193,14 @@ class RoomService:
 
     @staticmethod
     def save(form):
-        form.save()
+        room = form.save()
         manager = form.cleaned_data.get("manager")
         if manager:
             manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
             manager.user.save()
+        if not room.group:
+            room.locked = False
+            room.save()
         return
 
     @staticmethod
@@ -222,11 +223,14 @@ class RoomService:
     @staticmethod
     def update(form):
         try:
-            form.save()
+            room = form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
                 manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
                 manager.user.save()
+            if not room.group:
+                room.locked = False
+                room.save()
             return True
         except Room.DoesNotExist:
             return False
