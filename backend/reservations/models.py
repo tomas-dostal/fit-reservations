@@ -92,6 +92,8 @@ class Room(models.Model):
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
 
+    locked = models.BooleanField(default=True)
+
     def __str__(self):
         return "%s (building: %s)" % (self.name, self.building)
 

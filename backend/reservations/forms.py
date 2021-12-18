@@ -89,7 +89,6 @@ class AdminReservationForm(ModelForm):
             self.fields["room"].queryset = RoomService.find_managed_rooms(request.user)
         instance = kwargs.get("instance", None)
         if instance:
-            self.fields["room"].initial = instance.room
             self.fields["note"].initial = instance.reservation_status.last().note
 
     note = forms.CharField(widget=forms.Textarea(), label="Poznámka")
@@ -97,8 +96,9 @@ class AdminReservationForm(ModelForm):
 
     class Meta:
         model = Reservation
-        fields = ["owner", "attendees", "dt_from", "dt_to"]
+        fields = ["owner", "room", "attendees", "dt_from", "dt_to"]
         labels = {
+            "room": "Místnost",
             "owner": "Vlastník",
             "attendees": "Uživatelé",
             "fd_from": "Platnost od",
