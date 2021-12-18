@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -21,6 +22,7 @@ class AdminPersonTemplateView(ListView):
     context_object_name = "person-list"
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def person_get_view(request, person_id):
         person = PersonService.find_by_id(person_id)
         template = loader.get_template("administrator/persons/detail.html")
@@ -29,6 +31,7 @@ class AdminPersonTemplateView(ListView):
         return HttpResponse(template.render({"person": person}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def persons_get_view(request):
 
         page = request.GET.get("page", 1)
@@ -43,6 +46,7 @@ class AdminPersonTemplateView(ListView):
         return render(request, "administrator/persons/list.html", {"persons": persons})
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def person_delete_view(request, person_id):
         template = loader.get_template("administrator/persons/list.html")
 
@@ -51,24 +55,26 @@ class AdminPersonTemplateView(ListView):
         return redirect("/administrator/persons/")
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def person_create_view(request):
         form = PersonForm(request.POST or None)
         template = loader.get_template("administrator/persons/create.html")
 
         if form.is_valid():
-            if not PersonService.create(form.data):
+            if not PersonService.create(form.cleaned_data):
                 return HttpResponse(template.render({"errors": ["Email already exists"], "form": form}, request))
             return redirect("/administrator/persons/")
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def person_edit_view(request, person_id):
         instance = PersonService.find_by_id(person_id)
         if instance is None:
             raise Http404("Person does not exist")
         form = PersonForm(request.POST or None, instance=instance)
         if form.is_valid():
-            form.update()
+            PersonService.update(instance, form.cleaned_data)
             return redirect("/administrator/persons/")
 
         template = loader.get_template("administrator/persons/update.html")

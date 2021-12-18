@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import user_passes_test, permission_required
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -21,12 +22,14 @@ class AdminBuildingTemplateView(ListView):
     context_object_name = "building-list"
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def building_get_view(request, building_id):
         building = BuildingService.find_by_id(building_id)
         template = loader.get_template("administrator/buildings/detail.html")
         return HttpResponse(template.render({"building": building}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def buildings_get_view(request):
 
         page = request.GET.get("page", 1)
@@ -41,6 +44,7 @@ class AdminBuildingTemplateView(ListView):
         return render(request, "administrator/buildings/list.html", {"buildings": buildings})
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def building_delete_view(request, building_id):
         template = loader.get_template("administrator/buildings/list.html")
         if not BuildingService.delete(building_id):
@@ -48,6 +52,7 @@ class AdminBuildingTemplateView(ListView):
         return redirect("/administrator/buildings/")
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def building_create_view(request):
         form = BuildingForm(request.POST or None)
         if form.is_valid():
@@ -57,6 +62,7 @@ class AdminBuildingTemplateView(ListView):
         return HttpResponse(template.render({"form": form}, request))
 
     @staticmethod
+    @user_passes_test(lambda u: u.is_superuser)
     def building_edit_view(request, building_id):
         instance = BuildingService.find_by_id(building_id)
         if instance is None:

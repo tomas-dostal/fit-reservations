@@ -1,11 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from .models import *
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.db.utils import IntegrityError
-
-# TODO Vytvorit metody pro ziskani mistnosti, kde dany uzivatel muze rezervovat
 
 
 class PersonService:
@@ -28,16 +26,16 @@ class PersonService:
                 first_name=data.get("name"),
                 last_name=data.get("surname"),
                 email=data.get("email", "test2@email.com"),
-                is_superuser=True if data.get("is_admin") == "on" else False,
+                is_superuser=True if data.get("is_admin") else False,
             )
             # because this is setting the RAW password, in the constructor is used hash of the password
-            user.set_password("test123test")
+            user.set_password(data.get("password"))
             user.save()
             person = Person.objects.create(
                 user=user,
                 phone_number=data.get("phone_number"),
             )
-            person.occupy.set = (data.get("occupy").set() if data.get("occupy") else set(),)
+            person.occupy.set(data.get("occupy"))
             person.save()
 
         except IntegrityError:
@@ -56,15 +54,23 @@ class PersonService:
             return False
 
     @staticmethod
-    def update(user_id, updated_user):
+    def update(person, data):
         try:
-            Person.objects.get(pk=user_id).update(
-                name=updated_user.name,
-                surname=updated_user.surname,
-                is_admin=updated_user.is_admin,
-                email=updated_user.email,
-                phone_number=updated_user.phone_number,
-            )
+            user = person.user
+            if data.get("password"):
+                user.set_password(data.get("password"))
+            person.user.username = data.get("email", "test2@email.com")
+            person.user.first_name = data.get("name")
+            person.user.last_name = data.get("surname")
+            person.user.email = data.get("email", "test2@email.com")
+            person.user.is_superuser = True if data.get("is_admin") else False
+            person.user.save()
+
+            person.phone_number = data.get("phone_number")
+            person.occupy.set(data.get("occupy"))
+
+            person.save()
+
             return True
         except Person.DoesNotExist:
             return False
@@ -119,14 +125,25 @@ class GroupService:
         return Group.objects.all()
 
     @staticmethod
-    def save(group):
-        group.save()
+    def save(form):
+        form.save()
+        manager = form.cleaned_data.get("manager")
+        if manager:
+            manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
+            manager.user.save()
         return
 
     @staticmethod
     def delete(group_id):
         try:
-            Group.delete(Group.objects.get(pk=group_id))
+            group = Group.objects.get(pk=group_id)
+            manager = group.manager
+            if manager:
+                managed_groups = Group.objects.filter(manager=manager)
+                if len(managed_groups) < 2:
+                    manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
+                manager.user.save()
+            Room.delete(group)
             return True
         except Group.DoesNotExist:
             return False
@@ -134,14 +151,28 @@ class GroupService:
             return False
 
     @staticmethod
-    def update(group_id, updated_group):
+    def update(form):
         try:
-            Group.objects.get(pk=group_id).update(
-                name=updated_group.name, manager=updated_group.manager, parent=updated_group.parent
-            )
+            form.save()
+            manager = form.cleaned_data.get("manager")
+            if manager:
+                manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+                manager.user.save()
             return True
         except Group.DoesNotExist:
             return False
+
+    @staticmethod
+    def find_all_subgroups(group):
+        queryset = Group.objects.filter(parent=group)
+        return_queryset = Group.objects.none()
+        while True:
+            for group_ in queryset:
+                return_queryset = queryset | Group.objects.filter(parent=group_) | return_queryset
+            for group_ in return_queryset:
+                queryset = queryset | Group.objects.filter(parent=group_)
+            if list(queryset) == list(return_queryset):
+                return return_queryset | Group.objects.filter(id=group.id)
 
 
 class RoomService:
@@ -157,14 +188,32 @@ class RoomService:
         return Room.objects.all()
 
     @staticmethod
-    def save(room):
-        room.save()
+    def find_all_public():
+        return Room.objects.filter(group=None)
+
+    @staticmethod
+    def save(form):
+        room = form.save()
+        manager = form.cleaned_data.get("manager")
+        if manager:
+            manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+            manager.user.save()
+        if not room.group:
+            room.locked = False
+            room.save()
         return
 
     @staticmethod
     def delete(room_id):
         try:
-            Room.delete(Room.objects.get(pk=room_id))
+            room = Room.objects.get(pk=room_id)
+            manager = room.manager
+            if manager:
+                managed_rooms = Room.objects.filter(manager=manager)
+                if len(managed_rooms) < 2:
+                    manager.user.user_permissions.remove(Permission.objects.get(codename="is_room_manager"))
+                manager.user.save()
+            Room.delete(room)
             return True
         except Room.DoesNotExist:
             return False
@@ -172,17 +221,52 @@ class RoomService:
             return False
 
     @staticmethod
-    def update(room_id, updated_room):
+    def update(form):
         try:
-            Room.objects.get(pk=room_id).update(
-                name=updated_room.name,
-                manager=updated_room.manager,
-                group=updated_room.group,
-                building=updated_room.building,
-            )
+            room = form.save()
+            manager = form.cleaned_data.get("manager")
+            if manager:
+                manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+                manager.user.save()
+            if not room.group:
+                room.locked = False
+                room.save()
             return True
         except Room.DoesNotExist:
             return False
+
+    @staticmethod
+    def find_all_reservable_rooms(user):
+        occupied = RoomService.find_occupied_rooms(user)
+        group_set = Person.objects.get(user=user).group_set
+        in_group = Room.objects.none()
+        for group in group_set.all():
+            in_group = in_group | RoomService.find_rooms_for_group(group)
+        return occupied | in_group
+
+    @staticmethod
+    def find_occupied_rooms(user):
+        person = Person.objects.get(user=user)
+        return Room.objects.filter(occupies=person)
+
+    @staticmethod
+    def find_rooms_for_group(group):
+        return Room.objects.filter(group=group)
+
+    @staticmethod
+    def find_managed_rooms(user):
+        person = Person.objects.get(user=user)
+        directly_managed = Room.objects.filter(manager=person)
+
+        managed_groups = Group.objects.filter(manager=person)
+        subgroups = Group.objects.none()
+        for group in managed_groups:
+            subgroups = subgroups | GroupService.find_all_subgroups(group)
+
+        for subgroup in subgroups:
+            directly_managed = directly_managed | RoomService.find_rooms_for_group(subgroup)
+
+        return directly_managed
 
 
 class ReservationStatusService:
@@ -198,10 +282,11 @@ class ReservationStatusService:
         return ReservationStatus.objects.all()
 
     @staticmethod
-    def save(data):
+    def save(data, user):
+        author = Person.objects.get(user=user)
         timestamp = datetime.now()
         reservation_status = ReservationStatus.objects.create(
-            author=data.get("author"), status=data.get("status"), dt_modified=timestamp, note=data.get("note")
+            author=author, status=data.get("status"), dt_modified=timestamp, note=data.get("note")
         )
         reservation_status.save()
         return reservation_status
@@ -242,18 +327,18 @@ class ReservationService:
         return Reservation.objects.all()
 
     @staticmethod
-    def save(data):
+    def save(data, user):
         try:
+            author = Person.objects.get(user=user)
             timestamp = datetime.now()
             reservation_status = ReservationStatus.objects.create(
-                author=data.get("author"), dt_modified=timestamp, note=data.get("note")
+                author=author, dt_modified=timestamp, note=data.get("note")
             )
             reservation_status.save()
 
             reservation = Reservation.objects.create(
-                # TODO Az bude fungovat prihlaseni, mozna predavat metode save rovnou uzivatele, ktery bude author?
-                author=data.get("author"),
-                owner=data.get("author"),
+                author=author,
+                owner=data.get("owner") if data.get("owner") else author,
                 dt_from=data.get("dt_from"),
                 dt_to=data.get("dt_to"),
                 dt_created=timestamp,
@@ -278,18 +363,19 @@ class ReservationService:
             return False
 
     @staticmethod
-    def update(reservation, data):
+    def update(reservation, data, user):
+        author = Person.objects.get(user=user)
         timestamp = datetime.now()
         reservation_status = ReservationStatus.objects.create(
-            author=data.get("author"), dt_modified=timestamp, note=data.get("note")
+            author=author, dt_modified=timestamp, note=data.get("note")
         )
         reservation_status.save()
 
-        reservation.author = (data.get("author"),)
-        reservation.owner = (data.get("author"),)
-        reservation.dt_from = (data.get("dt_from"),)
-        reservation.dt_to = (data.get("dt_to"),)
-        reservation.dt_created = (timestamp,)
+        reservation.author = author
+        reservation.owner = data.get("owner")
+        reservation.dt_from = data.get("dt_from")
+        reservation.dt_to = data.get("dt_to")
+        reservation.dt_created = timestamp
         reservation.room = data.get("room")
         reservation.save()
 
@@ -302,3 +388,16 @@ class ReservationService:
     def add_status(reservation, reservation_status):
         reservation.reservation_status.add(reservation_status)
         return reservation
+
+    @staticmethod
+    def find_reservations_for_room(room):
+        return Reservation.objects.filter(
+            room=room,
+            reservation_status__status__exact=ReservationStatus.APPROVED,
+            reservation_status__reservation_status__dt_from__lte=datetime.now() + timedelta(days=14),
+        )
+
+    @staticmethod
+    def find_reservations_for_person(user):
+        person = Person.objects.get(user=user)
+        return Reservation.objects.filter(owner=person)

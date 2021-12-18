@@ -15,6 +15,12 @@ class Person(models.Model):
         blank=True,
     )
 
+    class Meta:
+        permissions = (
+            ("is_group_manager", "Can manage group"),
+            ("is_room_manager", "Can manage room"),
+        )
+
     def __str__(self):
         return "%s, %s%s" % (self.name, self.surname, " (admin)" if self.is_admin else "")
 
@@ -85,6 +91,8 @@ class Room(models.Model):
     group = models.ForeignKey(Group, null=True, blank=True, on_delete=models.CASCADE)
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
+
+    locked = models.BooleanField(default=True)
 
     def __str__(self):
         return "%s (building: %s)" % (self.name, self.building)
