@@ -21,13 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-76kq4@dbgh$nq71u9b%5#143f4b1=c-f=5uvd)0yl04#oaty24"
+SECRET_KEY = os.getenv(
+    "DJANGO_SERCRET_KEY", default="django-insecure-76kq4@dbgh$nq71u9b%5#143f4b1=c-f=5uvd)0yl04#oaty24"
+)
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = os.getenv("DEBUG", "False") == "True"
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, "static")
 
 # Application definition
 
@@ -79,6 +81,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 # Replace me if you want to use sqlite3
 
+"""
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -95,7 +98,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("DB_PASS"),
     }
 }
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -135,7 +138,6 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/reservations"),
-    "/var/www/static/",
 ]
 
 STATIC_URL = "/static/"
