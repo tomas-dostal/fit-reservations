@@ -204,9 +204,9 @@ class RoomService:
         return
 
     @staticmethod
-    def delete(room_id):
+    def delete(room_id, room=None):
         try:
-            room = Room.objects.get(pk=room_id)
+            room = Room.objects.get(pk=room_id) if room is None else room
             manager = room.manager
             if manager:
                 managed_rooms = Room.objects.filter(manager=manager)

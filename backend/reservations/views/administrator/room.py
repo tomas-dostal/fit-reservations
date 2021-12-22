@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -10,11 +11,40 @@ from reservations.serializers import RoomSerializer
 from reservations.services import RoomService
 from reservations.forms import RoomForm, RoomGroupManagerForm
 from backend.settings import DEFAULT_PAGE_SIZE
+from rest_framework.response import Response
+
+from reservations.models import Person
 
 
 class AdminRoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
+    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+
+    def destroy(self, request, *args, **kwargs):
+        RoomService.delete(None, room=self.get_object())
+        return Response(data='delete success')
+
+    def create(self, request, *args, **kwargs):
+        manager = Person.objects.get(pk=request.data["manager"])
+        if manager:
+            manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+            manager.user.save()
+        return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        old_manager = Person.objects.get(pk=self.get_object().manager.id)
+        if old_manager:
+            managed_rooms = Room.objects.filter(manager=old_manager)
+            if len(managed_rooms) < 2:
+                old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_room_manager"))
+            old_manager.user.save()
+
+        new_manager = Person.objects.get(pk=request.data["manager"])
+        if new_manager:
+            new_manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+            new_manager.user.save()
+        return super().update(request, *args, **kwargs)
 
 
 class AdminRoomTemplateView(ListView):
