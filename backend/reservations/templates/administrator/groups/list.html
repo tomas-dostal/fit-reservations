@@ -44,7 +44,7 @@
             </td>
             <td><a href="{% url 'admin_person_view' person_id=group.manager.id %}">{{group.manager.name}}
                 {{group.manager.surname}}</a></td>
-            <!-- Todo: Show actions only for administrator -->
+
             <td>
                 <a class="button green" href="{% url 'admin_group_update' group_id=group.id %}">Upravit</a>
                 <a class="button red" href="{% url 'admin_group_delete' group_id=group.id %}">Smazat</a>
