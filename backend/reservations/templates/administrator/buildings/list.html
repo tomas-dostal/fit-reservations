@@ -25,7 +25,6 @@
         <tr>
             <th>#</th>
             <th>Název</th>
-            <th>Místnosti</th>
             <th>Akce</th>
         </tr>
         </thead>
@@ -34,7 +33,6 @@
         <tr>
             <td><a class="id" href="{% url 'admin_building_view' building_id=building.id %}">{{building.id}}</a></td>
             <td>{{building.name}}</td>
-            <td><a href="{% url 'admin_room_list' %}">Zobrazit místnosti</a></td>
 
             <td>
                 <a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit</a>
