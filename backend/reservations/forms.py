@@ -1,5 +1,6 @@
 import django.forms as forms
 from django.forms import ModelForm, DateTimeInput
+from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from reservations.models import *
 from reservations.services import *
 
@@ -148,3 +149,12 @@ class ReservationForm(ModelForm):
         dt_to = cleaned_data.get("dt_to")
         if dt_to < dt_from:
             raise forms.ValidationError("End date should be greater than start date.")
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = UsernameField(
+        label='Username',
+        widget=forms.TextInput(attrs={'autofocus': True})
+    )
+
+    password = forms.CharField(widget=forms.PasswordInput(), label="Heslo")
