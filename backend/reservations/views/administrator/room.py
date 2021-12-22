@@ -41,7 +41,11 @@ class AdminRoomTemplateView(ListView):
         except EmptyPage:
             rooms = paginator.page(paginator.num_pages)
 
-        return render(request, "administrator/rooms/list.html", {"rooms": rooms})
+        template = "administrator/rooms/manager_list.html"
+        #if request.user.is_superuser:
+        #    template = "administrator/rooms/list.html"
+
+        return render(request, template, {"rooms": rooms})
 
     @staticmethod
     @user_passes_test(lambda u: u.is_superuser)

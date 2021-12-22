@@ -15,9 +15,10 @@
         <li class="menu-item"><a href="{% url 'reservation_create' %}">Nová rezervace</a></li>
         <li class="menu-item"><a href="{% url 'my_reservations_list' %}">Moje rezervace</a></li>
         {% if user.is_authenticated %}
-        <li class="menu-item login"><span class="welcome">Vitejte zpět {{ user.person.name }},</span> <a href="{% url 'logout' %}">Odhlásit</a></li>
+        <li class="menu-item login"><span class="welcome">Vitejte zpět {{ user.person.name }},</span> <a
+                href="{% url 'logout' %}">Odhlásit</a></li>
         {% else %}
-            <li class="menu-item login"><a href="{% url 'login' %}">Přihlásit</a></li>
+        <li class="menu-item login"><a href="{% url 'login' %}">Přihlásit</a></li>
         {% endif %}
     </ul>
 </nav>
@@ -34,9 +35,13 @@
 <footer>
     <hr/>
     <p>&copy; DFK 2021</p>
-    {% if user.is_authenticated and user.is_superuser%}
-        <a href="{% url 'admin_person_list' %}">Administrace</a>
+    {% if user.is_superuser or perms.reservations.is_room_manager or perms.reservations.is_group_manager %}
+    <a href="{% url 'admin_person_list' %}">Administrace</a>
     {% endif %}
+
+    {{user.is_superuser}}
+    {{perms.reservations.is_room_manager }}
+    {{perms.reservations.is_group_manager }}
 </footer>
 </body>
 </html>

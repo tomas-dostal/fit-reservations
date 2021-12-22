@@ -34,10 +34,16 @@
         <h2>Ovládací panel</h2>
         <nav id="sidebar-navigation">
             <ul>
+                {% if user.is_superuser %}
                 <li><a href="{% url 'admin_person_list'%}">Správa uživatelů</a></li>
                 <li><a href="{% url 'admin_group_list' %}">Správa skupin</a></li>
                 <li><a href="{% url 'admin_building_list' %}"> Správa budov</a></li>
                 <li><a href="{% url 'admin_room_list' %}"> Správa místností</a></li>
+
+                {% elif perms.reservations.is_group_manager %}
+                <li><a href="{% url 'admin_room_list' %}"> Správa místností</a></li>
+                {% endif %}
+
                 <li><a href="{% url 'admin_reservation_list' %}">Správa rezervací</a></li>
             </ul>
         </nav>

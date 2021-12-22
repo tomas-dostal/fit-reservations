@@ -3,7 +3,6 @@
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'admin_room_create' %}">Přidat místnost</a></li>
     </ul>
 </nav>
 
@@ -35,13 +34,12 @@
         <tr>
             <td><a class="id" href="{% url 'admin_room_view' room_id=room.id %}">{{room.id}}</a></td>
             <td>{{room.name}}</td>
-            <td><a href="{% url 'admin_person_view' person_id=room.manager.id %}">{{room.manager.name}}
-                {{room.manager.surname}}</a></td>
-            <td><a href="{% url 'admin_building_view' building_id=room.building.id %}">{{ room.building.name }}</a></td>
+            <td>{{room.manager.name}} {{room.manager.surname}}</td>
+            <td>{{ room.building.name }}</td>
 
             <td>
+                <!-- TODO: MANAGER edit -->
                 <a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit</a>
-                <a class="button red" href="{% url 'admin_room_delete' room_id=room.id %}">Smazat</a>
             </td>
         </tr>
         {% endfor %}
