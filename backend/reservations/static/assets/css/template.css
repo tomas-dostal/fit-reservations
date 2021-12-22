@@ -399,6 +399,15 @@ ul.pagination li:not(.active) a:hover {
     margin-bottom: 1rem;
 }
 
+/* Login */
+section.login{
+    text-align: center;
+}
+form.login-form{
+    display: inline-block;
+    width: auto;
+}
+
 /* Footer */
 footer {
     margin-top: 5rem;
