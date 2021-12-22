@@ -15,6 +15,7 @@ from backend.settings import DEFAULT_PAGE_SIZE
 class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
 
 
 class AdminPersonTemplateView(ListView):
