@@ -407,6 +407,9 @@ form.login-form{
     display: inline-block;
     width: auto;
 }
+form.login-form .field-label{
+    text-align: left;
+}
 
 /* Footer */
 footer {
