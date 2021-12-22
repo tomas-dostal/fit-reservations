@@ -60,6 +60,17 @@
                     <div class="description">Vytvoření</div>
                     <span class="value">{{ reservation.dt_created|date:"d.m.Y H:m:s" }}</span>
                 </li>
+
+                <li>
+                    <div class="description">Stav</div>
+                    <span class="value">
+                        {% if reservation.current_status %}
+                            {{reservation.current_status.status}} [{{ reservation.current_status.note }}]
+                        {% else %}
+                        -
+                        {% endif %}
+                    </span>
+                </li>
             </ul>
         </div>
     </section>

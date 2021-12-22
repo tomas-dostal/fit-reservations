@@ -143,4 +143,4 @@ class Reservation(models.Model):
     )
 
     def current_status(self):
-        return self.reservation_status.last().status if hasattr(self.reservation_status.last(), "status") else "None"
+        return self.reservation_status.last() if hasattr(self.reservation_status.last(), "status") else False
