@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import permission_required, user_passes_test
+from django.contrib.auth.models import Permission
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -10,11 +11,38 @@ from reservations.models import Group
 from reservations.services import GroupService
 from reservations.forms import GroupForm
 from backend.settings import DEFAULT_PAGE_SIZE
+from rest_framework.response import Response
+from reservations.models import Person
 
 
 class AdminGroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        GroupService.delete(None, room=self.get_object())
+        return Response(data='delete success')
+
+    def create(self, request, *args, **kwargs):
+        manager = Person.objects.get(pk=request.data["manager"])
+        if manager:
+            manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
+            manager.user.save()
+        return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        old_manager = Person.objects.get(pk=self.get_object().manager.id)
+        if old_manager:
+            managed_groups = Group.objects.filter(manager=old_manager)
+            if len(managed_groups) < 2:
+                old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
+            old_manager.user.save()
+
+        new_manager = Person.objects.get(pk=request.data["manager"])
+        if new_manager:
+            new_manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
+            new_manager.user.save()
+        return super().update(request, *args, **kwargs)
 
 
 class AdminGroupTemplateView(ListView):
