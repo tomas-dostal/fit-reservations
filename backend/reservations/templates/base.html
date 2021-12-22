@@ -12,6 +12,7 @@
 <nav id="navigation">
     <ul>
         <li class="title"><h1><a href="{% url 'index' %}">Rezervační systém učeben</a></h1></li>
+        <li class="menu-item"><a href="{% url 'index' %}">Veřejné místnosti</a></li>
         <li class="menu-item"><a href="{% url 'reservation_create' %}">Nová rezervace</a></li>
         <li class="menu-item"><a href="{% url 'my_reservations_list' %}">Moje rezervace</a></li>
         {% if user.is_authenticated %}

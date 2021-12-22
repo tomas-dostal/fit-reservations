@@ -5,11 +5,36 @@
         <h2>Harmonogram mísnosti {{ room.building.name }}:{{ room.name }}</h2>
     </header>
 
-    <section>
-        <ul>
-            {% for reservation in reservations %}
-                <li>{{ reservation }}</li>
-            {% endfor %}
-        </ul>
-    </section>
+<section>
+    <div class="errors">
+        {% if errors %}
+        {% for error in errors %}
+        <p> {{ error }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% if reservations %}
+    <table class="list persons">
+        <thead>
+        <tr>
+            <th>Obsazeno od</th>
+            <th>Obsazeno do</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td>{{reservation.dt_from|date:"d.m.Y H:m:s"}}</td>
+            <td>{{reservation.dt_to|date:"d.m.Y H:m:s"}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "layouts/pagination.html" with items=rooms %}
+
+    {% else %}
+    <p>Harmonogram místnosti je prázdný</p>
+    {% endif %}
+</section>
 {% endblock %}

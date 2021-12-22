@@ -117,6 +117,12 @@ nav#navigation > ul > li.login {
 nav#navigation > ul > li a {
     color: black;
     text-decoration: none;
+    padding: 5px;
+}
+
+nav#navigation > ul > li:not(.title, .active) a:hover {
+    background: darkgray;
+    border-radius: 5px;
 }
 
 /* Main content */
@@ -274,10 +280,12 @@ table.list td a.id {
 #role-detail ul > li > .description {
     width: auto;
 }
-ul.inline{
+
+ul.inline {
     display: block;
 }
-ul.inline > li{
+
+ul.inline > li {
     display: inline-block;
 }
 
@@ -406,14 +414,16 @@ ul.pagination li:not(.active) a:hover {
 }
 
 /* Login */
-section.login{
+section.login {
     text-align: center;
 }
-form.login-form{
+
+form.login-form {
     display: inline-block;
     width: auto;
 }
-form.login-form .field-label{
+
+form.login-form .field-label {
     text-align: left;
 }
 
