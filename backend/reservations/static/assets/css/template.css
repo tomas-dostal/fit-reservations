@@ -245,7 +245,7 @@ table.list th, table.list td {
 
 table.list td a.id {
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: underline;
     color: black;
 }
 
@@ -273,6 +273,12 @@ table.list td a.id {
 
 #role-detail ul > li > .description {
     width: auto;
+}
+ul.inline{
+    display: block;
+}
+ul.inline > li{
+    display: inline-block;
 }
 
 .detail img {
