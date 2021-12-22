@@ -36,12 +36,8 @@
     <hr/>
     <p>&copy; DFK 2021</p>
     {% if user.is_superuser or perms.reservations.is_room_manager or perms.reservations.is_group_manager %}
-    <a href="{% url 'admin_person_list' %}">Administrace</a>
+    <a href="{% url 'admin_dashboard' %}">Administrace</a>
     {% endif %}
-
-    {{user.is_superuser}}
-    {{perms.reservations.is_room_manager }}
-    {{perms.reservations.is_group_manager }}
 </footer>
 </body>
 </html>

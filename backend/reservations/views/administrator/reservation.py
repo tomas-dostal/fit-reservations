@@ -36,6 +36,7 @@ class AdminReservationTemplateView(ListView):
     )
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
+        # FIXME: FindManagerReservations
         paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
         try:
             reservations = paginator.page(page)
