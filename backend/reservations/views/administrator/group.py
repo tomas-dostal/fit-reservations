@@ -66,7 +66,7 @@ class AdminGroupTemplateView(ListView):
             raise Http404("Building does not exist")
         form = GroupForm(request.POST or None, instance=instance)
         if form.is_valid():
-            GroupService.update(form, instance)
+            GroupService.update(form, group_id)
             return redirect("/administrator/groups/")
         template = loader.get_template("administrator/groups/update.html")
         return HttpResponse(template.render({"form": form}, request))
