@@ -1,0 +1,2920 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$018aXr26tfRXuOUwRijAyl$+8+/e/RB6ZepMgPwzaNqCswqJMk5cJDP1VsLDcUtx28=",
+        "last_login": "2021-12-18T15:24:45.326Z",
+        "is_superuser": true,
+        "username": "koubaalo",
+        "first_name": "",
+        "last_name": "",
+        "email": "koubaalo@fit.cvut.cz",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-12-06T14:55:39.411Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$A6NxGibrdMZCTMuB5VbAx9$WrKKz5a/D3o/CjoaZxzzjNNLtDrlbNmJ2TkKzFZK2n8=",
+        "last_login": "2021-12-15T13:27:55.141Z",
+        "is_superuser": false,
+        "username": "kalvotom@fit.cvut.cz",
+        "first_name": "Tomas",
+        "last_name": "Kalvoda",
+        "email": "kalvotom@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T15:29:08Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$s51CIl34BfEY9P4SW5QRu7$WYrN4MFmDF9Hnos8918n/ZiqokmSumWaR02ssWRI7OM=",
+        "last_login": "2021-12-15T14:31:11.579Z",
+        "is_superuser": false,
+        "username": "janoujan@fit.cvut.cz",
+        "first_name": "Jan",
+        "last_name": "Janousek",
+        "email": "janoujan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T15:30:25.081Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$GyvWgn3FiOgYO9yNLcXwvK$NPFZqmoKag2IJ7UFw9w9bqIN8VeRFHGFsGRCA3brFuM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "holubjan@fit.cvut.cz",
+        "first_name": "Jan",
+        "last_name": "Holub",
+        "email": "holubjan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T15:31:07.559Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$7eunboICvOoUMMaOUMvSkW$wI12UIdXKGjjUORg5QzyxD5dvKvVZfGoGQX2DDWRUDM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "guthondr@fit.cvut.cz",
+        "first_name": "Ondrej",
+        "last_name": "Guth",
+        "email": "guthondr@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T15:31:21.940Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$mYMybA37Qe14WXPqnlcLF8$/+5wqzo4cHBwjYy/49c7hVl9NwIfV4/7k8U3ed/zR+4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "valentmich@fit.cvut.cz",
+        "first_name": "Michal",
+        "last_name": "Valenta",
+        "email": "valentmich@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T15:36:02.843Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 22,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$FUV8La03xFHB5vl4xQTpBz$anu+3UZdBlmPURtJ0xJEZR1fyhpLbSclRRSgu5BF7L0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "buchtdav@fit.cvut.cz",
+        "first_name": "David",
+        "last_name": "Buchtela",
+        "email": "buchtdav@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:12:33.539Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 23,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$45IpTqc1g1eDWTq3sm3MUv$nNnl/2D6tD1ft6FvOXstUiTPreLfptefmkvPVnw5JJE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "halaskjan@fit.cvut.cz",
+        "first_name": "Ivan",
+        "last_name": "Halaska",
+        "email": "halaskjan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:12:59.363Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 24,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$4bJbPciyUFjgMsJZCFbS2O$f3Aot5RbQV10Yn4kiqi7mf3RBmxA3cWDGUagj5KuKe4=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "kubathan@fit.cvut.cz",
+        "first_name": "Hana",
+        "last_name": "Kubatova",
+        "email": "kubathan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:14:07.892Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 25,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$RdTz0fC5cq1LauC44fmUOg$lAk+mb+Ni1E2SWYf7cu89DWlYmq6U2bS7r5qGxOgZ5s=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "skrbmiro@fit.cvut.cz",
+        "first_name": "Miroslav",
+        "last_name": "Skrbek",
+        "email": "skrbmiro@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:14:52.020Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 26,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JXsA3ncT34Glzv3L5wbzlP$kALqCeF70WbuGFcBtQRizuohnG/zfLd93V3meZ4ieSw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "tvrdipav@fit.cvut.cz",
+        "first_name": "Pavel",
+        "last_name": "Tvrdik",
+        "email": "tvrdipav@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:15:22.481Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 27,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$rN8y0vaB592MITjysNgHte$JWpfWBdtvMEQDoFumt+ewIuQDIlEN7gXQ+PRz8i3GPM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "simeciva@fit.cvut.cz",
+        "first_name": "Ivan",
+        "last_name": "Simecek",
+        "email": "simeciva@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:15:45.147Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 28,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$SB9i1kQWzAlf7IbhNjfHVZ$OH1CU1ZCqWttg1wrkhUAH/PnFVhb4RDAciec6EEAJ78=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "kloudkar@fit.cvut.cz",
+        "first_name": "Karel",
+        "last_name": "Klouda",
+        "email": "kloudkar@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:16:25.481Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 29,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$Ul7lXa7gf5y2I16rKjnXC5$B07SLe/pBhFGRLk3vquBl7R9WwltQzev9Lzg6EDvgW0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "lorenrob@fit.cvut.cz",
+        "first_name": "Robert",
+        "last_name": "Lorencz",
+        "email": "lorenrob@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:19:03.481Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 30,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$IT1NIQCqka5lMgCbjer1aK$/wvdPHXwJK/JvkFBJhXdSertA4j/iYWf1h27reKv0Cg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "dombedan@fit.cvut.cz",
+        "first_name": "Daniel",
+        "last_name": "Dombek",
+        "email": "dombedan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:19:39.357Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 31,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$PfqlaTK2ZthigWM0gykea7$VavoON51C93h+CsbyFTxoayw5a0SiCgETsLLddCnstA=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "smidoreg@fit.cvut.cz",
+        "first_name": "Regina",
+        "last_name": "Smidova",
+        "email": "smidoreg@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:21:52.405Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 32,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$QUYdggoEKfRI9SssBvciWF$LEmYAp2jnSqys+C8M57D2iupnN7rQNCxhbPwHOpNTNA=",
+        "last_login": "2021-12-15T15:23:11Z",
+        "is_superuser": false,
+        "username": "novotjan@fit.cvut.cz",
+        "first_name": "Jana",
+        "last_name": "Novotna",
+        "email": "novotjan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T17:30:49Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 33,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$GWERKPXqLHZ3KxLtWHzSQo$+cxFNXRB+1JkoMnUlq5EyRdYd68O7bdPX653HPqPR84=",
+        "last_login": "2021-12-15T15:23:46.063Z",
+        "is_superuser": false,
+        "username": "zemcikpav@fit.cvut.cz",
+        "first_name": "Pavel",
+        "last_name": "Zemcik",
+        "email": "zemcikpav@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T18:15:28Z",
+        "groups": [],
+        "user_permissions": [
+            [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
+            [
+                "is_room_manager",
+                "reservations",
+                "person"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 34,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$KNEM9SCWxzm5LUy1k1fc53$iAnUo5YDvtP6NYCBu3Gv7gJFlYwq/bqWIu3bDbB8Ihg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "koubaalo@fit.cvut.cz",
+        "first_name": "Alois",
+        "last_name": "Kouba",
+        "email": "koubaalo@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T18:17:28.223Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 35,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$eiBAuZfzp6nBlxbZHfFeWv$Z9wxemNfDHwVDRS+QLXbQhBaVs+04EilBbCHLp2pjuM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "novypetr@fit.cvut.cz",
+        "first_name": "Petr",
+        "last_name": "Novy",
+        "email": "novypetr@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T18:17:54.554Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 36,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$AUgy7z1gwPGx1mDMWHahYl$p2wr5y9yHZibBP1tRym0q5bfbZAdjeNPyIt8Q/NaUeI=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "zavadmil@fit.cvut.cz",
+        "first_name": "Milos",
+        "last_name": "Zavadil",
+        "email": "zavadmil@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T18:18:24.773Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 37,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$fqZtzQj9448gKFc2XviWsg$HJB5ffo7GhysOGNNVr2rv7VggaY3TV2lfQP1jtfaHK0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "havelpav@fit.cvut.cz",
+        "first_name": "Pavel",
+        "last_name": "Havel",
+        "email": "havelpav@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T18:18:49.754Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 38,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$vs62pH3UjLQAzxi4KwaRcG$xGPLBFpJpRtx26QiN+N9TNmpw+a711B7T6+toU1TvQw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "rysavdan@fit.cvut.cz",
+        "first_name": "Daniel",
+        "last_name": "Rysavy",
+        "email": "rysavdan@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-06T18:20:13.607Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 39,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$JCpG04XOozI34apfjYxhbk$JKwlqooB8ihGyPNXx+5NUeXeFotORmNusLugaUCtUzE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "holyjir@fit.cvut.cz",
+        "first_name": "Jiri",
+        "last_name": "Holy",
+        "email": "holyjir@fit.cvut.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-07T15:23:25.945Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 42,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$Dtcw7JH6Fb0kJrWP8OEptH$gKEegw+/9joulP++8lTB8httSFog+4jMYphf3BVjxuw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "admin@email.comm",
+        "first_name": "Create",
+        "last_name": "User",
+        "email": "admin@email.comm",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-14T12:57:57.524Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 43,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$sLrLMo3TDFlBuccKHqzmug$oZdGHryJEQ+MuPuyj0ktus0opB73RKe+8lSY323oHVo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "admin@email.coms",
+        "first_name": "Novy",
+        "last_name": "uzivatel",
+        "email": "admin@email.coms",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-14T12:58:46Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 44,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$OgPT6aJt0tgZck9sG68605$ZImR3vY5JscAZ+b2ItFAeDkFcMML3nJ/638GIBJ0nlY=",
+        "last_login": "2021-12-18T15:25:16.317Z",
+        "is_superuser": true,
+        "username": "adminek@email.com",
+        "first_name": "Test",
+        "last_name": "Admin",
+        "email": "adminek@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-12-15T15:05:17Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 45,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$2KMFM5JcnqfFy8d2wiIy3U$OntS3n8FTesyT1XN1u8WxFQTh10ylruTSc7ddUJV4x8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "ano@ano.cz",
+        "first_name": "Test",
+        "last_name": "Delete",
+        "email": "ano@ano.cz",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-12-18T16:36:18.774Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "2bf4odged2juap812przz6icnrdiwlsc",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2pCWKdBx6b5nIAMMUjU0Ke3KeHdp0oVu33_vv4Wjfctur7y6OYqrQHH5ZZ7Ck8sxxAeV-yLDUrZ19vJQ5LlWOS2RX7fT_TvIVHOrux7Bg1VAvYUEyZjESB2NGNjT4EGbpBHNgBBUCGM0lrCxxFa1RIvPF9qrN8Q:1mx9ff:wmniyzZYYymUgGlfbEddiCASBBqcGC67YSFLhEFrn3g",
+        "expire_date": "2021-12-28T15:24:51.802Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "gqjk3ul5fnpnp3hgv66yhexi89vljco2",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsjPTmp1-xwT5QW0neId26zz3ti5z4rvCDzr4tSM9L4f7d1Bh1G_tJ1eSEYGEBUVW2BBoAhs0KmfIFwxFZmnAJaU8yuQUaaOcJ-NQpAnY-wP5oTe7:1mybaG:c9xuGMOnsjeWAoJl47Oh5MqADLuxqI-JmmByNPw9wL0",
+        "expire_date": "2022-01-01T15:25:16.385Z"
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "kalvotom@fit.cvut.cz"
+        ],
+        "phone_number": "777888999",
+        "occupy": [
+            1,
+            2,
+            3,
+            4,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "janoujan@fit.cvut.cz"
+        ],
+        "phone_number": "776888999",
+        "occupy": [
+            1,
+            2,
+            3,
+            4,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "holubjan@fit.cvut.cz"
+        ],
+        "phone_number": "775888999",
+        "occupy": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "guthondr@fit.cvut.cz"
+        ],
+        "phone_number": "774888999",
+        "occupy": [
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "valentmich@fit.cvut.cz"
+        ],
+        "phone_number": "772888999",
+        "occupy": [
+            1,
+            2,
+            3,
+            4,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "buchtdav@fit.cvut.cz"
+        ],
+        "phone_number": "770888999",
+        "occupy": [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "halaskjan@fit.cvut.cz"
+        ],
+        "phone_number": "769777888",
+        "occupy": [
+            20,
+            21,
+            23,
+            24,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 15,
+    "fields": {
+        "user": [
+            "kubathan@fit.cvut.cz"
+        ],
+        "phone_number": "755888999",
+        "occupy": [
+            1
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 16,
+    "fields": {
+        "user": [
+            "skrbmiro@fit.cvut.cz"
+        ],
+        "phone_number": "700888999",
+        "occupy": [
+            25,
+            26
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 17,
+    "fields": {
+        "user": [
+            "tvrdipav@fit.cvut.cz"
+        ],
+        "phone_number": "760777888",
+        "occupy": [
+            1,
+            2,
+            3,
+            4,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+        ]
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 18,
+    "fields": {
+        "user": [
+            "simeciva@fit.cvut.cz"
+        ],
+        "phone_number": "787888999",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 19,
+    "fields": {
+        "user": [
+            "kloudkar@fit.cvut.cz"
+        ],
+        "phone_number": "799888999",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 20,
+    "fields": {
+        "user": [
+            "lorenrob@fit.cvut.cz"
+        ],
+        "phone_number": "888999888",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 21,
+    "fields": {
+        "user": [
+            "dombedan@fit.cvut.cz"
+        ],
+        "phone_number": "666666666",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 22,
+    "fields": {
+        "user": [
+            "smidoreg@fit.cvut.cz"
+        ],
+        "phone_number": "999888777",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 23,
+    "fields": {
+        "user": [
+            "novotjan@fit.cvut.cz"
+        ],
+        "phone_number": "750888999",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 24,
+    "fields": {
+        "user": [
+            "zemcikpav@fit.cvut.cz"
+        ],
+        "phone_number": "555777888",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 25,
+    "fields": {
+        "user": [
+            "koubaalo@fit.cvut.cz"
+        ],
+        "phone_number": "777222888",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 26,
+    "fields": {
+        "user": [
+            "novypetr@fit.cvut.cz"
+        ],
+        "phone_number": "899666555",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 27,
+    "fields": {
+        "user": [
+            "zavadmil@fit.cvut.cz"
+        ],
+        "phone_number": "858989777",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 28,
+    "fields": {
+        "user": [
+            "havelpav@fit.cvut.cz"
+        ],
+        "phone_number": "855222666",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 29,
+    "fields": {
+        "user": [
+            "rysavdan@fit.cvut.cz"
+        ],
+        "phone_number": "797565858",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 30,
+    "fields": {
+        "user": [
+            "holyjir@fit.cvut.cz"
+        ],
+        "phone_number": "855999965",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.person",
+    "pk": 35,
+    "fields": {
+        "user": [
+            "adminek@email.com"
+        ],
+        "phone_number": "777888502",
+        "occupy": []
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 5,
+    "fields": {
+        "name": "CIIRC"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 6,
+    "fields": {
+        "name": "Nova budova CVUT"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 7,
+    "fields": {
+        "name": "FSv"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 8,
+    "fields": {
+        "name": "Narodni technicka knihovna"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 9,
+    "fields": {
+        "name": "FEL"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 10,
+    "fields": {
+        "name": "FS"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 11,
+    "fields": {
+        "name": "UTVS"
+    }
+},
+{
+    "model": "reservations.building",
+    "pk": 12,
+    "fields": {
+        "name": "FEL FS"
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 1,
+    "fields": {
+        "name": "Katedra teoreticke informatiky",
+        "parent": 7,
+        "manager": 4,
+        "member": [
+            4,
+            5,
+            6,
+            22
+        ]
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 2,
+    "fields": {
+        "name": "Katedra softwaroveho inzenyrstvi",
+        "parent": 7,
+        "manager": 7,
+        "member": [
+            7,
+            13,
+            14
+        ]
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 3,
+    "fields": {
+        "name": "Katedra cislicoveho navrhu",
+        "parent": 7,
+        "manager": 15,
+        "member": [
+            15,
+            16
+        ]
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 4,
+    "fields": {
+        "name": "Katedra pocitacovych systemu",
+        "parent": 7,
+        "manager": 17,
+        "member": [
+            17,
+            18
+        ]
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 5,
+    "fields": {
+        "name": "Katedra aplikovane matematiky",
+        "parent": 7,
+        "manager": 19,
+        "member": [
+            3,
+            19,
+            21
+        ]
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 6,
+    "fields": {
+        "name": "Katedra informacni bezpecnosti",
+        "parent": 7,
+        "manager": 20,
+        "member": [
+            20
+        ]
+    }
+},
+{
+    "model": "reservations.group",
+    "pk": 7,
+    "fields": {
+        "name": "CVUT FIT Staff",
+        "parent": null,
+        "manager": 24,
+        "member": [
+            24
+        ]
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 1,
+    "fields": {
+        "name": "T9:155",
+        "building": 6,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 2,
+    "fields": {
+        "name": "T9:322",
+        "building": 6,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 3,
+    "fields": {
+        "name": "T9:349",
+        "building": 6,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 4,
+    "fields": {
+        "name": "T9:364",
+        "building": 6,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 5,
+    "fields": {
+        "name": "TH:A-924",
+        "building": 7,
+        "group": 2,
+        "manager": 7,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 6,
+    "fields": {
+        "name": "TH:A-927",
+        "building": 7,
+        "group": 2,
+        "manager": 13,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 7,
+    "fields": {
+        "name": "TH:A-1224",
+        "building": 7,
+        "group": 1,
+        "manager": 4,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 8,
+    "fields": {
+        "name": "TH:A-1231",
+        "building": 7,
+        "group": 1,
+        "manager": 6,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 9,
+    "fields": {
+        "name": "TH:A-1235",
+        "building": 7,
+        "group": 1,
+        "manager": 5,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 10,
+    "fields": {
+        "name": "TH:A-953",
+        "building": 7,
+        "group": 2,
+        "manager": 14,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 11,
+    "fields": {
+        "name": "TH:A-1024",
+        "building": 7,
+        "group": 3,
+        "manager": 15,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 12,
+    "fields": {
+        "name": "TH:A-1029",
+        "building": 7,
+        "group": 3,
+        "manager": 16,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 13,
+    "fields": {
+        "name": "TH:A-1129",
+        "building": 7,
+        "group": 4,
+        "manager": 18,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 14,
+    "fields": {
+        "name": "TH:A-1124",
+        "building": 7,
+        "group": 4,
+        "manager": 17,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 15,
+    "fields": {
+        "name": "TH:A-1431",
+        "building": 7,
+        "group": 5,
+        "manager": 19,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 16,
+    "fields": {
+        "name": "TH:A-1426",
+        "building": 7,
+        "group": 5,
+        "manager": 3,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 17,
+    "fields": {
+        "name": "TH:A-1122",
+        "building": 7,
+        "group": 6,
+        "manager": 20,
+        "locked": true
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 18,
+    "fields": {
+        "name": "TH:A-s135",
+        "building": 7,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 19,
+    "fields": {
+        "name": "TK:BS",
+        "building": 8,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 20,
+    "fields": {
+        "name": "T2:E1-1",
+        "building": 9,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 21,
+    "fields": {
+        "name": "T2:A3-316d",
+        "building": 9,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 22,
+    "fields": {
+        "name": "T9:105",
+        "building": 6,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 23,
+    "fields": {
+        "name": "KN:E-301",
+        "building": 12,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 24,
+    "fields": {
+        "name": "KN:A-214",
+        "building": 12,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 25,
+    "fields": {
+        "name": "T4:C2-438",
+        "building": 10,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 26,
+    "fields": {
+        "name": "T9:D1-266",
+        "building": 10,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 27,
+    "fields": {
+        "name": "JP:B-315",
+        "building": 5,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.room",
+    "pk": 28,
+    "fields": {
+        "name": "JP:B-633",
+        "building": 5,
+        "group": null,
+        "manager": 23,
+        "locked": false
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 1,
+    "fields": {
+        "author": 3,
+        "dt_modified": "2021-12-07T12:21:16.638Z",
+        "status": "Pending authorisation",
+        "note": "Rezervace pro studenty, aby mohli pracovat na projektu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 2,
+    "fields": {
+        "author": 6,
+        "dt_modified": "2021-12-07T12:35:20.720Z",
+        "status": "Pending authorisation",
+        "note": "Predzkouskova konzultace pro kolegu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 3,
+    "fields": {
+        "author": 4,
+        "dt_modified": "2021-12-07T12:42:53.848Z",
+        "status": "Pending authorisation",
+        "note": "Rezervace pro mne a kolegu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 4,
+    "fields": {
+        "author": 19,
+        "dt_modified": "2021-12-07T12:45:23.069Z",
+        "status": "Pending authorisation",
+        "note": "Setkani vedeni KAMu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 5,
+    "fields": {
+        "author": 3,
+        "dt_modified": "2021-12-07T12:47:10.110Z",
+        "status": "Pending authorisation",
+        "note": "Chtel bych rezertovat NTK BS pro spolecne uceni kolegu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 7,
+    "fields": {
+        "author": 23,
+        "dt_modified": "2021-12-07T15:21:36.174Z",
+        "status": "Approved",
+        "note": "Ano, muzete"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 8,
+    "fields": {
+        "author": 23,
+        "dt_modified": "2021-12-07T15:24:47.149Z",
+        "status": "Declined",
+        "note": "V tuto chvili je mistnost obsazena, lituji"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 9,
+    "fields": {
+        "author": 3,
+        "dt_modified": "2021-12-15T10:47:03.305Z",
+        "status": "Pending authorisation",
+        "note": "Moje nova rezervace"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 10,
+    "fields": {
+        "author": 24,
+        "dt_modified": "2021-12-15T12:55:01.382Z",
+        "status": "Pending authorisation",
+        "note": "Ano"
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 1,
+    "fields": {
+        "author": 3,
+        "owner": 3,
+        "room": 3,
+        "dt_from": "2021-12-20T12:21:30Z",
+        "dt_to": "2021-12-20T15:21:44Z",
+        "dt_created": "2021-12-07T12:22:25.455Z",
+        "attendees": [
+            26,
+            27,
+            28,
+            29
+        ],
+        "reservation_status": [
+            1
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 2,
+    "fields": {
+        "author": 6,
+        "owner": 21,
+        "room": 1,
+        "dt_from": "2021-12-25T12:34:52Z",
+        "dt_to": "2021-12-26T12:34:54Z",
+        "dt_created": "2021-12-07T12:35:23.939Z",
+        "attendees": [
+            25
+        ],
+        "reservation_status": [
+            2
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 3,
+    "fields": {
+        "author": 4,
+        "owner": 4,
+        "room": 5,
+        "dt_from": "2021-12-24T12:43:03Z",
+        "dt_to": "2021-12-24T13:43:09Z",
+        "dt_created": "2021-12-07T12:43:18.498Z",
+        "attendees": [
+            5
+        ],
+        "reservation_status": [
+            3
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 4,
+    "fields": {
+        "author": 19,
+        "owner": 19,
+        "room": 2,
+        "dt_from": "2021-12-29T12:45:33Z",
+        "dt_to": "2021-12-30T12:45:40Z",
+        "dt_created": "2021-12-07T14:39:44.742Z",
+        "attendees": [
+            3,
+            19,
+            21
+        ],
+        "reservation_status": [
+            4,
+            7
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 5,
+    "fields": {
+        "author": 3,
+        "owner": 29,
+        "room": 19,
+        "dt_from": "2021-12-21T12:47:15Z",
+        "dt_to": "2021-12-21T12:47:25Z",
+        "dt_created": "2021-12-07T12:47:29.680Z",
+        "attendees": [
+            25,
+            26,
+            27,
+            28
+        ],
+        "reservation_status": [
+            5,
+            8
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 6,
+    "fields": {
+        "author": 3,
+        "owner": 3,
+        "room": 1,
+        "dt_from": "2021-12-24T11:46:00Z",
+        "dt_to": "2021-12-25T11:46:00Z",
+        "dt_created": "2021-12-15T10:47:03.484Z",
+        "attendees": [
+            3,
+            4
+        ],
+        "reservation_status": [
+            9
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 7,
+    "fields": {
+        "author": 24,
+        "owner": 3,
+        "room": 7,
+        "dt_from": "2021-12-18T13:54:00Z",
+        "dt_to": "2021-12-20T13:54:00Z",
+        "dt_created": "2021-12-15T12:55:01.517Z",
+        "attendees": [
+            3
+        ],
+        "reservation_status": [
+            10
+        ]
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2021-12-06T14:57:09.182Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "1",
+        "object_repr": "JP",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2021-12-06T14:57:20.101Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "2",
+        "object_repr": "T9",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2021-12-06T14:57:26.798Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "3",
+        "object_repr": "TH",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2021-12-06T14:57:37.293Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "4",
+        "object_repr": "T2",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2021-12-06T14:58:02.939Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "4",
+        "object_repr": "T2",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2021-12-06T14:58:03.012Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "3",
+        "object_repr": "TH",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2021-12-06T14:58:03.080Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "2",
+        "object_repr": "T9",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2021-12-06T14:58:03.147Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "1",
+        "object_repr": "JP",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2021-12-06T14:58:29.400Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "5",
+        "object_repr": "CIIRS",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2021-12-06T14:58:43.929Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "6",
+        "object_repr": "Nova budova CVUT",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2021-12-06T14:59:01.897Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "7",
+        "object_repr": "FSv",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2021-12-06T14:59:10.841Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "8",
+        "object_repr": "Narodni technicka knihovna",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2021-12-06T14:59:14.548Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "9",
+        "object_repr": "FEL",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2021-12-06T14:59:17.865Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "10",
+        "object_repr": "FS",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2021-12-06T14:59:26.920Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "11",
+        "object_repr": "UTVS",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2021-12-06T14:59:31.920Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "12",
+        "object_repr": "FEL FS",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2021-12-06T15:00:43.715Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "building"
+        ],
+        "object_id": "5",
+        "object_repr": "CIIRC",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2021-12-06T15:03:48.011Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "janoujan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2021-12-06T15:04:09.264Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "1",
+        "object_repr": ", ",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2021-12-06T15:04:35.251Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "guthondr",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2021-12-06T15:04:44.958Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "2",
+        "object_repr": ", ",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2021-12-06T15:05:04.377Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "holubjan",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2021-12-06T15:06:07.798Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "2",
+        "object_repr": ", ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2021-12-06T15:06:07.865Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "1",
+        "object_repr": ", ",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2021-12-06T15:06:22.952Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "guthondr",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2021-12-06T15:06:23.403Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "holubjan",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2021-12-06T15:06:23.503Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "janoujan",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2021-12-06T15:25:02.378Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "5",
+        "object_repr": "test2@email.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2021-12-06T15:28:37.397Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "7",
+        "object_repr": "kalvotom2@fit.cvut.cz",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2021-12-06T15:28:37.470Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "6",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2021-12-06T15:29:05.416Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "8",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2021-12-06T15:35:35.520Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "13",
+        "object_repr": "valentmich@fit.cvut.cz",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2021-12-06T16:33:09.493Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "18",
+        "object_repr": "www",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2021-12-06T17:05:49.944Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "12",
+        "object_repr": "x, x (admin)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2021-12-06T17:05:50.012Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "11",
+        "object_repr": "d, d",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2021-12-06T17:05:50.079Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "10",
+        "object_repr": "www, www (admin)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2021-12-06T17:05:50.146Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "9",
+        "object_repr": "Isthiss, Admin?s",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2021-12-06T17:05:50.214Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "person"
+        ],
+        "object_id": "8",
+        "object_repr": "Isthis, Admin? (admin)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2021-12-06T17:06:07.554Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "16",
+        "object_repr": "admin@email.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2021-12-06T17:06:07.625Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "17",
+        "object_repr": "admin@email.comm",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2021-12-06T17:06:07.692Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "15",
+        "object_repr": "s",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2021-12-06T17:06:07.759Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "20",
+        "object_repr": "w",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2021-12-06T17:06:08.496Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "19",
+        "object_repr": "www",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2021-12-06T17:06:09.846Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "21",
+        "object_repr": "x",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2021-12-07T12:21:16.784Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservationstatus"
+        ],
+        "object_id": "1",
+        "object_repr": "[Pending authorisation], (by: Tomas, Kalvoda, modified: 2021-12-07 12:21:16.638034+00:00)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2021-12-07T12:22:25.645Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservation"
+        ],
+        "object_id": "1",
+        "object_repr": "[Pending authorisation] T9:349 (building: Nova budova CVUT), (from: 2021-12-20 12:21:30+00:00 to: s2021-12-20 15:21:44+00:00, by Tomas, Kalvoda, attendees: ['Petr, Novy', 'Milos, Zavadil', 'Pavel, Hav",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2021-12-07T12:35:20.722Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservationstatus"
+        ],
+        "object_id": "2",
+        "object_repr": "[Pending authorisation], (by: Ondrej, Guth, modified: 2021-12-07 12:35:20.720255+00:00)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2021-12-07T12:35:23.950Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservation"
+        ],
+        "object_id": "2",
+        "object_repr": "[Pending authorisation] T9:155 (building: Nova budova CVUT), (from: 2021-12-25 12:34:52+00:00 to: s2021-12-26 12:34:54+00:00, by Ondrej, Guth, attendees: ['Alois, Kouba']",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2021-12-07T12:42:53.850Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservationstatus"
+        ],
+        "object_id": "3",
+        "object_repr": "[Pending authorisation], (by: Jan, Janousek, modified: 2021-12-07 12:42:53.848048+00:00)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2021-12-07T12:43:18.510Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservation"
+        ],
+        "object_id": "3",
+        "object_repr": "[Pending authorisation] TH:A-924 (building: FSv), (from: 2021-12-24 12:43:03+00:00 to: s2021-12-24 13:43:09+00:00, by Jan, Janousek, attendees: ['Jan, Holub']",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2021-12-07T12:45:23.071Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservationstatus"
+        ],
+        "object_id": "4",
+        "object_repr": "[Pending authorisation], (by: Karel, Klouda, modified: 2021-12-07 12:45:23.069348+00:00)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2021-12-07T12:45:42.717Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservation"
+        ],
+        "object_id": "4",
+        "object_repr": "[Pending authorisation] T9:322 (building: Nova budova CVUT), (from: 2021-12-29 12:45:33+00:00 to: s2021-12-30 12:45:40+00:00, by Karel, Klouda, attendees: ['Tomas, Kalvoda', 'Karel, Klouda', 'Daniel, ",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2021-12-07T12:47:10.114Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservationstatus"
+        ],
+        "object_id": "5",
+        "object_repr": "[Pending authorisation], (by: Tomas, Kalvoda, modified: 2021-12-07 12:47:10.110508+00:00)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2021-12-07T12:47:29.695Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservation"
+        ],
+        "object_id": "5",
+        "object_repr": "[Pending authorisation] TK:BS (building: Narodni technicka knihovna), (from: 2021-12-21 12:47:15+00:00 to: s2021-12-21 12:47:25+00:00, by Tomas, Kalvoda, attendees: ['Alois, Kouba', 'Petr, Novy', 'Mil",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2021-12-07T14:39:44.756Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservation"
+        ],
+        "object_id": "4",
+        "object_repr": "[Pending authorisation] T9:322 (building: Nova budova CVUT), (from: 2021-12-29 12:45:33+00:00 to: s2021-12-30 12:45:40+00:00, by Karel, Klouda, attendees: ['Tomas, Kalvoda', 'Karel, Klouda', 'Daniel, ",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Reservation status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2021-12-07T15:17:50.254Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "reservations",
+            "reservationstatus"
+        ],
+        "object_id": "6",
+        "object_repr": "[Approved], (by: Jana, Novotna, modified: 2021-12-07 15:17:06.722110+00:00)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2021-12-14T12:57:42.684Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "40",
+        "object_repr": "admin@email.comm",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2021-12-14T12:57:42.759Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "41",
+        "object_repr": "admin@email.coms",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2021-12-14T15:19:00.628Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2021-12-14T15:23:39.197Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2021-12-14T15:24:36.104Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2021-12-14T15:25:55.728Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2021-12-14T15:26:32.377Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2021-12-14T15:26:50.995Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2021-12-14T15:38:44.455Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "43",
+        "object_repr": "admin@email.coms",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2021-12-15T12:43:24.805Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "33",
+        "object_repr": "zemcikpav@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2021-12-15T15:22:05.830Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "44",
+        "object_repr": "adminek@email.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2021-12-15T15:23:02.442Z",
+        "user": [
+            "koubaalo"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "32",
+        "object_repr": "novotjan@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2021-12-18T15:56:14.036Z",
+        "user": [
+            "adminek@email.com"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "32",
+        "object_repr": "novotjan@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+}
+]
