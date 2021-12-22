@@ -163,7 +163,7 @@ class GroupService:
             form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
-                manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+                manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
             return True
         except Group.DoesNotExist:
