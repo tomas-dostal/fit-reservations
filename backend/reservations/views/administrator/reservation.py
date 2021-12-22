@@ -9,11 +9,46 @@ from reservations.forms import AdminReservationForm
 from reservations.serializers import *
 from reservations.services import *
 from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.models import Person
+from reservations.models import ReservationStatus
+from reservations.models import Reservation
+from rest_framework.response import Response
 
 
 class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
+    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+
+    def create(self, request, *args, **kwargs):
+        author = Person.objects.get(user=request.user)
+        reservation_status = ReservationStatus.objects.create(
+            author=author, note=request.data["note"] if "note" in request.data else "Reservation"
+        )
+        request.data["author"] = author.id
+        reservation_data = super().create(request, *args, **kwargs).data
+        reservation_data["reservation_status"] = [reservation_status.id]
+        reservation = Reservation.objects.get(dt_created=reservation_data["dt_created"])
+        reservation.reservation_status.add(reservation_status)
+        reservation.save()
+        return Response(reservation_data)
+
+    def update(self, request, *args, **kwargs):
+        author = Person.objects.get(user=request.user)
+        reservation_status = ReservationStatus.objects.create(
+            author=author, note=request.data["note"] if "note" in request.data else "Reservation"
+        )
+        request.data["author"] = author.id
+        reservation_data = super().update(request, *args, **kwargs).data
+        reservation = self.get_object()
+        reservation.reservation_status.add(reservation_status)
+        reservation.save()
+
+        reservation_data["reservation_status"] = [status.id for status in reservation.reservation_status.all()]
+        return Response(reservation_data)
+
+    def get_serializer_context(self):
+        return {"request": self.request}
 
 
 class AdminReservationTemplateView(ListView):

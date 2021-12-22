@@ -10,11 +10,27 @@ from reservations.models import ReservationStatus
 from reservations.serializers import ReservationStatusSerializer
 from reservations.services import *
 from reservations.forms import ReservationStatusForm
+from reservations.models import Reservation
+from rest_framework.response import Response
 
 
 class AdminReservationStatusViewSet(viewsets.ModelViewSet):
     queryset = ReservationStatus.objects.all()
     serializer_class = ReservationStatusSerializer
+    http_method_names = ['get', 'post', 'head', 'options', 'trace', ]
+
+    def create(self, request, *args, **kwargs):
+        reservation_id = request.data.pop("id")
+        status_data = super().create(request, *args, **kwargs).data
+        status = ReservationStatus.objects.get(dt_modified=status_data["dt_modified"])
+        reservation = Reservation.objects.get(pk=reservation_id)
+
+        reservation.reservation_status.add(status)
+        reservation.save()
+        return Response(status_data)
+
+    def get_serializer_context(self):
+        return {"request": self.request}
 
 
 class AdminReservationStatusTemplateView(ListView):

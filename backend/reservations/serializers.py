@@ -21,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         if 'password' not in validated_data:
-            validated_data['password'] = "1"
+            validated_data['password'] = "samplepassword"
         user = super().create(validated_data)
         user.set_password(validated_data['password'])
         user.save()
@@ -81,12 +81,33 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 class ReservationStatusSerializer(serializers.ModelSerializer):
+    author = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = ReservationStatus
         fields = ("status", "note", "author", "dt_modified")
 
+    def create(self, validated_data):
+        reservation_status = ReservationStatus.objects.create(
+            author=Person.objects.get(user=self.context['request'].user),
+            **validated_data
+        )
+        return reservation_status
+
 
 class ReservationSerializer(serializers.ModelSerializer):
+    note = serializers.CharField(read_only=True, required=False)
+    author = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = Reservation
-        fields = ("room", "attendees", "author", "reservation_status", "dt_from", "dt_to", "dt_created")
+        fields = ("room", "attendees", "author", "owner", "reservation_status", "dt_from", "dt_to", "dt_created", "note")
+
+    def create(self, validated_data):
+        attendees = validated_data.pop("attendees")
+        reservation = Reservation.objects.create(
+            author=Person.objects.get(user=self.context['request'].user),
+            **validated_data
+        )
+        reservation.attendees.set(attendees)
+        return reservation

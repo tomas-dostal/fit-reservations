@@ -100,7 +100,7 @@ class AdminRoomTemplateView(ListView):
                 raise Http404("Room does not exist")
             form = RoomForm(request.POST or None, instance=instance)
             if form.is_valid():
-                RoomService.save(form)
+                RoomService.update(form, instance)
                 return redirect("/administrator/rooms/")
             template = loader.get_template("administrator/rooms/update.html")
             return HttpResponse(template.render({"form": form}, request))
@@ -110,7 +110,7 @@ class AdminRoomTemplateView(ListView):
             raise Http404("Room does not exist")
         form = RoomGroupManagerForm(request.POST or None, instance=instance)
         if form.is_valid():
-            RoomService.save(form)
+            RoomService.update(form, instance)
             return redirect("/administrator/rooms/")
         template = loader.get_template("administrator/rooms/update_manager.html")
         return HttpResponse(template.render({"form": form}, request))
