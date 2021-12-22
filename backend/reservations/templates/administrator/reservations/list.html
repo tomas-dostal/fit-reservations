@@ -43,7 +43,7 @@
             <td><a href="{% url 'admin_room_view' room_id=reservation.room.id %}">{{reservation.room.name}}</a></td>
             <td>
                 {% if reservation.current_status %}
-                {{reservation.current_status}}
+                {{reservation.current_status.status}}
                 {% else %}
                 -
                 {% endif %}
