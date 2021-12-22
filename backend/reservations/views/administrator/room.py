@@ -70,7 +70,7 @@ class AdminRoomTemplateView(ListView):
                 raise Http404("Room does not exist")
             form = RoomForm(request.POST or None, instance=instance)
             if form.is_valid():
-                RoomService.update(form, instance)
+                RoomService.update(form, room_id)
                 return redirect("/administrator/rooms/")
             template = loader.get_template("administrator/rooms/update.html")
             return HttpResponse(template.render({"form": form}, request))
