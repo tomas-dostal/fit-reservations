@@ -151,12 +151,19 @@ class GroupService:
             return False
 
     @staticmethod
-    def update(form):
+    def update(form, old_group):
         try:
+            old_manager = old_group.manager
+            if old_manager:
+                managed_groups = Group.objects.filter(manager=old_manager)
+                if len(managed_groups) < 2:
+                    old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
+                old_manager.user.save()
+
             form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
-                manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
+                manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
             return True
         except Group.DoesNotExist:
@@ -221,8 +228,15 @@ class RoomService:
             return False
 
     @staticmethod
-    def update(form):
+    def update(form, old_room):
         try:
+            old_manager = old_room.manager
+            if old_manager:
+                managed_rooms = Room.objects.filter(manager=old_manager)
+                if len(managed_rooms) < 2:
+                    old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_room_manager"))
+                old_manager.user.save()
+
             room = form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
