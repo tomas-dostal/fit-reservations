@@ -1,0 +1,67 @@
+{% extends 'administrator/base.html' %}
+
+{% block content  %}
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_reservation_update' reservation_id=reservation.id %}">Upravit
+            rezervaci</a>
+        <li><a class="button green" href="{% url 'admin_status_create' reservation_id=reservation.id %}">Změnit stav</a>
+        <li><a class='button red' href="{% url 'admin_reservation_delete' reservation_id=reservation.id %}">Smazat
+            rezervaci</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>Rezervace {{ reservation.id }}</h1>
+</header>
+
+<section>
+    <section id="user-detail" class="container detail">
+        <div class="card">
+            <ul>
+                <li>
+                    <div class="description">Autor</div>
+                    <a href="{% url 'admin_person_view' person_id=reservation.author.id %}" class="value">
+                        {{ reservation.author.name}} {{ reservation.author.surname }}</a>
+                </li>
+
+                <li>
+                    <div class="description">Vlastník</div>
+                    <a href="{% url 'admin_person_view' person_id=reservation.owner.id %}" class="value">
+                        {{ reservation.owner.name}} {{ reservation.owner.surname }}</a>
+                </li>
+
+                <li>
+                    <div class="description">Místnost</div>
+                    <a href="{% url 'admin_room_view' room_id=reservation.room.id %}" class="value">
+                        {{ reservation.room.name}}</a>
+                </li>
+
+                <li>
+                    <div class="description">Návštěvníci</div>
+                    {% if reservation.attendees %}
+                    <ul class="value inline">
+                        {% for attendee in reservation.attendees.all %}
+                        <a href="{% url 'admin_person_view' person_id=attendee.id %}" class="value">
+                            {{ attendee.name}} {{ attendee.surname }}</a>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    -
+                    {% endif %}
+                </li>
+
+                <li>
+                    <div class="description">Platnost</div>
+                    <span class="value">{{reservation.dt_from|date:"d.m.Y H:m:s"}} - {{reservation.dt_to|date:"d.m.Y H:m:s"}}</span>
+                </li>
+
+                <li>
+                    <div class="description">Vytvoření</div>
+                    <span class="value">{{ reservation.dt_created|date:"d.m.Y H:m:s" }}</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>
+{% endblock %}

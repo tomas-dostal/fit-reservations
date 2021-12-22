@@ -140,4 +140,7 @@ class Reservation(models.Model):
             self.dt_to,
             self.author,
             str([str(a) for a in self.attendees.all()]),
-        )
+    )
+
+    def current_status(self):
+        return self.reservation_status.last().status if hasattr(self.reservation_status.last(), "status") else "None"
