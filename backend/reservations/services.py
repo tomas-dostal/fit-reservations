@@ -151,9 +151,9 @@ class GroupService:
             return False
 
     @staticmethod
-    def update(form, old_group):
+    def update(form, old_group_id):
         try:
-            old_manager = old_group.manager
+            old_manager = Group.objects.get(pk=old_group_id).manager
             if old_manager:
                 managed_groups = Group.objects.filter(manager=old_manager)
                 if len(managed_groups) < 2:
@@ -211,9 +211,9 @@ class RoomService:
         return
 
     @staticmethod
-    def delete(room_id, room=None):
+    def delete(room_id):
         try:
-            room = Room.objects.get(pk=room_id) if room is None else room
+            room = Room.objects.get(pk=room_id)
             manager = room.manager
             if manager:
                 managed_rooms = Room.objects.filter(manager=manager)
@@ -228,9 +228,9 @@ class RoomService:
             return False
 
     @staticmethod
-    def update(form, old_room):
+    def update(form, old_room_id):
         try:
-            old_manager = old_room.manager
+            old_manager = Room.objects.get(pk=old_room_id).manager
             if old_manager:
                 managed_rooms = Room.objects.filter(manager=old_manager)
                 if len(managed_rooms) < 2:

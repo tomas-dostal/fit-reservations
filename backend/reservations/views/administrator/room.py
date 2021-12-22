@@ -22,7 +22,7 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
 
     def destroy(self, request, *args, **kwargs):
-        RoomService.delete(None, room=self.get_object())
+        RoomService.delete(self.get_object().id)
         return Response(data='delete success')
 
     def create(self, request, *args, **kwargs):
@@ -100,7 +100,7 @@ class AdminRoomTemplateView(ListView):
                 raise Http404("Room does not exist")
             form = RoomForm(request.POST or None, instance=instance)
             if form.is_valid():
-                RoomService.update(form, instance)
+                RoomService.update(form, room_id)
                 return redirect("/administrator/rooms/")
             template = loader.get_template("administrator/rooms/update.html")
             return HttpResponse(template.render({"form": form}, request))
@@ -110,7 +110,7 @@ class AdminRoomTemplateView(ListView):
             raise Http404("Room does not exist")
         form = RoomGroupManagerForm(request.POST or None, instance=instance)
         if form.is_valid():
-            RoomService.update(form, instance)
+            RoomService.update(form, room_id)
             return redirect("/administrator/rooms/")
         template = loader.get_template("administrator/rooms/update_manager.html")
         return HttpResponse(template.render({"form": form}, request))
