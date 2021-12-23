@@ -63,7 +63,7 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
         }
         return self.update(request, *args, **kwargs)
 
-    @action(detail=True, methods=['PATCH', 'GET'])
+    @action(detail=True, methods=['PATCH'])
     def set_rooms(self, request, pk):
         if 'rooms' not in request.data:
             return Response(data='Rooms field not specified', status=400)
