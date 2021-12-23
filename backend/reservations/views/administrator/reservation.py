@@ -20,7 +20,7 @@ from reservations.permissions import ReservationPermission
 class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = ['get', 'post', 'patch', 'delete', 'put', 'head', 'options', 'trace', ]
     permission_classes = [ReservationPermission]
 
     def get_queryset(self):
@@ -58,6 +58,15 @@ class AdminReservationViewSet(viewsets.ModelViewSet):
 
         reservation_data["reservation_status"] = [status.id for status in reservation.reservation_status.all()]
         return Response(reservation_data)
+
+    def partial_update(self, request, *args, **kwargs):
+        if 'attendees' not in request.data:
+            return Response(data='Attendees to change not specified', status=400)
+        kwargs['partial'] = True
+        request._full_data = {
+            'attendees': request.data['attendees']
+        }
+        return self.update(request, *args, **kwargs)
 
     def get_serializer_context(self):
         return {"request": self.request}

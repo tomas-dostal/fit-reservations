@@ -64,6 +64,8 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
         return super().update(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
+        if 'manager' not in request.data:
+            return Response(data='Manager to change not specified', status=400)
         kwargs['partial'] = True
         request._full_data = {
             'manager': request.data['manager']
@@ -93,13 +95,12 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['GET'])
     def access(self, request, pk):
         room = RoomService.find_by_id(pk)
+        person = Person.objects.get(user=request.user)
 
-        if request.user.is_superuser or not room.locked:
+        if request.user.is_superuser or not room.locked or room in person.occupy.all():
             return Response(data='Access granted')
 
         reservations = ReservationService.find_reservations_for_room(room)
-
-        person = Person.objects.get(user=request.user)
 
         for reservation in reservations:
             if reservation.dt_from < datetime.now(timezone('Europe/Berlin')) < reservation.dt_to and \
