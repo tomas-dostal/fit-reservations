@@ -52,6 +52,10 @@ table {
     border-spacing: 0;
 }
 
+.ms-options-wrap > .ms-options > ul label {
+    padding-left: 30px !important;
+}
+
 /** CSS template **/
 body {
     font-family: sans-serif;
@@ -123,6 +127,11 @@ nav#navigation > ul > li a {
 nav#navigation > ul > li:not(.title, .active) a:hover {
     background: darkgray;
     border-radius: 5px;
+    text-decoration: underline;
+}
+
+nav#navigation > ul > li .welcome{
+    display: none;
 }
 
 /* Main content */
@@ -492,4 +501,5 @@ footer p {
 footer a {
     display: block;
     text-align: center;
+    margin-top: 1rem;
 }
