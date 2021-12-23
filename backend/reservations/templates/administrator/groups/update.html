@@ -1,5 +1,17 @@
 {% extends 'administrator/base.html' %}
 
+{% block scripts %}
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#id_member').multiselect({
+            columns: 1,
+            search: true,
+            placeholder: 'Zvolte uživatele',
+        });
+    });
+</script>
+{% endblock%}
+
 {% block content  %}
 <header>
     <h2>Úprava: {{person.name}} {{person.surname}}</h2>

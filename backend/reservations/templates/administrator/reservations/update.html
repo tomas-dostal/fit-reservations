@@ -1,7 +1,18 @@
 {% extends 'administrator/base.html' %}
 
-{% block content  %}
+{% block scripts %}
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#id_attendees').multiselect({
+            columns: 1,
+            search: true,
+            placeholder: 'Zvolte uživatele',
+        });
+    });
+</script>
+{% endblock%}
 
+{% block content  %}
 <header>
     <h2>Uprava rezervace</h2>
 </header>
