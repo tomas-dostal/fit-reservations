@@ -153,9 +153,6 @@ class ReservationForm(ModelForm):
 
 
 class CustomAuthenticationForm(AuthenticationForm):
-    username = UsernameField(
-        label='Username',
-        widget=forms.TextInput(attrs={'autofocus': True})
-    )
+    username = UsernameField(label="Username", widget=forms.TextInput(attrs={"autofocus": True}))
 
     password = forms.CharField(widget=forms.PasswordInput(), label="Heslo")
