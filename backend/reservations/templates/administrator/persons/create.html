@@ -1,5 +1,17 @@
 {% extends 'administrator/base.html' %}
 
+{% block scripts %}
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#id_occupy').multiselect({
+            columns: 1,
+            search: true,
+            placeholder: 'Zvolte místnosti',
+        });
+    });
+</script>
+{% endblock%}
+
 {% block content  %}
 <header>
     <h2>Nový uživatel</h2>

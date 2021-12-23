@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Rezervace učeben{% endblock %}</title>
     {% load static %}
+    <link rel="stylesheet" href="https://phpcoder.tech/multiselect/css/jquery.multiselect.css">
     <link href="{% static 'ajax_datatable/css/style.css' %}" rel="stylesheet"/>
     <link href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet"/>
 
@@ -14,8 +15,10 @@
     {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://phpcoder.tech/multiselect/js/jquery.multiselect.js"></script>
     <script type="text/javascript" src="{% static 'ajax_datatable/js/utils.js' %}"></script>
     <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
     {% block scripts %}
     {% endblock %}
 
