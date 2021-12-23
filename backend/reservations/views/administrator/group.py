@@ -37,23 +37,22 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
         return super().create(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
-        response = super().update(request, *args, **kwargs)
         if 'partial' in kwargs:
             if kwargs['partial']:
-                return response
+                return super().update(request, *args, **kwargs)
+        if 'manager' in request.data:
+            old_manager = Person.objects.get(pk=self.get_object().manager.id)
+            if old_manager:
+                managed_groups = Group.objects.filter(manager=old_manager)
+                if len(managed_groups) < 2:
+                    old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
+                old_manager.user.save()
 
-        old_manager = Person.objects.get(pk=self.get_object().manager.id)
-        if old_manager:
-            managed_groups = Group.objects.filter(manager=old_manager)
-            if len(managed_groups) < 2:
-                old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
-            old_manager.user.save()
-
-        new_manager = Person.objects.get(pk=request.data["manager"])
-        if new_manager:
-            new_manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
-            new_manager.user.save()
-        return response
+            new_manager = Person.objects.get(pk=request.data["manager"])
+            if new_manager:
+                new_manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
+                new_manager.user.save()
+        return super().update(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
         if 'member' not in request.data:
@@ -64,7 +63,7 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
         }
         return self.update(request, *args, **kwargs)
 
-    @action(detail=True, methods=['PATCH'])
+    @action(detail=True, methods=['PATCH', 'GET'])
     def set_rooms(self, request, pk):
         if 'rooms' not in request.data:
             return Response(data='Rooms field not specified', status=400)

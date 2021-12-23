@@ -140,6 +140,11 @@
         "groups": [],
         "user_permissions": [
             [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
+            [
                 "is_room_manager",
                 "reservations",
                 "person"
@@ -212,6 +217,11 @@
         "groups": [],
         "user_permissions": [
             [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
+            [
                 "is_room_manager",
                 "reservations",
                 "person"
@@ -259,6 +269,11 @@
         "date_joined": "2021-12-06T17:15:22.481Z",
         "groups": [],
         "user_permissions": [
+            [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
             [
                 "is_room_manager",
                 "reservations",
@@ -308,6 +323,11 @@
         "groups": [],
         "user_permissions": [
             [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
+            [
                 "is_room_manager",
                 "reservations",
                 "person"
@@ -331,6 +351,11 @@
         "date_joined": "2021-12-06T17:19:03.481Z",
         "groups": [],
         "user_permissions": [
+            [
+                "is_group_manager",
+                "reservations",
+                "person"
+            ],
             [
                 "is_room_manager",
                 "reservations",
@@ -583,7 +608,7 @@
     "pk": 44,
     "fields": {
         "password": "pbkdf2_sha256$260000$OgPT6aJt0tgZck9sG68605$ZImR3vY5JscAZ+b2ItFAeDkFcMML3nJ/638GIBJ0nlY=",
-        "last_login": "2021-12-18T15:25:16.317Z",
+        "last_login": "2021-12-23T19:40:26.132Z",
         "is_superuser": true,
         "username": "adminek@email.com",
         "first_name": "Test",
@@ -628,6 +653,14 @@
     "fields": {
         "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsjPTmp1-xwT5QW0neId26zz3ti5z4rvCDzr4tSM9L4f7d1Bh1G_tJ1eSEYGEBUVW2BBoAhs0KmfIFwxFZmnAJaU8yuQUaaOcJ-NQpAnY-wP5oTe7:1mybaG:c9xuGMOnsjeWAoJl47Oh5MqADLuxqI-JmmByNPw9wL0",
         "expire_date": "2022-01-01T15:25:16.385Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "u9atkvuo9q2f8u7ndsay1fkrhv6c7cju",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsjPTmp1-xwT5QW0neId26zz3ti5z4rvCDzr4tSM9L4f7d1Bh1G_tJ1eSEYGEBUVW2BBoAhs0KmfIFwxFZmnAJaU8yuQUaaOcJ-NQpAnY-wP5oTe7:1n0Tww:WJ__wghqTM5M1vCqzj0mvu9RMLOEKxhfDpr24Oukmn8",
+        "expire_date": "2022-01-06T19:40:26.210Z"
     }
 },
 {
