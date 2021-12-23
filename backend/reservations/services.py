@@ -427,3 +427,13 @@ class ReservationService:
     def find_reservations_for_person(user):
         person = Person.objects.get(user=user)
         return Reservation.objects.filter(owner=person)
+
+    @staticmethod
+    def find_managed_reservations(user):
+        managed_rooms = RoomService.find_managed_rooms(user)
+        managed_reservations = Reservation.objects.none()
+
+        for room in managed_rooms:
+            managed_reservations = managed_reservations | ReservationService.find_reservations_for_room(room)
+
+        return managed_reservations
