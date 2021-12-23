@@ -37,8 +37,11 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
         return super().create(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
-        if kwargs['partial']:
-            return super().update(request, *args, **kwargs)
+        response = super().update(request, *args, **kwargs)
+        if 'partial' in kwargs:
+            if kwargs['partial']:
+                return response
+
         old_manager = Person.objects.get(pk=self.get_object().manager.id)
         if old_manager:
             managed_groups = Group.objects.filter(manager=old_manager)
@@ -50,7 +53,7 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
         if new_manager:
             new_manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
             new_manager.user.save()
-        return super().update(request, *args, **kwargs)
+        return response
 
     def partial_update(self, request, *args, **kwargs):
         if 'member' not in request.data:
