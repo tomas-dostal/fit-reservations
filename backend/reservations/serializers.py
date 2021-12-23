@@ -65,7 +65,7 @@ class PersonSerializer(serializers.ModelSerializer):
 class BuildingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Building
-        fields = "name"
+        fields = ("name", )
 
 
 class GroupSerializer(serializers.ModelSerializer):

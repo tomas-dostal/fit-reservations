@@ -15,6 +15,7 @@ from backend.settings import DEFAULT_PAGE_SIZE
 class AdminBuildingViewSet(viewsets.ModelViewSet):
     queryset = Building.objects.all()
     serializer_class = BuildingSerializer
+    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
 
 
 class AdminBuildingTemplateView(ListView):
