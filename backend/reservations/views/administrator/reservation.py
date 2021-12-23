@@ -13,12 +13,17 @@ from reservations.models import Person
 from reservations.models import ReservationStatus
 from reservations.models import Reservation
 from rest_framework.response import Response
+from reservations.services import ReservationService
 
 
 class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+
+    def destroy(self, request, *args, **kwargs):
+        ReservationService.delete(self.get_object().id)
+        return Response(data='delete success')
 
     def create(self, request, *args, **kwargs):
         author = Person.objects.get(user=request.user)

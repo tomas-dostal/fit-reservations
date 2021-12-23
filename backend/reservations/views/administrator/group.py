@@ -18,6 +18,7 @@ from reservations.models import Person
 class AdminGroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
 
     def destroy(self, request, *args, **kwargs):
         GroupService.delete(self.get_object().id)

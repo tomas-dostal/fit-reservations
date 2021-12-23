@@ -46,7 +46,9 @@ class PersonService:
     @staticmethod
     def delete(user_id):
         try:
-            Person.delete(Person.objects.get(pk=user_id))
+            person = Person.objects.get(pk=user_id)
+            person.user.delete()
+            Person.delete(person)
             return True
         except Person.DoesNotExist:
             return False
@@ -143,7 +145,13 @@ class GroupService:
                 if len(managed_groups) < 2:
                     manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
-            Room.delete(group)
+
+            rooms = RoomService.find_rooms_for_group(group)
+
+            for room in rooms:
+                RoomService.delete(room.id)
+
+            Group.delete(group)
             return True
         except Group.DoesNotExist:
             return False
@@ -369,7 +377,10 @@ class ReservationService:
     @staticmethod
     def delete(reservation_id):
         try:
-            Reservation.delete(Reservation.objects.get(pk=reservation_id))
+            reservation = Reservation.objects.get(pk=reservation_id)
+            for status in reservation.reservation_status.all():
+                status.delete()
+            Reservation.delete(reservation)
             return True
         except Reservation.DoesNotExist:
             return False
