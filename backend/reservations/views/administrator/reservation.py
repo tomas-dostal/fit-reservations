@@ -14,12 +14,19 @@ from reservations.models import ReservationStatus
 from reservations.models import Reservation
 from rest_framework.response import Response
 from reservations.services import ReservationService
+from reservations.permissions import ReservationPermission
 
 
 class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [ReservationPermission]
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Reservation.objects.all()
+        return ReservationService.find_managed_reservations(self.request.user)
 
     def destroy(self, request, *args, **kwargs):
         ReservationService.delete(self.get_object().id)
@@ -76,7 +83,10 @@ class AdminReservationTemplateView(ListView):
     )
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
-        paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
+        if request.user.is_superuser:
+            paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
+        else:
+            paginator = Paginator(ReservationService.find_managed_reservations(request.user), DEFAULT_PAGE_SIZE)
         try:
             reservations = paginator.page(page)
         except PageNotAnInteger:
