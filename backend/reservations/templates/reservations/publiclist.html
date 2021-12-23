@@ -19,8 +19,8 @@
         <tr>
             <th>#</th>
             <th>Autor</th>
-            <th>Vlastník</th>
             <th>Místnost</th>
+            <th>Platnost</th>
             <th>Stav</th>
         </tr>
         </thead>
@@ -30,8 +30,8 @@
             <td><a class="id"
                    href="{% url 'admin_reservation_view' reservation_id=reservation.id %}">{{reservation.id}}</a></td>
             <td>{{reservation.author.name}} {{reservation.author.surname}}</td>
-            <td>{{reservation.owner.name}} {{reservation.owner.surname}}</td>
             <td>{{reservation.room.name}}</td>
+            <td>{{reservation.dt_from|date:"d.m.Y H:m:s"}} - {{reservation.dt_to|date:"d.m.Y H:m:s"}}</td>
             <td>
                 {% if reservation.current_status %}
                 {{reservation.current_status.status}}
