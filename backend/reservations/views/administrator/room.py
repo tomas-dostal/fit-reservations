@@ -18,12 +18,25 @@ from rest_framework.response import Response
 from reservations.models import Person
 from reservations.services import ReservationService
 from reservations.models import ReservationStatus
+from reservations.services import PersonService
+from reservations.permissions import RoomPermission
 
 
 class AdminRoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
-    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = ['get', 'post', 'patch', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [RoomPermission]
+
+    def get_permissions(self):
+        if self.action == 'lock' or self.action == 'access':
+            return []
+        return super(AdminRoomViewSet, self).get_permissions()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Room.objects.all()
+        return RoomService.find_managed_rooms(self.request.user)
 
     def destroy(self, request, *args, **kwargs):
         RoomService.delete(self.get_object().id)
@@ -50,6 +63,13 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
             new_manager.user.save()
         return super().update(request, *args, **kwargs)
 
+    def partial_update(self, request, *args, **kwargs):
+        kwargs['partial'] = True
+        request._full_data = {
+            'manager': request.data['manager']
+        }
+        return self.update(request, *args, **kwargs)
+
     @action(detail=True, methods=['GET'])
     def lock(self, request, pk):
         room = RoomService.find_by_id(pk)
@@ -74,7 +94,7 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
     def access(self, request, pk):
         room = RoomService.find_by_id(pk)
 
-        if request.user.is_superuser:
+        if request.user.is_superuser or not room.locked:
             return Response(data='Access granted')
 
         reservations = ReservationService.find_reservations_for_room(room)
@@ -104,7 +124,7 @@ class AdminRoomTemplateView(ListView):
         if request.user.is_superuser:
             paginator = Paginator(RoomService.find_all(), DEFAULT_PAGE_SIZE)
         else:
-            paginator = Paginator(RoomService.find_managed_rooms(request.user), DEFAULT_PAGE_SIZE)
+            paginator = Paginator(RoomService.find_managed_rooms_to_change(request.user), DEFAULT_PAGE_SIZE)
 
         try:
             rooms = paginator.page(page)

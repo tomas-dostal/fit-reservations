@@ -290,6 +290,20 @@ class RoomService:
 
         return directly_managed
 
+    @staticmethod
+    def find_managed_rooms_to_change(user):
+        person = Person.objects.get(user=user)
+        managed_groups = Group.objects.filter(manager=person)
+
+        subgroups = Group.objects.none()
+        for group in managed_groups:
+            subgroups = subgroups | GroupService.find_all_subgroups(group)
+        managed_rooms = Room.objects.none()
+        for subgroup in subgroups:
+            managed_rooms = managed_rooms | RoomService.find_rooms_for_group(subgroup)
+
+        return managed_rooms
+
 
 class ReservationStatusService:
     @staticmethod
