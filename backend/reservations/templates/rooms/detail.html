@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
+{% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/user-hover-profile.js' %}"></script>
+<script>
+    jQuery(document).ready(function () {
+        let hoverProfile = new UserHoverProfile();
+    });
+</script>
+{% endblock %}
+
 {% block content  %}
-    <header>
-        <h2>Harmonogram mísnosti {{ room.building.name }}:{{ room.name }}</h2>
-    </header>
+<header>
+    <h2>Harmonogram mísnosti {{ room.building.name }}:{{ room.name }}</h2>
+</header>
 
 <section>
     <div class="errors">
@@ -17,6 +27,7 @@
     <table class="list persons">
         <thead>
         <tr>
+            <th>Vlastník</th>
             <th>Obsazeno od</th>
             <th>Obsazeno do</th>
         </tr>
@@ -24,6 +35,15 @@
         <tbody>
         {% for reservation in reservations %}
         <tr>
+            <td>
+                <div class="tooltip person-profile" data-id="{{reservation.owner.id}}">
+                    <a href="#">{{reservation.owner.name}} {{reservation.owner.surname}}</a>
+                    <div class="tooltiptext">
+                        <div class="title"></div>
+                        <ul class="properties"></ul>
+                    </div>
+                </div>
+            </td>
             <td>{{reservation.dt_from|date:"d.m.Y H:m:s"}}</td>
             <td>{{reservation.dt_to|date:"d.m.Y H:m:s"}}</td>
         </tr>
@@ -37,4 +57,5 @@
     <p>Harmonogram místnosti je prázdný</p>
     {% endif %}
 </section>
+
 {% endblock %}
