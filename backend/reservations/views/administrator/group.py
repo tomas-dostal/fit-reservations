@@ -13,12 +13,14 @@ from reservations.forms import GroupForm
 from backend.settings import DEFAULT_PAGE_SIZE
 from rest_framework.response import Response
 from reservations.models import Person
+from reservations.permissions import AdminPermission
 
 
 class AdminGroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [AdminPermission]
 
     def destroy(self, request, *args, **kwargs):
         GroupService.delete(self.get_object().id)

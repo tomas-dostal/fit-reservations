@@ -10,12 +10,14 @@ from reservations.models import Building
 from reservations.services import BuildingService
 from reservations.forms import BuildingForm
 from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.permissions import AdminPermission
 
 
 class AdminBuildingViewSet(viewsets.ModelViewSet):
     queryset = Building.objects.all()
     serializer_class = BuildingSerializer
     http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [AdminPermission]
 
 
 class AdminBuildingTemplateView(ListView):

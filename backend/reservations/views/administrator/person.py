@@ -12,12 +12,14 @@ from reservations.forms import *
 from backend.settings import DEFAULT_PAGE_SIZE
 from rest_framework.response import Response
 from reservations.services import PersonService
+from reservations.permissions import AdminPermission
 
 
 class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [AdminPermission]
 
     def destroy(self, request, *args, **kwargs):
         PersonService.delete(self.get_object().id)
