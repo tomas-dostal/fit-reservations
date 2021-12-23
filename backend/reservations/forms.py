@@ -56,6 +56,7 @@ class BuildingForm(ModelForm):
 class GroupForm(ModelForm):
     class Meta:
         model = Group
+        labels = {"name": "Název", "parent": "Nadřazená skupina", "member": "Členové", "manager": "Správce"}
         fields = "__all__"
 
 
@@ -102,8 +103,8 @@ class AdminReservationForm(ModelForm):
             "room": "Místnost",
             "owner": "Vlastník",
             "attendees": "Uživatelé",
-            "fd_from": "Platnost od",
-            "fd_to": "Platnost do",
+            "dt_from": "Platnost od",
+            "dt_to": "Platnost do",
         }
         widgets = {
             "dt_from": DateTimeInput(attrs={"type": "datetime-local"}),
