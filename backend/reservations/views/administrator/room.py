@@ -1,3 +1,5 @@
+from datetime import datetime
+from pytz import timezone
 from django.contrib.auth.models import Permission
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
@@ -11,9 +13,11 @@ from reservations.serializers import RoomSerializer
 from reservations.services import RoomService
 from reservations.forms import RoomForm, RoomGroupManagerForm
 from backend.settings import DEFAULT_PAGE_SIZE
+from rest_framework.decorators import action
 from rest_framework.response import Response
-
 from reservations.models import Person
+from reservations.services import ReservationService
+from reservations.models import ReservationStatus
 
 
 class AdminRoomViewSet(viewsets.ModelViewSet):
@@ -45,6 +49,44 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
             new_manager.user.user_permissions.add(Permission.objects.get(codename="is_room_manager"))
             new_manager.user.save()
         return super().update(request, *args, **kwargs)
+
+    @action(detail=True, methods=['GET'])
+    def lock(self, request, pk):
+        room = RoomService.find_by_id(pk)
+
+        if request.user.is_superuser:
+            room.locked = not room.locked
+            room.save()
+            return Response(data='Locking or unlocking successful')
+
+        reservations = ReservationService.find_reservations_for_person(request.user)
+
+        for reservation in reservations:
+            if reservation.room == room:
+                if reservation.dt_from < datetime.now(timezone('Europe/Berlin')) < reservation.dt_to:
+                    room.locked = not room.locked
+                    room.save()
+                    return Response(data='Locking or unlocking successful')
+
+        return Response(data='Cant lock or unlock this room', status=403)
+
+    @action(detail=True, methods=['GET'])
+    def access(self, request, pk):
+        room = RoomService.find_by_id(pk)
+
+        if request.user.is_superuser:
+            return Response(data='Access granted')
+
+        reservations = ReservationService.find_reservations_for_room(room)
+
+        person = Person.objects.get(user=request.user)
+
+        for reservation in reservations:
+            if reservation.dt_from < datetime.now(timezone('Europe/Berlin')) < reservation.dt_to and \
+                    reservation.reservation_status.last().status == ReservationStatus.APPROVED:
+                if person in reservation.attendees.all() or person == reservation.owner:
+                    return Response(data='Access granted')
+        return Response(data='Access denied')
 
 
 class AdminRoomTemplateView(ListView):
