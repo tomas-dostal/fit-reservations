@@ -306,10 +306,11 @@ class RoomService:
 
     @staticmethod
     def set_rooms_group(group, room_ids):
+        prev_rooms = Room.objects.filter(group=group)
+        prev_rooms.update(group=None)
         rooms = Room.objects.filter(pk__in=room_ids)
         rooms.update(group=group)
         return
-
 
 
 class ReservationStatusService:
