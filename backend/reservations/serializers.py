@@ -111,3 +111,13 @@ class ReservationSerializer(serializers.ModelSerializer):
         )
         reservation.attendees.set(attendees)
         return reservation
+
+    def update(self, instance, validated_data):
+        attendees = validated_data.pop("attendees")
+        Reservation.objects.filter(pk=instance.id).update(
+            author=Person.objects.get(user=self.context['request'].user),
+            **validated_data
+        )
+        reservation = Reservation.objects.get(pk=instance.id)
+        reservation.attendees.set(attendees)
+        return reservation
