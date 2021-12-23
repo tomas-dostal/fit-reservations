@@ -304,6 +304,13 @@ class RoomService:
 
         return managed_rooms
 
+    @staticmethod
+    def set_rooms_group(group, room_ids):
+        rooms = Room.objects.filter(pk__in=room_ids)
+        rooms.update(group=group)
+        return
+
+
 
 class ReservationStatusService:
     @staticmethod

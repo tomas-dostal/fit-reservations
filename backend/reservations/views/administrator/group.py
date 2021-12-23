@@ -11,15 +11,18 @@ from reservations.models import Group
 from reservations.services import GroupService
 from reservations.forms import GroupForm
 from backend.settings import DEFAULT_PAGE_SIZE
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from reservations.models import Person
 from reservations.permissions import AdminPermission
+from reservations.services import PersonService
+from reservations.services import RoomService
 
 
 class AdminGroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = ['get', 'post', 'patch', 'delete', 'put', 'head', 'options', 'trace', ]
     permission_classes = [AdminPermission]
 
     def destroy(self, request, *args, **kwargs):
@@ -34,6 +37,8 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
         return super().create(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
+        if kwargs['partial']:
+            return super().update(request, *args, **kwargs)
         old_manager = Person.objects.get(pk=self.get_object().manager.id)
         if old_manager:
             managed_groups = Group.objects.filter(manager=old_manager)
@@ -46,6 +51,27 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
             new_manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
             new_manager.user.save()
         return super().update(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        if 'member' not in request.data:
+            return Response(data='Member field not specified', status=400)
+        kwargs['partial'] = True
+        request._full_data = {
+            'member': request.data['member']
+        }
+        return self.update(request, *args, **kwargs)
+
+    @action(detail=True, methods=['PATCH'])
+    def set_rooms(self, request, pk):
+        if 'rooms' not in request.data:
+            return Response(data='Rooms field not specified', status=400)
+        try:
+            group = GroupService.find_by_id(pk)
+        except Group.DoesNotExist:
+            return Response(data='Group not found', status=404)
+
+        RoomService.set_rooms_group(group, request.data['rooms'])
+        return Response(status=204)
 
 
 class AdminGroupTemplateView(ListView):
