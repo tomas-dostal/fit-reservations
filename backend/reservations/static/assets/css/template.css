@@ -200,7 +200,6 @@ main.container {
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -217,6 +216,12 @@ main.container {
     /* Fade in tooltip */
     opacity: 0;
     transition: opacity 0.3s;
+        padding: 0.5rem;
+}
+
+.tooltip .tooltiptext .title{
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 /* Tooltip arrow */
