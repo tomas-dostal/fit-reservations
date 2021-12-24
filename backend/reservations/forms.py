@@ -1,8 +1,10 @@
+from datetime import datetime
 import django.forms as forms
+from django.core.validators import EmailValidator
 from django.forms import ModelForm, DateTimeInput
+from pytz import timezone
 from reservations.models import *
 from reservations.services import *
-
 from reservations.models import Person
 
 
@@ -19,7 +21,7 @@ class PersonForm(ModelForm):
 
     name = forms.CharField(label="Jméno")
     surname = forms.CharField(label="Příjmení")
-    email = forms.CharField()
+    email = forms.CharField(validators=[EmailValidator])
     is_admin = forms.BooleanField(required=False)
     password = forms.CharField(widget=forms.PasswordInput(), label="Heslo")
 
@@ -115,6 +117,8 @@ class AdminReservationForm(ModelForm):
         dt_to = cleaned_data.get("dt_to")
         if dt_to < dt_from:
             raise forms.ValidationError("End date should be greater than start date.")
+        if dt_from < datetime.now(timezone('Europe/Berlin')):
+            raise forms.ValidationError("Start date should be greater than current date")
 
 
 class ReservationForm(ModelForm):
@@ -148,3 +152,5 @@ class ReservationForm(ModelForm):
         dt_to = cleaned_data.get("dt_to")
         if dt_to < dt_from:
             raise forms.ValidationError("End date should be greater than start date.")
+        if dt_from < datetime.now(timezone('Europe/Berlin')):
+            raise forms.ValidationError("Start date should be greater than current date")

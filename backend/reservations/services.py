@@ -46,7 +46,9 @@ class PersonService:
     @staticmethod
     def delete(user_id):
         try:
-            Person.delete(Person.objects.get(pk=user_id))
+            person = Person.objects.get(pk=user_id)
+            person.user.delete()
+            Person.delete(person)
             return True
         except Person.DoesNotExist:
             return False
@@ -143,7 +145,13 @@ class GroupService:
                 if len(managed_groups) < 2:
                     manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
-            Room.delete(group)
+
+            rooms = RoomService.find_rooms_for_group(group)
+
+            for room in rooms:
+                RoomService.delete(room.id)
+
+            Group.delete(group)
             return True
         except Group.DoesNotExist:
             return False
@@ -282,6 +290,28 @@ class RoomService:
 
         return directly_managed
 
+    @staticmethod
+    def find_managed_rooms_to_change(user):
+        person = Person.objects.get(user=user)
+        managed_groups = Group.objects.filter(manager=person)
+
+        subgroups = Group.objects.none()
+        for group in managed_groups:
+            subgroups = subgroups | GroupService.find_all_subgroups(group)
+        managed_rooms = Room.objects.none()
+        for subgroup in subgroups:
+            managed_rooms = managed_rooms | RoomService.find_rooms_for_group(subgroup)
+
+        return managed_rooms
+
+    @staticmethod
+    def set_rooms_group(group, room_ids):
+        prev_rooms = Room.objects.filter(group=group)
+        prev_rooms.update(group=None)
+        rooms = Room.objects.filter(pk__in=room_ids)
+        rooms.update(group=group)
+        return
+
 
 class ReservationStatusService:
     @staticmethod
@@ -369,7 +399,10 @@ class ReservationService:
     @staticmethod
     def delete(reservation_id):
         try:
-            Reservation.delete(Reservation.objects.get(pk=reservation_id))
+            reservation = Reservation.objects.get(pk=reservation_id)
+            for status in reservation.reservation_status.all():
+                status.delete()
+            Reservation.delete(reservation)
             return True
         except Reservation.DoesNotExist:
             return False
@@ -395,6 +428,7 @@ class ReservationService:
 
         reservation.attendees.set(data.get("attendees"))
         reservation.reservation_status.add(reservation_status)
+        reservation.save()
 
         return reservation
 
@@ -412,6 +446,20 @@ class ReservationService:
         )
 
     @staticmethod
+    def find_all_reservations_for_room(room):
+        return Reservation.objects.filter(room=room)
+
+    @staticmethod
     def find_reservations_for_person(user):
         person = Person.objects.get(user=user)
         return Reservation.objects.filter(owner=person)
+
+    @staticmethod
+    def find_managed_reservations(user):
+        managed_rooms = RoomService.find_managed_rooms(user)
+        managed_reservations = Reservation.objects.none()
+
+        for room in managed_rooms:
+            managed_reservations = managed_reservations | ReservationService.find_all_reservations_for_room(room)
+
+        return managed_reservations
