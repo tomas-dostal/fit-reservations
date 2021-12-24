@@ -60,6 +60,10 @@ class Person(models.Model):
         self.user.email = val
         self.user.save()
 
+    @property
+    def groups(self):
+        return (Group.objects.filter(member=self) | Group.objects.filter(manager=self)).distinct()
+
 
 class Building(models.Model):
     name = models.CharField(max_length=50)
@@ -80,6 +84,10 @@ class Group(models.Model):
     )
 
     manager = models.ForeignKey(Person, on_delete=models.CASCADE)
+
+    @property
+    def rooms(self):
+        return Room.objects.filter(group=self)
 
     def __str__(self):
         return "%s (manager: %s)" % (self.name, self.manager)

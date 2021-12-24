@@ -10,11 +10,20 @@ from reservations.models import *
 from reservations.services import *
 from reservations.forms import *
 from backend.settings import DEFAULT_PAGE_SIZE
+from rest_framework.response import Response
+from reservations.services import PersonService
+from reservations.permissions import AdminPermission
 
 
 class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [AdminPermission]
+
+    def destroy(self, request, *args, **kwargs):
+        PersonService.delete(self.get_object().id)
+        return Response(data='delete success')
 
 
 class AdminPersonTemplateView(ListView):
@@ -26,7 +35,6 @@ class AdminPersonTemplateView(ListView):
     def person_get_view(request, person_id):
         person = PersonService.find_by_id(person_id)
         template = loader.get_template("administrator/persons/detail.html")
-        print(person)
 
         return HttpResponse(template.render({"person": person}, request))
 
