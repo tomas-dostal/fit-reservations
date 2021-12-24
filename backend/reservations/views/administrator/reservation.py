@@ -9,11 +9,67 @@ from reservations.forms import AdminReservationForm
 from reservations.serializers import *
 from reservations.services import *
 from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.models import Person
+from reservations.models import ReservationStatus
+from reservations.models import Reservation
+from rest_framework.response import Response
+from reservations.services import ReservationService
+from reservations.permissions import ReservationPermission
 
 
 class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
+    http_method_names = ['get', 'post', 'patch', 'delete', 'put', 'head', 'options', 'trace', ]
+    permission_classes = [ReservationPermission]
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Reservation.objects.all()
+        return ReservationService.find_managed_reservations(self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        ReservationService.delete(self.get_object().id)
+        return Response(data='delete success')
+
+    def create(self, request, *args, **kwargs):
+        author = Person.objects.get(user=request.user)
+        reservation_status = ReservationStatus.objects.create(
+            author=author, note=request.data["note"] if "note" in request.data else "Reservation"
+        )
+        request.data["author"] = author.id
+        reservation_data = super().create(request, *args, **kwargs).data
+        reservation_data["reservation_status"] = [reservation_status.id]
+        reservation = Reservation.objects.get(dt_created=reservation_data["dt_created"])
+        reservation.reservation_status.add(reservation_status)
+        reservation.save()
+        return Response(reservation_data)
+
+    def update(self, request, *args, **kwargs):
+        author = Person.objects.get(user=request.user)
+        reservation_status = ReservationStatus.objects.create(
+            author=author, note=request.data["note"] if "note" in request.data else "Reservation"
+        )
+        request.data["author"] = author.id
+        reservation_data = super().update(request, *args, **kwargs).data
+        reservation = self.get_object()
+        reservation.reservation_status.add(reservation_status)
+        reservation.save()
+
+        reservation_data["reservation_status"] = [status.id for status in reservation.reservation_status.all()]
+        return Response(reservation_data)
+
+    def partial_update(self, request, *args, **kwargs):
+        if 'attendees' not in request.data:
+            return Response(data='Attendees to change not specified', status=400)
+        kwargs['partial'] = True
+        request._full_data = {
+            'attendees': request.data['attendees']
+        }
+        return self.update(request, *args, **kwargs)
+
+    def get_serializer_context(self):
+        return {"request": self.request}
 
 
 class AdminReservationTemplateView(ListView):
@@ -36,8 +92,12 @@ class AdminReservationTemplateView(ListView):
     )
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
-        # FIXME: FindManagerReservations
-        paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
+
+        if request.user.is_superuser:
+            paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
+        else:
+            paginator = Paginator(ReservationService.find_managed_reservations(request.user), DEFAULT_PAGE_SIZE)
+
         try:
             reservations = paginator.page(page)
         except PageNotAnInteger:
