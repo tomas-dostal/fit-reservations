@@ -27,8 +27,7 @@
         <tbody>
         {% for reservation in reservations %}
         <tr>
-            <td><a class="id"
-                   href="{% url 'admin_reservation_view' reservation_id=reservation.id %}">{{reservation.id}}</a></td>
+            <td>{{reservation.id}}</td>
             <td>{{reservation.author.name}} {{reservation.author.surname}}</td>
             <td>{{reservation.room.name}}</td>
             <td>{{reservation.dt_from|date:"d.m.Y H:m:s"}} - {{reservation.dt_to|date:"d.m.Y H:m:s"}}</td>
