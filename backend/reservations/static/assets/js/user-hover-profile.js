@@ -17,10 +17,15 @@ class UserHoverProfile {
                     .then(response => response.json())
                     .then(data => {
                         let person = data;
-                        let name = person.name + " " + person.surname;
+                        let name = person.user.first_name + " " + person.user.last_name;
 
                         jQuery(this).find(".tooltiptext .title").html(name);
-                        // TODO add more
+
+                        let properties = "";
+                        properties += "<li>" + person.user.email + "</li>";
+                        properties += "<li>" + person.phone_number + "</li>";
+
+                        jQuery(this).find(".tooltiptext ul.properties").html(properties);
                     })
                     .catch((error) => {
                         console.error('Error:', error);
