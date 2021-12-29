@@ -22,6 +22,15 @@
                 </li>
 
                 <li>
+                    <div class="description">Skupiny</div>
+                    <ul class="value inline">
+                        {% for group in person.groups.all %}
+                        <li><a href="{% url 'admin_group_view' group_id=group.id %}">{{ group.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+
+                <li>
                     <div class="description">Uživatel místností</div>
                     <ul class="value inline">
                         {% for room in person.occupy.all %}
