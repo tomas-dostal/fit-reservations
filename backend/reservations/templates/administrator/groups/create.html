@@ -1,14 +1,10 @@
 {% extends 'administrator/base.html' %}
 
 {% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
 <script>
-    jQuery(document).ready(function () {
-        jQuery('#id_member').multiselect({
-            columns: 1,
-            search: true,
-            placeholder: 'Zvolte uživatele',
-        });
-    });
+    let members = new Multiselect("id_member", 'Zvolte uživatele');
 </script>
 {% endblock%}
 

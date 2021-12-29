@@ -1,14 +1,10 @@
 {% extends 'administrator/base.html' %}
 
 {% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
 <script>
-    jQuery(document).ready(function () {
-        jQuery('#id_occupy').multiselect({
-            columns: 1,
-            search: true,
-            placeholder: 'Zvolte místnosti',
-        });
-    });
+    let rooms = new Multiselect("id_occupy", 'Zvolte místnosti');
 </script>
 {% endblock%}
 

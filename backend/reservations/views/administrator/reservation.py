@@ -145,4 +145,4 @@ class AdminReservationTemplateView(ListView):
             if not ReservationService.update(form.cleaned_data):
                 return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
             return redirect("/administrator/reservations/")
-        return HttpResponse(template.render({"form": form}, request))
+        return HttpResponse(template.render({"form": form, "reservation":instance}, request))

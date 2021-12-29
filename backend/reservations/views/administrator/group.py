@@ -128,4 +128,4 @@ class AdminGroupTemplateView(ListView):
             GroupService.update(form, group_id)
             return redirect("/administrator/groups/")
         template = loader.get_template("administrator/groups/update.html")
-        return HttpResponse(template.render({"form": form}, request))
+        return HttpResponse(template.render({"form": form, "group": instance}, request))
