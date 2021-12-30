@@ -44,7 +44,6 @@ class AjaxMultiselect extends Multiselect {
         // Create request object.
         let data = {};
         data[this.attrName] = newValue;
-        console.log(data);
 
         // Get CSRF token
         let csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -60,7 +59,7 @@ class AjaxMultiselect extends Multiselect {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                //console.log('Success:', data);
             })
             .catch((error) => {
                 console.error('Error:', error);
