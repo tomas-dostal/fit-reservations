@@ -49,10 +49,13 @@
                 {% endif %}
             </td>
 
-            <td>
+            <td class="actions">
+                {% if user.is_superuser %}
                 <a class="button green" href="{% url 'admin_reservation_update' reservation_id=reservation.id %}">Upravit</a>
                 <a class="button red"
                    href="{% url 'admin_reservation_delete' reservation_id=reservation.id %}">Smazat</a>
+                {% endif %}
+                <a class="button green" href="{% url 'admin_status_create' reservation_id=reservation.id %}">Změnit stav</a>
             </td>
         </tr>
         {% endfor %}

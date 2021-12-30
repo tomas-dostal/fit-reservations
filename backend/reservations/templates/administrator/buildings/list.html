@@ -34,7 +34,7 @@
             <td><a class="id" href="{% url 'admin_building_view' building_id=building.id %}">{{building.id}}</a></td>
             <td>{{building.name}}</td>
 
-            <td>
+            <td class="actions">
                 <a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit</a>
                 <a class="button red" href="{% url 'admin_building_delete' building_id=building.id %}">Smazat</a>
             </td>
