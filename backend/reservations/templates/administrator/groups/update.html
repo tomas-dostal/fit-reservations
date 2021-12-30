@@ -1,8 +1,16 @@
 {% extends 'administrator/base.html' %}
 
+{% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
+<script>
+    let members = new AjaxMultiselect("id_member", "/api/groups/{{group.id}}/", "member", 'Zvolte uživatele');
+</script>
+{% endblock%}
+
 {% block content  %}
 <header>
-    <h2>Úprava: {{person.name}} {{person.surname}}</h2>
+    <h2>Úprava skupiny</h2>
 </header>
 
 <section>

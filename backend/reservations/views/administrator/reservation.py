@@ -20,7 +20,16 @@ from reservations.permissions import ReservationPermission
 class AdminReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    http_method_names = ['get', 'post', 'patch', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = [
+        "get",
+        "post",
+        "patch",
+        "delete",
+        "put",
+        "head",
+        "options",
+        "trace",
+    ]
     permission_classes = [ReservationPermission]
 
     def get_queryset(self):
@@ -30,7 +39,7 @@ class AdminReservationViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         ReservationService.delete(self.get_object().id)
-        return Response(data='delete success')
+        return Response(data="delete success")
 
     def create(self, request, *args, **kwargs):
         author = Person.objects.get(user=request.user)
@@ -60,12 +69,10 @@ class AdminReservationViewSet(viewsets.ModelViewSet):
         return Response(reservation_data)
 
     def partial_update(self, request, *args, **kwargs):
-        if 'attendees' not in request.data:
-            return Response(data='Attendees to change not specified', status=400)
-        kwargs['partial'] = True
-        request._full_data = {
-            'attendees': request.data['attendees']
-        }
+        if "attendees" not in request.data:
+            return Response(data="Attendees to change not specified", status=400)
+        kwargs["partial"] = True
+        request._full_data = {"attendees": request.data["attendees"]}
         return self.update(request, *args, **kwargs)
 
     def get_serializer_context(self):
@@ -92,10 +99,12 @@ class AdminReservationTemplateView(ListView):
     )
     def reservations_get_view(request):
         page = request.GET.get("page", 1)
+
         if request.user.is_superuser:
             paginator = Paginator(ReservationService.find_all(), DEFAULT_PAGE_SIZE)
         else:
             paginator = Paginator(ReservationService.find_managed_reservations(request.user), DEFAULT_PAGE_SIZE)
+
         try:
             reservations = paginator.page(page)
         except PageNotAnInteger:
@@ -143,4 +152,4 @@ class AdminReservationTemplateView(ListView):
             if not ReservationService.update(form.cleaned_data):
                 return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
             return redirect("/administrator/reservations/")
-        return HttpResponse(template.render({"form": form}, request))
+        return HttpResponse(template.render({"form": form, "reservation": instance}, request))

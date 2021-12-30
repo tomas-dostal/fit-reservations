@@ -1,7 +1,14 @@
 {% extends 'administrator/base.html' %}
 
-{% block content  %}
+{% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
+<script>
+    let attendess = new Multiselect("id_attendees", 'Zvolte uživatele');
+</script>
+{% endblock%}
 
+{% block content  %}
 <header>
     <h2>Rezervace místnosti</h2>
 </header>

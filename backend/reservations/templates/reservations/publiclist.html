@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+<header>
+    <h2>Moje rezervace</h2>
+</header>
+
+<section>
+    <div class="errors">
+        {% if errors %}
+        {% for error in errors %}
+        <p> {{ error }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% if reservations %}
+    <table class="list persons">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Autor</th>
+            <th>Místnost</th>
+            <th>Platnost</th>
+            <th>Stav</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td>{{reservation.id}}</td>
+            <td>{{reservation.author.name}} {{reservation.author.surname}}</td>
+            <td>{{reservation.room.name}}</td>
+            <td>{{reservation.dt_from|date:"d.m.Y H:m:s"}} - {{reservation.dt_to|date:"d.m.Y H:m:s"}}</td>
+            <td>
+                {% if reservation.current_status %}
+                {{reservation.current_status.status}}
+                {% else %}
+                -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "layouts/pagination.html" with items=rooms %}
+
+    {% else %}
+    <p>Zadne nejsou k dispozici</p>
+    {% endif %}
+</section>
+{% endblock %}

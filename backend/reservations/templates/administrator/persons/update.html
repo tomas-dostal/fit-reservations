@@ -1,5 +1,13 @@
 {% extends 'administrator/base.html' %}
 
+{% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
+<script>
+    let rooms = new Multiselect("id_occupy", 'Zvolte místnosti');
+</script>
+{% endblock%}
+
 {% block content  %}
 <header>
     <h2>Úprava: {{person.name}} {{person.surname}}</h2>

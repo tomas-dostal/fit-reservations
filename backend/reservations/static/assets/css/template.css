@@ -52,6 +52,10 @@ table {
     border-spacing: 0;
 }
 
+.ms-options-wrap > .ms-options > ul label {
+    padding-left: 30px !important;
+}
+
 /** CSS template **/
 body {
     font-family: sans-serif;
@@ -117,6 +121,17 @@ nav#navigation > ul > li.login {
 nav#navigation > ul > li a {
     color: black;
     text-decoration: none;
+    padding: 5px;
+}
+
+nav#navigation > ul > li:not(.title, .active) a:hover {
+    background: darkgray;
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+nav#navigation > ul > li .welcome{
+    display: none;
 }
 
 /* Main content */
@@ -172,6 +187,59 @@ main.container {
 
 .button:hover {
     opacity: 0.8;
+}
+
+/* User detail tooltip */
+/* https://www.w3schools.com/howto/howto_css_tooltip.asp */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+        padding: 0.5rem;
+}
+
+.tooltip .tooltiptext .title{
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Sidebar */
@@ -245,7 +313,7 @@ table.list th, table.list td {
 
 table.list td a.id {
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: underline;
     color: black;
 }
 
@@ -273,6 +341,14 @@ table.list td a.id {
 
 #role-detail ul > li > .description {
     width: auto;
+}
+
+ul.inline {
+    display: block;
+}
+
+ul.inline > li {
+    display: inline-block;
 }
 
 .detail img {
@@ -319,7 +395,9 @@ table.list td a.id {
 }
 
 .button.submit {
-    margin-top: 2rem;
+    width: auto;
+    margin: 1rem auto;
+    display: block;
 }
 
 /* Pagination */
@@ -399,6 +477,20 @@ ul.pagination li:not(.active) a:hover {
     margin-bottom: 1rem;
 }
 
+/* Login */
+section.login {
+    text-align: center;
+}
+
+form.login-form {
+    display: inline-block;
+    width: auto;
+}
+
+form.login-form .field-label {
+    text-align: left;
+}
+
 /* Footer */
 footer {
     margin-top: 5rem;
@@ -414,4 +506,5 @@ footer p {
 footer a {
     display: block;
     text-align: center;
+    margin-top: 1rem;
 }

@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{{ section.title }}{% endblock %}</title>
+     <title>{% block title %}Rezervace učeben{% endblock %}</title>
     {% load static %}
+    <link rel="stylesheet" href="https://phpcoder.tech/multiselect/css/jquery.multiselect.css">
+
     <link rel="stylesheet" href="{% static 'assets/css/template.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/template_mobile.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://phpcoder.tech/multiselect/js/jquery.multiselect.js"></script>
+    {% block scripts %}
+    {% endblock %}
 </head>
 <body>
 <nav id="navigation">
     <ul>
         <li class="title"><h1><a href="{% url 'index' %}">Rezervační systém učeben</a></h1></li>
+        <li class="menu-item"><a href="{% url 'index' %}">Veřejné místnosti</a></li>
         <li class="menu-item"><a href="{% url 'reservation_create' %}">Nová rezervace</a></li>
-        <li class="menu-item"><a href="#!">Moje rezervace</a></li>
+        <li class="menu-item"><a href="{% url 'my_reservations_list' %}">Moje rezervace</a></li>
         {% if user.is_authenticated %}
-            <li class="menu-item login">Vitejte zpet {{ user }}, <a href="{% url 'logout' %}">Odhlasit</a></li>
+        <li class="menu-item login"><span class="welcome">Vitejte zpět {{ user.person.name }},</span> <a
+                href="{% url 'logout' %}">Odhlásit</a></li>
         {% else %}
-            <li class="menu-item login"><a href="{% url 'login' %}">Prihlasit</a></li>
+        <li class="menu-item login"><a href="{% url 'login' %}">Přihlásit</a></li>
         {% endif %}
     </ul>
 </nav>
@@ -34,8 +43,9 @@
 <footer>
     <hr/>
     <p>&copy; DFK 2021</p>
-    <!-- TODO: ADMIN ONLY -->
-    <a href="{% url 'admin_person_list' %}">Administrace</a>
+    {% if user.is_superuser or perms.reservations.is_room_manager or perms.reservations.is_group_manager %}
+    <a href="{% url 'admin_dashboard' %}">Administrace</a>
+    {% endif %}
 </footer>
 </body>
 </html>
