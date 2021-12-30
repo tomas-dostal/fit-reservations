@@ -5,6 +5,7 @@
 <script src="{% static 'assets/js/multiselect.js' %}"></script>
 <script>
     let members = new AjaxMultiselect("id_member", "/api/groups/{{group.id}}/", "member", 'Zvolte uživatele');
+    let rooms = new AjaxMultiselect("id_rooms", "/api/groups/{{group.id}}/set_rooms/", "rooms", 'Zvolte místnosti');
 </script>
 {% endblock%}
 

@@ -80,7 +80,7 @@ class AdminGroupViewSet(viewsets.ModelViewSet):
             return Response(data="Group not found", status=404)
 
         RoomService.set_rooms_group(group, request.data["rooms"])
-        return Response(status=204)
+        return Response(data="set success")
 
 
 class AdminGroupTemplateView(ListView):
