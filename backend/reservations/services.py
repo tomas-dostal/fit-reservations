@@ -128,11 +128,12 @@ class GroupService:
 
     @staticmethod
     def save(form):
-        form.save()
+        instance = form.save()
         manager = form.cleaned_data.get("manager")
         if manager:
             manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
             manager.user.save()
+        RoomService.set_rooms_group(instance, [room.id for room in form.cleaned_data.get("rooms")])
         return
 
     @staticmethod
@@ -168,11 +169,12 @@ class GroupService:
                     old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
                 old_manager.user.save()
 
-            form.save()
+            instance = form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
                 manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
+            RoomService.set_rooms_group(instance, [room.id for room in form.cleaned_data.get("rooms")])
             return True
         except Group.DoesNotExist:
             return False
