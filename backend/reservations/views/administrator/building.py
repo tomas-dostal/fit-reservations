@@ -16,7 +16,15 @@ from reservations.permissions import AdminPermission
 class AdminBuildingViewSet(viewsets.ModelViewSet):
     queryset = Building.objects.all()
     serializer_class = BuildingSerializer
-    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = [
+        "get",
+        "post",
+        "delete",
+        "put",
+        "head",
+        "options",
+        "trace",
+    ]
     permission_classes = [AdminPermission]
 
 

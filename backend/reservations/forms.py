@@ -119,7 +119,7 @@ class AdminReservationForm(ModelForm):
         dt_to = cleaned_data.get("dt_to")
         if dt_to < dt_from:
             raise forms.ValidationError("End date should be greater than start date.")
-        if dt_from < datetime.now(timezone('Europe/Berlin')):
+        if dt_from < datetime.now(timezone("Europe/Berlin")):
             raise forms.ValidationError("Start date should be greater than current date")
 
 
@@ -155,7 +155,7 @@ class ReservationForm(ModelForm):
         if dt_to < dt_from:
             raise forms.ValidationError("End date should be greater than start date.")
 
-        if dt_from < datetime.now(timezone('Europe/Berlin')):
+        if dt_from < datetime.now(timezone("Europe/Berlin")):
             raise forms.ValidationError("Start date should be greater than current date")
 
 

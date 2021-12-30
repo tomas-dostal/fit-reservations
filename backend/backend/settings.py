@@ -54,9 +54,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = "backend.urls"
 REST_FRAMEWORK = {
     "DEFAULT_METADATA_CLASS": "rest_framework.metadata.SimpleMetadata",
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
 }
 
 TEMPLATES = [

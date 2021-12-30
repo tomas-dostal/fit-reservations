@@ -25,11 +25,20 @@ from reservations.permissions import RoomPermission
 class AdminRoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
-    http_method_names = ['get', 'post', 'patch', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = [
+        "get",
+        "post",
+        "patch",
+        "delete",
+        "put",
+        "head",
+        "options",
+        "trace",
+    ]
     permission_classes = [RoomPermission]
 
     def get_permissions(self):
-        if self.action == 'lock' or self.action == 'access':
+        if self.action == "lock" or self.action == "access":
             return []
         return super(AdminRoomViewSet, self).get_permissions()
 
@@ -40,7 +49,7 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         RoomService.delete(self.get_object().id)
-        return Response(data='delete success')
+        return Response(data="delete success")
 
     def create(self, request, *args, **kwargs):
         manager = Person.objects.get(pk=request.data["manager"])
@@ -64,50 +73,50 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
         return super().update(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
-        if 'manager' not in request.data:
-            return Response(data='Manager to change not specified', status=400)
-        kwargs['partial'] = True
-        request._full_data = {
-            'manager': request.data['manager']
-        }
+        if "manager" not in request.data:
+            return Response(data="Manager to change not specified", status=400)
+        kwargs["partial"] = True
+        request._full_data = {"manager": request.data["manager"]}
         return self.update(request, *args, **kwargs)
 
-    @action(detail=True, methods=['GET'])
+    @action(detail=True, methods=["GET"])
     def lock(self, request, pk):
         room = RoomService.find_by_id(pk)
 
         if request.user.is_superuser:
             room.locked = not room.locked
             room.save()
-            return Response(data='Locking or unlocking successful')
+            return Response(data="Locking or unlocking successful")
 
         reservations = ReservationService.find_reservations_for_person(request.user)
 
         for reservation in reservations:
             if reservation.room == room:
-                if reservation.dt_from < datetime.now(timezone('Europe/Berlin')) < reservation.dt_to:
+                if reservation.dt_from < datetime.now(timezone("Europe/Berlin")) < reservation.dt_to:
                     room.locked = not room.locked
                     room.save()
-                    return Response(data='Locking or unlocking successful')
+                    return Response(data="Locking or unlocking successful")
 
-        return Response(data='Cant lock or unlock this room', status=403)
+        return Response(data="Cant lock or unlock this room", status=403)
 
-    @action(detail=True, methods=['GET'])
+    @action(detail=True, methods=["GET"])
     def access(self, request, pk):
         room = RoomService.find_by_id(pk)
         person = Person.objects.get(user=request.user)
 
         if request.user.is_superuser or not room.locked or room in person.occupy.all():
-            return Response(data='Access granted')
+            return Response(data="Access granted")
 
         reservations = ReservationService.find_reservations_for_room(room)
 
         for reservation in reservations:
-            if reservation.dt_from < datetime.now(timezone('Europe/Berlin')) < reservation.dt_to and \
-                    reservation.reservation_status.last().status == ReservationStatus.APPROVED:
+            if (
+                reservation.dt_from < datetime.now(timezone("Europe/Berlin")) < reservation.dt_to
+                and reservation.reservation_status.last().status == ReservationStatus.APPROVED
+            ):
                 if person in reservation.attendees.all() or person == reservation.owner:
-                    return Response(data='Access granted')
-        return Response(data='Access denied')
+                    return Response(data="Access granted")
+        return Response(data="Access denied")
 
 
 class AdminRoomTemplateView(ListView):

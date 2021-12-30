@@ -20,27 +20,33 @@ from reservations.permissions import ReservationStatusPermission
 class AdminReservationStatusViewSet(viewsets.ModelViewSet):
     queryset = ReservationStatus.objects.all()
     serializer_class = ReservationStatusSerializer
-    http_method_names = ['get', 'post', 'head', 'options', 'trace', ]
+    http_method_names = [
+        "get",
+        "post",
+        "head",
+        "options",
+        "trace",
+    ]
     permission_classes = [AdminPermission]
 
     def get_permissions(self):
-        if self.action == 'create':
+        if self.action == "create":
             return [ReservationStatusPermission()]
         return super(AdminReservationStatusViewSet, self).get_permissions()
 
     def create(self, request, *args, **kwargs):
-        if 'id' in request.data:
+        if "id" in request.data:
             reservation_id = request.data.pop("id")
         else:
-            return Response(data='Reservation id missing', status=400)
+            return Response(data="Reservation id missing", status=400)
         try:
             reservation = Reservation.objects.get(pk=reservation_id)
         except Reservation.DoesNotExist:
-            return Response(data='Reservation not found', status=404)
+            return Response(data="Reservation not found", status=404)
         managed_reservations = ReservationService.find_managed_reservations(request.user)
 
         if reservation not in managed_reservations.all() and not request.user.is_superuser:
-            return Response(data='Cant manage this reservation', status=403)
+            return Response(data="Cant manage this reservation", status=403)
 
         status_data = super().create(request, *args, **kwargs).data
         status = ReservationStatus.objects.get(dt_modified=status_data["dt_modified"])

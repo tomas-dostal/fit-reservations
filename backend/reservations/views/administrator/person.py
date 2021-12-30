@@ -18,12 +18,20 @@ from reservations.permissions import AdminPermission
 class AdminPersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
-    http_method_names = ['get', 'post', 'delete', 'put', 'head', 'options', 'trace', ]
+    http_method_names = [
+        "get",
+        "post",
+        "delete",
+        "put",
+        "head",
+        "options",
+        "trace",
+    ]
     permission_classes = [AdminPermission]
 
     def destroy(self, request, *args, **kwargs):
         PersonService.delete(self.get_object().id)
-        return Response(data='delete success')
+        return Response(data="delete success")
 
 
 class AdminPersonTemplateView(ListView):
