@@ -39,7 +39,7 @@
                 {{room.manager.surname}}</a></td>
             <td><a href="{% url 'admin_building_view' building_id=room.building.id %}">{{ room.building.name }}</a></td>
 
-            <td>
+            <td class="actions">
                 <a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit</a>
                 <a class="button red" href="{% url 'admin_room_delete' room_id=room.id %}">Smazat</a>
             </td>
