@@ -104,7 +104,7 @@ class AdminRoomViewSet(viewsets.ModelViewSet):
         room = RoomService.find_by_id(pk)
         person = Person.objects.get(user=request.user)
 
-        if request.user.is_superuser or not room.locked or room in person.occupy.all():
+        if request.user.is_superuser or not room.locked or room in RoomService.find_all_reservable_rooms(request.user):
             return Response(data="Access granted")
 
         reservations = ReservationService.find_reservations_for_room(room)
