@@ -3,12 +3,11 @@
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'admin_building_create' %}">Přidat budovu</a></li>
     </ul>
 </nav>
 
 <header>
-    <h2>Budovy</h2>
+    <h2>Místnosti</h2>
 </header>
 
 <section>
@@ -19,31 +18,35 @@
         {% endfor %}
         {% endif %}
     </div>
-    {% if buildings %}
+    {% if rooms %}
     <table class="list persons">
         <thead>
         <tr>
             <th>#</th>
             <th>Název</th>
+            <th>Správce</th>
+            <th>Budova</th>
             <th>Akce</th>
         </tr>
         </thead>
         <tbody>
-        {% for building in buildings %}
+        {% for room in rooms %}
         <tr>
-            <td><a class="id" href="{% url 'admin_building_view' building_id=building.id %}">{{building.id}}</a></td>
-            <td>{{building.name}}</td>
+            <td><a class="id" href="{% url 'admin_room_view' room_id=room.id %}">{{room.id}}</a></td>
+            <td>{{room.name}}</td>
+            <td>{{room.manager.name}} {{room.manager.surname}}</td>
+            <td>{{ room.building.name }}</td>
 
             <td>
-                <a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit</a>
-                <a class="button red" href="{% url 'admin_building_delete' building_id=building.id %}">Smazat</a>
+                <!-- TODO: MANAGER edit -->
+                <a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit</a>
             </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    {% include "layouts/pagination.html" with items=buildings %}
+    {% include "layouts/pagination.html" with items=rooms %}
 
     {% else %}
     <p>Zadne nejsou k dispozici</p>

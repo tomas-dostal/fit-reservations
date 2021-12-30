@@ -1,24 +1,68 @@
 {% extends 'administrator/base.html' %}
 
 {% block content  %}
-    {% if errors %}
+<nav id="toolbar">
+    <ul>
+        <li><a class="button green" href="{% url 'admin_reservation_create' %}">Vytvořit rezervaci</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h2>Rezervace</h2>
+</header>
+
+<section>
+    <div class="errors">
+        {% if errors %}
         {% for error in errors %}
-            <p> {{ error }}</p>
+        <p> {{ error }}</p>
         {% endfor %}
-    {% endif %}
+        {% endif %}
+    </div>
     {% if reservations %}
-        <ul>
-            {% for reservation in reservations %}
-                <ul>
-                    {% for reservation_status in reservation.reservation_status.all %}
-                        <a>reservation_status.status</a>
-                    {% endfor %}
-                </ul>
-                <li></li>
-            {% endfor %}
-        </ul>
+    <table class="list persons">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Autor</th>
+            <th>Vlastník</th>
+            <th>Místnost</th>
+            <th>Stav</th>
+            <th>Akce</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td><a class="id"
+                   href="{% url 'admin_reservation_view' reservation_id=reservation.id %}">{{reservation.id}}</a></td>
+            <td><a href="{% url 'admin_person_view' person_id=reservation.author.id %}">{{reservation.author.name}}
+                {{reservation.author.surname}}</a></td>
+            <td><a href="{% url 'admin_person_view' person_id=reservation.owner.id %}">{{reservation.owner.name}}
+                {{reservation.owner.surname}}</a></td>
+            <td><a href="{% url 'admin_room_view' room_id=reservation.room.id %}">{{reservation.room.name}}</a></td>
+            <td>
+                {% if reservation.current_status %}
+                {{reservation.current_status.status}}
+                {% else %}
+                -
+                {% endif %}
+            </td>
+
+            <td>
+                <a class="button green" href="{% url 'admin_reservation_update' reservation_id=reservation.id %}">Upravit</a>
+                <a class="button red"
+                   href="{% url 'admin_reservation_delete' reservation_id=reservation.id %}">Smazat</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% include "layouts/pagination.html" with items=reservations %}
+
     {% else %}
-        <p>Zadne nejsou k dispozici</p>
+    <p>Zadne nejsou k dispozici</p>
     {% endif %}
-    {% include "layouts/pagination.html" with items=persons %}
+</section>
 {% endblock %}

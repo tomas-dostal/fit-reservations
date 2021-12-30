@@ -25,6 +25,7 @@
         <tr>
             <th>#</th>
             <th>Název</th>
+            <th>Správce</th>
             <th>Budova</th>
             <th>Akce</th>
         </tr>
@@ -34,8 +35,10 @@
         <tr>
             <td><a class="id" href="{% url 'admin_room_view' room_id=room.id %}">{{room.id}}</a></td>
             <td>{{room.name}}</td>
+            <td><a href="{% url 'admin_person_view' person_id=room.manager.id %}">{{room.manager.name}}
+                {{room.manager.surname}}</a></td>
             <td><a href="{% url 'admin_building_view' building_id=room.building.id %}">{{ room.building.name }}</a></td>
-            <!-- Todo: Show actions only for administrator -->
+
             <td>
                 <a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit</a>
                 <a class="button red" href="{% url 'admin_room_delete' room_id=room.id %}">Smazat</a>

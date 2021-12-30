@@ -1,7 +1,14 @@
 {% extends 'administrator/base.html' %}
 
-{% block content  %}
+{% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
+<script>
+    let attendess = new AjaxMultiselect("id_attendees", "/api/reservations/{{reservation.id}}/", "attendees", 'Zvolte uživatele');
+</script>
+{% endblock%}
 
+{% block content  %}
 <header>
     <h2>Uprava rezervace</h2>
 </header>

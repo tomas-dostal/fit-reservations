@@ -1,5 +1,13 @@
 {% extends 'administrator/base.html' %}
 
+{% block scripts %}
+{% load static %}
+<script src="{% static 'assets/js/multiselect.js' %}"></script>
+<script>
+    let members = new Multiselect("id_member", 'Zvolte uživatele');
+</script>
+{% endblock%}
+
 {% block content  %}
 <header>
     <h2>Nová skupina</h2>

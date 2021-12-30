@@ -17,6 +17,7 @@ urlpatterns = [
     path("public-rooms/", views.RoomTemplateView.public_rooms_get_view, name="public_room_list"),
     path("public-rooms/<int:room_id>/", views.RoomTemplateView.public_room_get_view, name="public_room_view"),
     path("reservations/create", views.ReservationTemplateView.reservation_create_view, name="reservation_create"),
-    path("login", auth_views.LoginView.as_view(redirect_field_name="/"), name="login"),
+    path("my-reservations", views.ReservationTemplateView.reservations_get_view, name="my_reservations_list"),
+    path("login", views.CustomLoginView.as_view(redirect_field_name="/"), name="login"),
     path("logout", auth_views.LogoutView.as_view(redirect_field_name="/"), name="logout"),
 ]

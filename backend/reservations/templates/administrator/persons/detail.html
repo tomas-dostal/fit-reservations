@@ -23,17 +23,18 @@
 
                 <li>
                     <div class="description">Skupiny</div>
-                    <!-- TODO: Print employee groups -->
-                    <ul class="value">
-
+                    <ul class="value inline">
+                        {% for group in person.groups.all %}
+                        <li><a href="{% url 'admin_group_view' group_id=group.id %}">{{ group.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
 
                 <li>
                     <div class="description">Uživatel místností</div>
-                    <ul class="value">
+                    <ul class="value inline">
                         {% for room in person.occupy.all %}
-                        <li>{{ room.name }}</li>
+                        <li><a href="{% url 'admin_room_view' room_id=room.id %}">{{ room.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

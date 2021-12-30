@@ -3,6 +3,7 @@ from django.urls import include, path
 from reservations import views
 
 urlpatterns = [
+    path("", views.AdminDashboard.get_dashboard, name="admin_dashboard"),
     path("persons/<int:person_id>/", views.AdminPersonTemplateView.person_get_view, name="admin_person_view"),
     path("persons/", views.AdminPersonTemplateView.persons_get_view, name="admin_person_list"),
     path("persons-ajax/", views.AdminPersonAjaxTemplateView.as_view(), name="admin_person_list_ajax"),
