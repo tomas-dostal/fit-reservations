@@ -128,11 +128,12 @@ class GroupService:
 
     @staticmethod
     def save(form):
-        form.save()
+        instance = form.save()
         manager = form.cleaned_data.get("manager")
         if manager:
             manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
             manager.user.save()
+        RoomService.set_rooms_group(instance, [room.id for room in form.cleaned_data.get("rooms")])
         return
 
     @staticmethod
@@ -168,11 +169,12 @@ class GroupService:
                     old_manager.user.user_permissions.remove(Permission.objects.get(codename="is_group_manager"))
                 old_manager.user.save()
 
-            form.save()
+            instance = form.save()
             manager = form.cleaned_data.get("manager")
             if manager:
                 manager.user.user_permissions.add(Permission.objects.get(codename="is_group_manager"))
                 manager.user.save()
+            RoomService.set_rooms_group(instance, [room.id for room in form.cleaned_data.get("rooms")])
             return True
         except Group.DoesNotExist:
             return False
@@ -260,11 +262,10 @@ class RoomService:
     @staticmethod
     def find_all_reservable_rooms(user):
         occupied = RoomService.find_occupied_rooms(user)
-        group_set = Person.objects.get(user=user).group_set
         in_group = Room.objects.none()
-        for group in group_set.all():
+        for group in Person.objects.get(user=user).groups.all():
             in_group = in_group | RoomService.find_rooms_for_group(group)
-        return occupied | in_group
+        return (occupied | in_group).distinct()
 
     @staticmethod
     def find_occupied_rooms(user):
