@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import user_passes_test
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -15,6 +16,7 @@ from reservations.permissions import AdminPermission
 from reservations.services import ReservationService
 from reservations.permissions import ReservationPermission
 from reservations.permissions import ReservationStatusPermission
+from reservations.services import RoomService
 
 
 class AdminReservationStatusViewSet(viewsets.ModelViewSet):
@@ -70,6 +72,8 @@ class AdminReservationStatusTemplateView(ListView):
         reservation = ReservationService.find_by_id(reservation_id)
         if not reservation:
             raise Http404("Reservation does not exist")
+        if reservation.room not in RoomService.find_managed_rooms(request.user):
+            raise PermissionDenied
 
         template = loader.get_template("administrator/reservation_status/create.html")
         form = ReservationStatusForm(request.POST or None)
