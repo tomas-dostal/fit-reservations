@@ -130,7 +130,7 @@ nav#navigation > ul > li:not(.title, .active) a:hover {
     text-decoration: underline;
 }
 
-nav#navigation > ul > li .welcome{
+nav#navigation > ul > li .welcome {
     display: none;
 }
 
@@ -216,10 +216,10 @@ main.container {
     /* Fade in tooltip */
     opacity: 0;
     transition: opacity 0.3s;
-        padding: 0.5rem;
+    padding: 0.5rem;
 }
 
-.tooltip .tooltiptext .title{
+.tooltip .tooltiptext .title {
     font-weight: bold;
     font-size: 1.1rem;
 }
@@ -290,6 +290,7 @@ nav#toolbar > ul > li {
 /* Data tables */
 table.list {
     width: 100%;
+    min-width: 550px;
 }
 
 table.list > thead > tr {
@@ -304,6 +305,11 @@ table.list > tbody > tr {
 table.list th {
     font-weight: bold;
     font-size: 1.05rem;
+}
+
+table.list td.actions .button{
+    margin: 2px;
+    display: inline-flex;
 }
 
 table.list th, table.list td {
