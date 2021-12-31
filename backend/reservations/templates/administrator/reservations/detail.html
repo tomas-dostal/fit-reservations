@@ -3,11 +3,15 @@
 {% block content  %}
 <nav id="toolbar">
     <ul>
+        {% if user.is_superuser %}
         <li><a class="button green" href="{% url 'admin_reservation_update' reservation_id=reservation.id %}">Upravit
-            rezervaci</a>
-        <li><a class="button green" href="{% url 'admin_status_create' reservation_id=reservation.id %}">Změnit stav</a>
+            rezervaci</a></li>
         <li><a class='button red' href="{% url 'admin_reservation_delete' reservation_id=reservation.id %}">Smazat
             rezervaci</a></li>
+        {% endif %}
+
+        <li><a class="button green" href="{% url 'admin_status_create' reservation_id=reservation.id %}">Změnit stav</a>
+        </li>
     </ul>
 </nav>
 
