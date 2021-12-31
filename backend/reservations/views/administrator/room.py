@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from django.contrib.auth.decorators import user_passes_test
+from reservations.decorators import user_passes_test
 from reservations.models import Room
 from reservations.serializers import RoomSerializer
 from reservations.services import RoomService
