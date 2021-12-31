@@ -3,9 +3,10 @@
 {% block content  %}
 <nav id="toolbar">
     <ul>
-        <li><a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit budovu</a>
-        <li><a class='button red' href="{% url 'admin_building_delete' building_id=building.id %}">Smazat budovu</a>
-        </li>
+        {% if user.is_superuser %}
+        <li><a class="button green" href="{% url 'admin_building_update' building_id=building.id %}">Upravit budovu</a></li>
+        <li><a class='button red' href="{% url 'admin_building_delete' building_id=building.id %}">Smazat budovu</a></li>
+        {% endif %}
     </ul>
 </nav>
 

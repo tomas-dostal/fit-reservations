@@ -4,7 +4,7 @@
 <nav id="toolbar">
     <ul>
         {% if user.is_superuser %}
-        <li><a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit místnost</a>
+        <li><a class="button green" href="{% url 'admin_room_update' room_id=room.id %}">Upravit místnost</a></li>
         <li><a class='button red' href="{% url 'admin_room_delete' room_id=room.id %}">Smazat místnost</a></li>
         {% endif %}
     </ul>
