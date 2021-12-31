@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -13,6 +12,7 @@ from backend.settings import DEFAULT_PAGE_SIZE
 from rest_framework.response import Response
 from reservations.services import PersonService
 from reservations.permissions import AdminPermission
+from reservations.decorators import user_passes_test
 
 
 class AdminPersonViewSet(viewsets.ModelViewSet):

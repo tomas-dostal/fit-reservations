@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import permission_required, user_passes_test
+from reservations.decorators import user_passes_test
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
