@@ -72,7 +72,7 @@ class AdminReservationStatusTemplateView(ListView):
         reservation = ReservationService.find_by_id(reservation_id)
         if not reservation:
             raise Http404("Reservation does not exist")
-        if reservation.room not in RoomService.find_managed_rooms(request.user):
+        if reservation.room not in RoomService.find_managed_rooms(request.user) and not request.user.is_superuser:
             raise PermissionDenied
 
         template = loader.get_template("administrator/reservation_status/create.html")
