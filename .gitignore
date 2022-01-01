@@ -151,3 +151,4 @@ crashlytics-build.properties
 fabric.properties
 
 /backend/db.sqlite3
+/.mypy_cache/
