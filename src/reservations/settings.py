@@ -86,6 +86,7 @@ WSGI_APPLICATION = "reservations.wsgi.application"
 
 # Replace me if you want to use sqlite3
 
+"""
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -96,13 +97,12 @@ DATABASES = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.environ.get("DB_HOST"),
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASS"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "NAME": os.environ.get("DB_NAME", "reservations_database"),
+        "USER": os.environ.get("DB_USER", "reservations_user"),
+        "PASSWORD": os.environ.get("DB_PASS", "password"),
     }
 }
-"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
