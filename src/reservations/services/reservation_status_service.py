@@ -1,6 +1,8 @@
 from datetime import datetime
-from reservations.models import *
+
 from django.db import models
+
+from reservations.models import *
 
 
 class ReservationStatusService:

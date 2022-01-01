@@ -1,7 +1,8 @@
-from reservations.models import *
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.db.utils import IntegrityError
+
+from reservations.models import *
 
 
 class PersonService:

@@ -1,8 +1,7 @@
 import django.forms as forms
 from django.core.validators import EmailValidator
-from django.forms import ModelForm, DateTimeInput
-from reservations.models import *
-from reservations.services import *
+from django.forms import ModelForm
+
 from reservations.models import Person
 
 

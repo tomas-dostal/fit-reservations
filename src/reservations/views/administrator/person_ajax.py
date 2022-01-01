@@ -1,6 +1,6 @@
 from ajax_datatable.views import AjaxDatatableView
-from django.template.loader import render_to_string
 from django.urls import reverse
+
 from reservations.models import Person
 
 

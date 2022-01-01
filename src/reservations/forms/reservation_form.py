@@ -1,8 +1,7 @@
-from datetime import datetime
 import django.forms as forms
 from django.forms import ModelForm, DateTimeInput
 from pytz import timezone
-from reservations.models import *
+
 from reservations.services import *
 
 
