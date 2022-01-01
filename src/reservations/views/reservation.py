@@ -1,14 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
-from django.shortcuts import redirect, render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
+
 from reservations.forms import ReservationForm
 from reservations.serializers import *
 from reservations.services import *
-from datetime import datetime
 from reservations.settings import DEFAULT_PAGE_SIZE
 
 

@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta
-from reservations.models import *
+
 from django.db import models
 from django.db.utils import IntegrityError
+
+from reservations.models import *
 from reservations.services.room_service import RoomService
 
 

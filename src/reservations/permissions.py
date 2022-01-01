@@ -1,7 +1,7 @@
 from rest_framework import permissions
-from reservations.models import Person
-from reservations.services import RoomService
+
 from reservations.services import ReservationService
+from reservations.services import RoomService
 
 
 class RoomPermission(permissions.BasePermission):

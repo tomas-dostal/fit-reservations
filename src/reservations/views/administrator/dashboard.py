@@ -1,6 +1,7 @@
-from reservations.decorators import user_passes_test
 from django.shortcuts import render
 from django.views.generic import View
+
+from reservations.decorators import user_passes_test
 
 
 class AdminDashboard(View):

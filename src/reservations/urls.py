@@ -1,9 +1,10 @@
-from django.contrib.auth import views as auth_views
-from reservations import views
-from rest_framework import routers
-from django.contrib import admin
-from django.urls import path
 from django.conf.urls import include
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.urls import path
+from rest_framework import routers
+
+from reservations import views
 
 """backend URL Configuration
 
