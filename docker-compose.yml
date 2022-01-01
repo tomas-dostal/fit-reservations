@@ -1,19 +1,25 @@
-version: '3.8'
+version: '3'
 
 services:
-  web:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    command: gunicorn reservations.wsgi:application --bind 0.0.0.0:8000
+    working_dir: /app/src
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py loaddata /data.json && gunicorn reservations.wsgi:application --bind 0.0.0.0:8000"
     volumes:
-      - static_volume:/app/static
+      - static_volume:/app/src/static
     expose:
       - 8000
     env_file:
       - ./.env
     depends_on:
       - db
+    networks:
+        main:
+            aliases:
+                - app
   db:
     image: postgres:13.0-alpine
     volumes:
@@ -22,15 +28,28 @@ services:
       - POSTGRES_DB=reservations_database
       - POSTGRES_USER=reservations_user
       - POSTGRES_PASSWORD=password
+    networks:
+        main:
+            aliases:
+                - db
 
   nginx:
-    build: .
+    build: ./nginx
     volumes:
-      - static_volume:/app/static
+      - static_volume:/app/src/static
+    links:
+      - app:app
     ports:
-      - 1337:80
+      # 8042 is set in apache to forward it from :80
+      - "8042:80"
     depends_on:
-      - web
+      - app
+    networks:
+        main:
+            aliases:
+                - nginx
+networks:
+  main:
 
 volumes:
   postgres_data:
