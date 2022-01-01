@@ -9,7 +9,7 @@ from reservations.forms import ReservationForm
 from reservations.serializers import *
 from reservations.services import *
 from datetime import datetime
-from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.settings import DEFAULT_PAGE_SIZE
 
 
 class ReservationViewSet(viewsets.ModelViewSet):

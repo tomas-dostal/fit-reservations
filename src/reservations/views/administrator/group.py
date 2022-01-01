@@ -10,7 +10,7 @@ from reservations.serializers import GroupSerializer
 from reservations.models import Group
 from reservations.services import GroupService
 from reservations.forms import GroupForm
-from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.settings import DEFAULT_PAGE_SIZE
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from reservations.models import Person

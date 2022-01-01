@@ -10,7 +10,7 @@ from reservations.models import Room
 from reservations.serializers import RoomSerializer
 from reservations.services import RoomService
 from reservations.forms import RoomForm
-from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.settings import DEFAULT_PAGE_SIZE
 
 from reservations.services import ReservationService
 
