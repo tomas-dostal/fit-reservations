@@ -8,7 +8,7 @@ from reservations.serializers import *
 from reservations.models import *
 from reservations.services import *
 from reservations.forms import *
-from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.settings import DEFAULT_PAGE_SIZE
 from rest_framework.response import Response
 from reservations.services import PersonService
 from reservations.permissions import AdminPermission

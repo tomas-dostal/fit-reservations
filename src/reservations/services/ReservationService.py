@@ -90,7 +90,7 @@ class ReservationService:
             room=room,
             reservation_status__status__exact=ReservationStatus.APPROVED,
             reservation_status__reservation_status__dt_from__lte=datetime.now() + timedelta(days=14),
-        ).order_by('dt_from')
+        ).order_by("dt_from")
 
     @staticmethod
     def find_all_reservations_for_room(room):

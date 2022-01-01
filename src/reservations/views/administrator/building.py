@@ -9,7 +9,7 @@ from reservations.serializers import BuildingSerializer
 from reservations.models import Building
 from reservations.services import BuildingService
 from reservations.forms import BuildingForm
-from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.settings import DEFAULT_PAGE_SIZE
 from reservations.permissions import AdminPermission
 
 

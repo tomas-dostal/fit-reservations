@@ -1,6 +1,6 @@
 from reservations.models import *
 from django.db import models
-from django.contrib.auth.models import  Permission
+from django.contrib.auth.models import Permission
 
 
 class GroupService:

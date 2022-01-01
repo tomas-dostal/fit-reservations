@@ -12,7 +12,7 @@ from reservations.models import Room
 from reservations.serializers import RoomSerializer
 from reservations.services import RoomService
 from reservations.forms import RoomForm, RoomGroupManagerForm
-from backend.settings import DEFAULT_PAGE_SIZE
+from reservations.settings import DEFAULT_PAGE_SIZE
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from reservations.models import Person
