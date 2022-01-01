@@ -241,7 +241,8 @@
          "user":1,
          "content_type":12,
          "object_id":"1",
-         "object_repr":"Pocitacova ucebna (building: NTK), (from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00, by Dostal, Tomas (admin), attendees: reservations.Person.None",
+         "object_repr":"Pocitacova ucebna (building: NTK), (from: 2021-11-07 21:09:48+00:00 to: 2021-11-07 22:09:53+00:00, by Dostal, Tomas (admin), attendees: reservations..None",
+
          "action_flag":2,
          "change_message":"[]"
       }
