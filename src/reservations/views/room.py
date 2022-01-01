@@ -43,4 +43,4 @@ class RoomTemplateView(ListView):
         except EmptyPage:
             rooms = paginator.page(paginator.num_pages)
 
-        return render(request, "rooms/publiclist.html", {"rooms": rooms})
+        return render(request, "rooms/public_list.html", {"rooms": rooms})

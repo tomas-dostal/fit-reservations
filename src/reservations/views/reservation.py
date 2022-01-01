@@ -39,7 +39,7 @@ class ReservationTemplateView(ListView):
         except EmptyPage:
             reservations = paginator.page(paginator.num_pages)
 
-        return render(request, "reservations/publiclist.html", {"reservations": reservations})
+        return render(request, "reservations/public_list.html", {"reservations": reservations})
 
     @staticmethod
     @login_required()
@@ -48,7 +48,7 @@ class ReservationTemplateView(ListView):
         if reservation not in ReservationService.find_reservations_for_person(request.user):
             redirect("/login")
 
-        template = loader.get_template("reservations/publiclist.html")
+        template = loader.get_template("reservations/public_list.html")
         if not ReservationService.delete(reservation_id):
             return HttpResponse(template.render({"errors": ["Failed to delete reservation"]}, request))
         return redirect("/reservations/")

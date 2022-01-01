@@ -33,7 +33,7 @@ router.register(r"^rooms", views.AdminRoomViewSet)
 urlpatterns = [
     path("", views.RoomTemplateView.public_rooms_get_view, name="index"),
     path("admin/", admin.site.urls),
-    path(r"administrator/", include("reservations.administratorurls")),
+    path(r"administrator/", include("reservations.administrator_urls")),
     path(r"api/", include(router.urls)),
     path("public-rooms/", views.RoomTemplateView.public_rooms_get_view, name="public_room_list"),
     path("public-rooms/<int:room_id>/", views.RoomTemplateView.public_room_get_view, name="public_room_view"),
