@@ -1,18 +1,16 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import redirect, render
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from django.core.exceptions import PermissionDenied
 
 from reservations.models import Room
 from reservations.serializers import RoomSerializer
-from reservations.services import RoomService
-from reservations.forms import RoomForm
-from reservations.settings import DEFAULT_PAGE_SIZE
-
 from reservations.services import ReservationService
+from reservations.services import RoomService
+from reservations.settings import DEFAULT_PAGE_SIZE
 
 
 class RoomViewSet(viewsets.ModelViewSet):

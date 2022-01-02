@@ -1,5 +1,6 @@
 from functools import wraps
 from urllib.parse import urlparse
+
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.exceptions import PermissionDenied

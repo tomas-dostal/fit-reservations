@@ -1,7 +1,5 @@
 import django.forms as forms
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
-from reservations.models import *
-from reservations.services import *
 
 
 class CustomAuthenticationForm(AuthenticationForm):

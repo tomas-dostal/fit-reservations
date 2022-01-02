@@ -1,21 +1,19 @@
-from reservations.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect, render
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import redirect
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from reservations.models import ReservationStatus
-from reservations.serializers import ReservationStatusSerializer
-from reservations.services import *
+from rest_framework.response import Response
+
+from reservations.decorators import user_passes_test
 from reservations.forms import ReservationStatusForm
 from reservations.models import Reservation
-from rest_framework.response import Response
 from reservations.permissions import AdminPermission
-from reservations.services import ReservationService
-from reservations.permissions import ReservationPermission
 from reservations.permissions import ReservationStatusPermission
+from reservations.serializers import ReservationStatusSerializer
+from reservations.services import *
+from reservations.services import ReservationService
 from reservations.services import RoomService
 
 

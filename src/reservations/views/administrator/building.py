@@ -1,16 +1,17 @@
-from reservations.decorators import user_passes_test
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from reservations.serializers import BuildingSerializer
-from reservations.models import Building
-from reservations.services import BuildingService
+
+from reservations.decorators import user_passes_test
 from reservations.forms import BuildingForm
-from reservations.settings import DEFAULT_PAGE_SIZE
+from reservations.models import Building
 from reservations.permissions import AdminPermission
+from reservations.serializers import BuildingSerializer
+from reservations.services import BuildingService
+from reservations.settings import DEFAULT_PAGE_SIZE
 
 
 class AdminBuildingViewSet(viewsets.ModelViewSet):

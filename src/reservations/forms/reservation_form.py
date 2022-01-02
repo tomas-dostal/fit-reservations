@@ -1,8 +1,7 @@
-from datetime import datetime
 import django.forms as forms
 from django.forms import ModelForm, DateTimeInput
 from pytz import timezone
-from reservations.models import *
+
 from reservations.services import *
 
 
@@ -31,8 +30,8 @@ class AdminReservationForm(ModelForm):
             "dt_to": "Platnost do",
         }
         widgets = {
-            "dt_from": DateTimeInput(attrs={"type": "datetime-local"}),
-            "dt_to": DateTimeInput(attrs={"type": "datetime-local"}),
+            "dt_from": DateTimeInput(format="%Y-%m-%dT%H:%M", attrs={"type": "datetime-local"}),
+            "dt_to": DateTimeInput(format="%Y-%m-%dT%H:%M", attrs={"type": "datetime-local"}),
         }
 
     def clean(self):
@@ -66,8 +65,8 @@ class ReservationForm(ModelForm):
             "fd_to": "Platnost do",
         }
         widgets = {
-            "dt_from": DateTimeInput(attrs={"type": "datetime-local"}),
-            "dt_to": DateTimeInput(attrs={"type": "datetime-local"}),
+            "dt_from": DateTimeInput(format="%Y-%m-%dT%H:%M", attrs={"type": "datetime-local"}),
+            "dt_to": DateTimeInput(format="%Y-%m-%dT%H:%M", attrs={"type": "datetime-local"}),
         }
 
     def clean(self):
