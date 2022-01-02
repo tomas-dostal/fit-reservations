@@ -149,7 +149,7 @@ class AdminReservationTemplateView(ListView):
         form = AdminReservationForm(request, request.POST or None, instance=instance)
 
         if form.is_valid():
-            if not ReservationService.update(form.cleaned_data):
+            if not ReservationService.update(instance, form.cleaned_data, request.user):
                 return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
             return redirect("/administrator/reservations/")
         return HttpResponse(template.render({"form": form, "reservation": instance}, request))
