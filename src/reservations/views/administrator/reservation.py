@@ -1,20 +1,20 @@
-from reservations.decorators import user_passes_test
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from reservations.forms import AdminReservationForm
-from reservations.serializers import *
-from reservations.services import *
-from reservations.settings import DEFAULT_PAGE_SIZE
-from reservations.models import Person
-from reservations.models import ReservationStatus
-from reservations.models import Reservation
 from rest_framework.response import Response
-from reservations.services import ReservationService
+
+from reservations.decorators import user_passes_test
+from reservations.forms import AdminReservationForm
+from reservations.models import Person
+from reservations.models import Reservation
+from reservations.models import ReservationStatus
 from reservations.permissions import ReservationPermission
+from reservations.serializers import *
+from reservations.services import ReservationService
+from reservations.settings import DEFAULT_PAGE_SIZE
 
 
 class AdminReservationViewSet(viewsets.ModelViewSet):
@@ -149,7 +149,7 @@ class AdminReservationTemplateView(ListView):
         form = AdminReservationForm(request, request.POST or None, instance=instance)
 
         if form.is_valid():
-            if not ReservationService.update(form.cleaned_data):
+            if not ReservationService.update(instance, form.cleaned_data, request.user):
                 return HttpResponse(template.render({"errors": ["Something went wrong"], "form": form}, request))
             return redirect("/administrator/reservations/")
         return HttpResponse(template.render({"form": form, "reservation": instance}, request))

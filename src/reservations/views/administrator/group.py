@@ -1,22 +1,22 @@
-from reservations.decorators import user_passes_test
 from django.contrib.auth.models import Permission
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import loader
 from django.views.generic import ListView
 from rest_framework import viewsets
-from reservations.serializers import GroupSerializer
-from reservations.models import Group
-from reservations.services import GroupService
-from reservations.forms import GroupForm
-from reservations.settings import DEFAULT_PAGE_SIZE
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from reservations.decorators import user_passes_test
+from reservations.forms import GroupForm
+from reservations.models import Group
 from reservations.models import Person
 from reservations.permissions import AdminPermission
-from reservations.services import PersonService
+from reservations.serializers import GroupSerializer
+from reservations.services import GroupService
 from reservations.services import RoomService
+from reservations.settings import DEFAULT_PAGE_SIZE
 
 
 class AdminGroupViewSet(viewsets.ModelViewSet):

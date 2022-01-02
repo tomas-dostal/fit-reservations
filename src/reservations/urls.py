@@ -1,9 +1,10 @@
-from django.contrib.auth import views as auth_views
-from reservations import views
-from rest_framework import routers
-from django.contrib import admin
-from django.urls import path
 from django.conf.urls import include
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.urls import path
+from rest_framework import routers
+
+from reservations import views
 
 """backend URL Configuration
 
@@ -33,7 +34,7 @@ router.register(r"^rooms", views.AdminRoomViewSet)
 urlpatterns = [
     path("", views.RoomTemplateView.public_rooms_get_view, name="index"),
     path("admin/", admin.site.urls),
-    path(r"administrator/", include("reservations.administratorurls")),
+    path(r"administrator/", include("reservations.administrator_urls")),
     path(r"api/", include(router.urls)),
     path("public-rooms/", views.RoomTemplateView.public_rooms_get_view, name="public_room_list"),
     path("public-rooms/<int:room_id>/", views.RoomTemplateView.public_room_get_view, name="public_room_view"),
