@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.models import Permission
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, Http404
@@ -187,6 +188,9 @@ class AdminRoomTemplateView(ListView):
             return HttpResponse(template.render({"form": form}, request))
 
         instance = RoomService.find_by_id(room_id)
+        if instance not in RoomService.find_managed_rooms(request.user) and not request.user.is_superuser:
+            raise PermissionDenied
+
         if instance is None:
             raise Http404("Room does not exist")
         if instance not in RoomService.find_managed_rooms(request.user) and not request.user.is_superuser:

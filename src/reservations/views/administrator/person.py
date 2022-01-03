@@ -28,6 +28,11 @@ class AdminPersonViewSet(viewsets.ModelViewSet):
     ]
     permission_classes = [AdminPermission]
 
+    def get_permissions(self):
+        if self.action == "retrieve":
+            return []
+        return super(AdminPersonViewSet, self).get_permissions()
+
     def destroy(self, request, *args, **kwargs):
         PersonService.delete(self.get_object().id)
         return Response(data="delete success")

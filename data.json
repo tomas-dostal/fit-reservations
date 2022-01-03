@@ -22,7 +22,7 @@
     "pk": 9,
     "fields": {
         "password": "pbkdf2_sha256$260000$A6NxGibrdMZCTMuB5VbAx9$WrKKz5a/D3o/CjoaZxzzjNNLtDrlbNmJ2TkKzFZK2n8=",
-        "last_login": "2021-12-15T13:27:55.141Z",
+        "last_login": "2022-01-03T17:46:08.295Z",
         "is_superuser": false,
         "username": "kalvotom@fit.cvut.cz",
         "first_name": "Tomas",
@@ -33,11 +33,6 @@
         "date_joined": "2021-12-06T15:29:08Z",
         "groups": [],
         "user_permissions": [
-            [
-                "is_group_manager",
-                "reservations",
-                "person"
-            ],
             [
                 "is_room_manager",
                 "reservations",
@@ -608,7 +603,7 @@
     "pk": 44,
     "fields": {
         "password": "pbkdf2_sha256$260000$OgPT6aJt0tgZck9sG68605$ZImR3vY5JscAZ+b2ItFAeDkFcMML3nJ/638GIBJ0nlY=",
-        "last_login": "2021-12-23T19:40:26.132Z",
+        "last_login": "2022-01-03T17:46:31.920Z",
         "is_superuser": true,
         "username": "adminek@email.com",
         "first_name": "Test",
@@ -653,6 +648,14 @@
     "fields": {
         "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsjPTmp1-xwT5QW0neId26zz3ti5z4rvCDzr4tSM9L4f7d1Bh1G_tJ1eSEYGEBUVW2BBoAhs0KmfIFwxFZmnAJaU8yuQUaaOcJ-NQpAnY-wP5oTe7:1mybaG:c9xuGMOnsjeWAoJl47Oh5MqADLuxqI-JmmByNPw9wL0",
         "expire_date": "2022-01-01T15:25:16.385Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "m2htr5z9lz9n2mwhye1eipdhsevewnqd",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSFAebp07zeQgRmkaiAp7cr479qkC93ec859sQjbWuM2aIkzsjPTmp1-xwT5QW0neId26zz3ti5z4rvCDzr4tSM9L4f7d1Bh1G_tJ1eSEYGEBUVW2BBoAhs0KmfIFwxFZmnAJaU8yuQUaaOcJ-NQpAnY-wP5oTe7:1n4RPj:y861abyaXLqEMMGVRWkfZzjEUqh7BTs_98pCXXJja5k",
+        "expire_date": "2022-01-17T17:46:31.925Z"
     }
 },
 {
@@ -1103,9 +1106,9 @@
         "parent": 7,
         "manager": 7,
         "member": [
-            7,
             13,
-            14
+            14,
+            7
         ]
     }
 },
@@ -1117,8 +1120,8 @@
         "parent": 7,
         "manager": 15,
         "member": [
-            15,
-            16
+            16,
+            15
         ]
     }
 },
@@ -1143,8 +1146,8 @@
         "parent": 7,
         "manager": 19,
         "member": [
-            3,
             19,
+            3,
             21
         ]
     }
@@ -1483,228 +1486,302 @@
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 1,
+    "pk": 11,
     "fields": {
-        "author": 3,
-        "dt_modified": "2021-12-07T12:21:16.638Z",
+        "author": 35,
+        "dt_modified": "2022-01-02T14:33:35.720Z",
         "status": "Pending authorisation",
         "note": "Rezervace pro studenty, aby mohli pracovat na projektu"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 2,
+    "pk": 12,
     "fields": {
-        "author": 6,
-        "dt_modified": "2021-12-07T12:35:20.720Z",
+        "author": 35,
+        "dt_modified": "2022-01-02T14:43:23.762Z",
         "status": "Pending authorisation",
-        "note": "Predzkouskova konzultace pro kolegu"
+        "note": "Rezervace pro studenty, aby mohli pracovat na projektu"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 3,
+    "pk": 13,
+    "fields": {
+        "author": 35,
+        "dt_modified": "2022-01-02T14:45:54.513Z",
+        "status": "Pending authorisation",
+        "note": "Rezervace pro studenty, aby mohli pracovat na projektu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 14,
+    "fields": {
+        "author": 35,
+        "dt_modified": "2022-01-02T14:46:12.452Z",
+        "status": "Pending authorisation",
+        "note": "Rezervace pro studenty, aby mohli pracovat na projektu"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 24,
+    "fields": {
+        "author": 3,
+        "dt_modified": "2022-01-03T17:24:59.781Z",
+        "status": "Pending authorisation",
+        "note": "Chci si rezervovat tuto místnost pro účely konzultace."
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 25,
+    "fields": {
+        "author": 21,
+        "dt_modified": "2022-01-03T17:28:55.457Z",
+        "status": "Pending authorisation",
+        "note": "Potřebujeme si vyjasnit, kdo je větší matematikář."
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 26,
     "fields": {
         "author": 4,
-        "dt_modified": "2021-12-07T12:42:53.848Z",
+        "dt_modified": "2022-01-03T17:30:12.412Z",
         "status": "Pending authorisation",
-        "note": "Rezervace pro mne a kolegu"
+        "note": "Rezzervace pro konzultaci"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 4,
+    "pk": 27,
     "fields": {
-        "author": 19,
-        "dt_modified": "2021-12-07T12:45:23.069Z",
+        "author": 4,
+        "dt_modified": "2022-01-03T17:31:47.644Z",
         "status": "Pending authorisation",
-        "note": "Setkani vedeni KAMu"
+        "note": "Rezervace"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 5,
-    "fields": {
-        "author": 3,
-        "dt_modified": "2021-12-07T12:47:10.110Z",
-        "status": "Pending authorisation",
-        "note": "Chtel bych rezertovat NTK BS pro spolecne uceni kolegu"
-    }
-},
-{
-    "model": "reservations.reservationstatus",
-    "pk": 7,
+    "pk": 28,
     "fields": {
         "author": 23,
-        "dt_modified": "2021-12-07T15:21:36.174Z",
+        "dt_modified": "2022-01-03T17:32:45.776Z",
+        "status": "Pending authorisation",
+        "note": "Přednáška o budoucnosti na FIT"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 29,
+    "fields": {
+        "author": 23,
+        "dt_modified": "2022-01-03T17:32:55.697Z",
         "status": "Approved",
-        "note": "Ano, muzete"
+        "note": "Povoluje se"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 8,
+    "pk": 30,
     "fields": {
         "author": 23,
-        "dt_modified": "2021-12-07T15:24:47.149Z",
+        "dt_modified": "2022-01-03T17:33:43.977Z",
         "status": "Declined",
-        "note": "V tuto chvili je mistnost obsazena, lituji"
+        "note": "Nelze splnit"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 9,
+    "pk": 31,
     "fields": {
-        "author": 3,
-        "dt_modified": "2021-12-15T10:47:03.305Z",
+        "author": 5,
+        "dt_modified": "2022-01-03T17:34:57.147Z",
         "status": "Pending authorisation",
-        "note": "Moje nova rezervace"
+        "note": "Tvorba rozvrhu, potřebujeme na to celou místnost pro sebe"
     }
 },
 {
     "model": "reservations.reservationstatus",
-    "pk": 10,
+    "pk": 32,
     "fields": {
-        "author": 24,
-        "dt_modified": "2021-12-15T12:55:01.382Z",
+        "author": 35,
+        "dt_modified": "2022-01-03T17:36:45.495Z",
         "status": "Pending authorisation",
-        "note": "Ano"
+        "note": "Sledovani filmu pro kolegy"
+    }
+},
+{
+    "model": "reservations.reservationstatus",
+    "pk": 33,
+    "fields": {
+        "author": 35,
+        "dt_modified": "2022-01-03T17:37:03.422Z",
+        "status": "Approved",
+        "note": "Povoleno"
     }
 },
 {
     "model": "reservations.reservation",
-    "pk": 1,
+    "pk": 8,
     "fields": {
         "author": 3,
         "owner": 3,
-        "room": 3,
-        "dt_from": "2021-12-20T12:21:30Z",
-        "dt_to": "2021-12-20T15:21:44Z",
-        "dt_created": "2021-12-07T12:22:25.455Z",
+        "room": 16,
+        "dt_from": "2022-01-13T18:24:00Z",
+        "dt_to": "2022-01-13T21:24:00Z",
+        "dt_created": "2022-01-03T17:24:59.789Z",
         "attendees": [
+            28,
+            29,
+            30
+        ],
+        "reservation_status": [
+            24
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 9,
+    "fields": {
+        "author": 21,
+        "owner": 21,
+        "room": 16,
+        "dt_from": "2022-01-13T18:28:00Z",
+        "dt_to": "2022-01-13T21:31:00Z",
+        "dt_created": "2022-01-03T17:28:55.467Z",
+        "attendees": [
+            3
+        ],
+        "reservation_status": [
+            25
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 10,
+    "fields": {
+        "author": 4,
+        "owner": 4,
+        "room": 2,
+        "dt_from": "2022-01-10T18:29:00Z",
+        "dt_to": "2022-01-11T18:29:00Z",
+        "dt_created": "2022-01-03T17:30:12.420Z",
+        "attendees": [
+            25,
             26,
             27,
             28,
             29
         ],
         "reservation_status": [
-            1
+            26,
+            30
         ]
     }
 },
 {
     "model": "reservations.reservation",
-    "pk": 2,
-    "fields": {
-        "author": 6,
-        "owner": 21,
-        "room": 1,
-        "dt_from": "2021-12-25T12:34:52Z",
-        "dt_to": "2021-12-26T12:34:54Z",
-        "dt_created": "2021-12-07T12:35:23.939Z",
-        "attendees": [
-            25
-        ],
-        "reservation_status": [
-            2
-        ]
-    }
-},
-{
-    "model": "reservations.reservation",
-    "pk": 3,
+    "pk": 11,
     "fields": {
         "author": 4,
         "owner": 4,
-        "room": 5,
-        "dt_from": "2021-12-24T12:43:03Z",
-        "dt_to": "2021-12-24T13:43:09Z",
-        "dt_created": "2021-12-07T12:43:18.498Z",
+        "room": 19,
+        "dt_from": "2022-01-07T18:30:00Z",
+        "dt_to": "2022-01-07T22:30:00Z",
+        "dt_created": "2022-01-03T17:31:47.653Z",
         "attendees": [
             5
         ],
         "reservation_status": [
-            3
+            27
         ]
     }
 },
 {
     "model": "reservations.reservation",
-    "pk": 4,
+    "pk": 12,
     "fields": {
-        "author": 19,
+        "author": 23,
         "owner": 19,
-        "room": 2,
-        "dt_from": "2021-12-29T12:45:33Z",
-        "dt_to": "2021-12-30T12:45:40Z",
-        "dt_created": "2021-12-07T14:39:44.742Z",
+        "room": 1,
+        "dt_from": "2022-01-15T18:32:00Z",
+        "dt_to": "2022-01-15T22:32:00Z",
+        "dt_created": "2022-01-03T17:32:45.786Z",
         "attendees": [
             3,
-            19,
-            21
-        ],
-        "reservation_status": [
             4,
-            7
-        ]
-    }
-},
-{
-    "model": "reservations.reservation",
-    "pk": 5,
-    "fields": {
-        "author": 3,
-        "owner": 29,
-        "room": 19,
-        "dt_from": "2021-12-21T12:47:15Z",
-        "dt_to": "2021-12-21T12:47:25Z",
-        "dt_created": "2021-12-07T12:47:29.680Z",
-        "attendees": [
+            5,
+            6,
+            7,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
             25,
             26,
             27,
-            28
+            28,
+            29,
+            30
         ],
         "reservation_status": [
-            5,
-            8
+            28,
+            29
         ]
     }
 },
 {
     "model": "reservations.reservation",
-    "pk": 6,
+    "pk": 13,
     "fields": {
-        "author": 3,
-        "owner": 3,
+        "author": 5,
+        "owner": 5,
+        "room": 8,
+        "dt_from": "2022-01-30T15:34:00Z",
+        "dt_to": "2022-01-30T18:34:00Z",
+        "dt_created": "2022-01-03T17:34:57.161Z",
+        "attendees": [
+            6
+        ],
+        "reservation_status": [
+            31
+        ]
+    }
+},
+{
+    "model": "reservations.reservation",
+    "pk": 14,
+    "fields": {
+        "author": 35,
+        "owner": 25,
         "room": 1,
-        "dt_from": "2021-12-24T11:46:00Z",
-        "dt_to": "2021-12-25T11:46:00Z",
-        "dt_created": "2021-12-15T10:47:03.484Z",
+        "dt_from": "2022-01-19T18:36:00Z",
+        "dt_to": "2022-01-19T22:36:00Z",
+        "dt_created": "2022-01-03T17:36:45.505Z",
         "attendees": [
-            3,
-            4
+            26,
+            27,
+            28,
+            29,
+            30
         ],
         "reservation_status": [
-            9
-        ]
-    }
-},
-{
-    "model": "reservations.reservation",
-    "pk": 7,
-    "fields": {
-        "author": 24,
-        "owner": 3,
-        "room": 7,
-        "dt_from": "2021-12-18T13:54:00Z",
-        "dt_to": "2021-12-20T13:54:00Z",
-        "dt_created": "2021-12-15T12:55:01.517Z",
-        "attendees": [
-            3
-        ],
-        "reservation_status": [
-            10
+            32,
+            33
         ]
     }
 },
@@ -2946,6 +3023,24 @@
         ],
         "object_id": "32",
         "object_repr": "novotjan@fit.cvut.cz",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2022-01-03T17:43:56.326Z",
+        "user": [
+            "adminek@email.com"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "9",
+        "object_repr": "kalvotom@fit.cvut.cz",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
     }
