@@ -187,6 +187,9 @@ class AdminRoomTemplateView(ListView):
             return HttpResponse(template.render({"form": form}, request))
 
         instance = RoomService.find_by_id(room_id)
+        if instance not in RoomService.find_managed_rooms(request.user) and not request.user.is_superuser:
+            raise PermissionDenied
+
         if instance is None:
             raise Http404("Room does not exist")
         form = RoomGroupManagerForm(request.POST or None, instance=instance)
