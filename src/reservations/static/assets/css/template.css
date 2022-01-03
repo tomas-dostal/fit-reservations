@@ -60,9 +60,11 @@ table {
 body {
     font-family: sans-serif;
     background-color: #ffffff;
-    height: 100vh;
+    height: 100%;
+    min-height: calc(100vh - 75px - 2.5rem);
     padding: 20px;
-    margin-top: 75px;
+    padding-top: 75px;
+    position: relative;
 }
 
 h1 {
@@ -114,6 +116,10 @@ nav#navigation > ul > li.title {
     padding: 20px;
 }
 
+nav#navigation > ul .welcome {
+    display: none;
+}
+
 nav#navigation > ul > li.login {
     margin-left: auto;
 }
@@ -141,12 +147,18 @@ main.container {
     flex-direction: row;
     /*    width: 88%;*/
     margin: 10px auto;
+    padding-bottom: 2.5rem; /* Footer height */
 }
 
 .page-container {
     padding: 10px;
     padding-left: 4rem;
     flex-grow: 8;
+}
+
+table.list .actions a{
+    display: inline-block;
+    width: auto;
 }
 
 .page-container header {
@@ -308,7 +320,7 @@ table.list th {
     font-size: 1.05rem;
 }
 
-table.list td.actions .button{
+table.list td.actions .button {
     margin: 2px;
     display: inline-flex;
 }
@@ -399,6 +411,10 @@ ul.inline > li {
 
 .model-form input.submit {
 
+}
+
+.login-form {
+    width: 30%;
 }
 
 .button.submit {
@@ -500,10 +516,11 @@ form.login-form .field-label {
 
 /* Footer */
 footer {
-    margin-top: 5rem;
-    padding-bottom: 0.5rem;
-    width: 100%;
+    position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2.5rem; /* Footer height */
 }
 
 footer p {
@@ -511,7 +528,8 @@ footer p {
 }
 
 footer a {
-    display: block;
+    padding: 5px;
     text-align: center;
-    margin-top: 1rem;
+    display: block;
 }
+
