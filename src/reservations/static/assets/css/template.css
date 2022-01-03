@@ -107,10 +107,10 @@ nav#navigation > ul > li {
 nav#navigation > ul > li.menu-item > a {
     position: relative;
     top: 1.5rem;
+    text-align: center;
 }
 
 nav#navigation > ul > li.title {
-    border-right: 1px solid #69676D;
     padding: 20px;
 }
 
@@ -122,6 +122,7 @@ nav#navigation > ul > li a {
     color: black;
     text-decoration: none;
     padding: 5px;
+    display: inline-flex;
 }
 
 nav#navigation > ul > li:not(.title, .active) a:hover {
